@@ -1,0 +1,27 @@
+language: python
+
+python:
+  - "3.7"
+
+cache: pip
+
+# command to install dependencies
+install:
+  - echo starting
+  - set
+
+
+script:
+  - echo done
+
+notifications:
+  recipients:
+    - lixf@sovon.net
+
+  on_success: change
+  on_failure: change
+
+#after_success:
+#  - coveralls
+#  - coverage xml
+#  - python-codacy-coverage -r coverage.xml
