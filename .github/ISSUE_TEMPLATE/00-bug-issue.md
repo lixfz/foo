@@ -22,7 +22,7 @@ labels: 'type:bug'
 Provide a reproducible test case that is the bare minimum necessary to generate
 the problem. If possible, please share a link to Jupyter notebook.
 
-**Are you willing to submit PR(Yes/No)**
+**Are you willing to submit PR?(Yes/No)**
 
 **Other info / logs** Include any logs or source code that would be helpful to
 diagnose the problem. If including tracebacks, please include the full
