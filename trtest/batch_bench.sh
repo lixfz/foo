@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#HERE=$(dirname "$(readlink -f "$0")")
+
+#MODEL_PATH=/userdata/llms/deepseek-ai/DeepSeek-R1
+#DATASET_PATH=/userdata/projects/gooz/trt_examples/dataset-sharegpt.txt
+#DATASET_PATH  /userdata/projects/gooz/trt_examples/dataset-ds-r1-o8k.txt \
+
+MODEL_PATH=/userdata/llms/deepseek-ai/DeepSeek-R1
+DATASET_PATH=./dataset-sharegpt.txt
+
+TAG=$(date "+%y%m%d")
+for i in $(seq -w 1 99); do
+  OUTPUT_DIR="outputs-$TAG$i"
+  [[ -d $OUTPUT_DIR ]] && continue
+  break
+done
+mkdir $OUTPUT_DIR
+
+
+function doit(){
+ BS=${1:-300}
+ NC=${2:-300}
+ NG=${TRTLLM_DG_ENABLED:-0}
+ REPORT=bench-b$BS-c$NC-ng$NG
+
+ echo start benchmark: $REPORT
+ 
+ 
+ trtllm-bench \
+   --model deepseek-ai/DeepSeek-R1 \
+   --model_path $MODEL_PATH \
+   throughput \
+   --backend pytorch \
+   --dataset  $DATASET_PATH \
+   --max_num_tokens 1160 \
+   --max_seq_len 16384 \
+   --num_requests 3000 \
+   --max_batch_size $BS \
+   --concurrency $NC \
+   --tp 8 \
+   --ep 4 \
+   --pp 1 \
+   --streaming \
+   --kv_cache_free_gpu_mem_fraction 0.80 \
+   --extra_llm_api_options ./extra-llm-api-config.yml \
+   --report_json $OUTPUT_DIR/$REPORT.json \
+   2>&1 |tee $OUTPUT_DIR/$REPORT.log
+
+   #--extra_llm_api_options ./extra-llm-api-config-graph.yml
+}
+
+export TRTLLM_DG_ENABLED=
+
+doit 100 100
+doit 300 300
+doit 300 600
+doit 600 600 
+
+#export TRTLLM_DG_ENABLED=1
+#
+#doit 300 300
+#doit 300 600
+#doit 600 600
+
+export TRTLLM_DG_ENABLED=
