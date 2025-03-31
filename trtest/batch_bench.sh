@@ -7,16 +7,18 @@
 #DATASET_PATH  /userdata/projects/gooz/trt_examples/dataset-ds-r1-o8k.txt \
 
 MODEL_PATH=/userdata/llms/deepseek-ai/DeepSeek-R1
-DATASET_PATH=./dataset-sharegpt.txt
 
-TAG=$(date "+%y%m%d")
-for i in $(seq -w 1 99); do
-  OUTPUT_DIR="outputs-$TAG$i"
-  [[ -d $OUTPUT_DIR ]] && continue
-  break
-done
-mkdir $OUTPUT_DIR
+function gen_odir() {
+  TAG=$(date "+%y%m%d")
+  for i in $(seq -w 1 99); do
+    ODIR="outputs-$TAG$i"
+    [[ -d $ODIR ]] && continue
+    break
+  done
 
+  mkdir -p $ODIR
+  echo $ODIR
+}
 
 function doit(){
  BS=${1:-300}
@@ -50,7 +52,19 @@ function doit(){
    #--extra_llm_api_options ./extra-llm-api-config-graph.yml
 }
 
-export TRTLLM_DG_ENABLED=
+
+DATASET_PATH=./dataset-ds-r1-o8k.txt
+OUTPUT_DIR=$(gen_odir)
+TRTLLM_DG_ENABLED=
+
+doit 100 100
+doit 300 300
+doit 300 600
+doit 600 600
+
+DATASET_PATH=./dataset-sharegpt.txt
+OUTPUT_DIR=$(gen_odir)
+TRTLLM_DG_ENABLED=
 
 doit 100 100
 doit 300 300
