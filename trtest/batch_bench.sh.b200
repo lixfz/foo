@@ -10,9 +10,10 @@
 MODEL_PATH=/userdata/llms/DeepSeek-R1-FP4
 
 function gen_odir() {
+  PRE=${1:-outputs}
   TAG=$(date "+%y%m%d")
   for i in $(seq -w 1 99); do
-    ODIR="outputs-$TAG$i"
+    ODIR="$PRE-$TAG$i"
     [[ -d $ODIR ]] && continue
     break
   done
@@ -54,28 +55,30 @@ function doit(){
 }
 
 DATASET_PATH=/userdata/foo/trtest/dataset-sharegpt.txt
-#OUTPUT_DIR=$(gen_odir)
-OUTPUT_DIR=outputs-sharegpt-0401-02
-mkdir $OUTPUT_DIR
-TRTLLM_DG_ENABLED=1
+OUTPUT_DIR=$(gen_odir outputs-sharegpt)
+#OUTPUT_DIR=outputs-sharegpt-0401-02
+#mkdir $OUTPUT_DIR
+TRTLLM_DG_ENABLED=
 
 doit 300 300
 doit 300 600
 doit 600 600
+doit 600 1000
 doit 100 100
-exit
 
-DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1-o8k.txt
+#DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1-o8k.txt
+DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1.txt
 #OUTPUT_DIR=$(gen_odir)
-OUTPUT_DIR=outputs-o8k
-mkdir $OUTPUT_DIR
+#OUTPUT_DIR=outputs-o8k
+OUTPUT_DIR=$(gen_odir outputs-1k1k)
+#mkdir $OUTPUT_DIR
 TRTLLM_DG_ENABLED=
 
-doit 100 100
-exit
 doit 300 300
 doit 300 600
 doit 600 600 
+doit 600 1000
+doit 100 100
 
 #export TRTLLM_DG_ENABLED=1
 #
