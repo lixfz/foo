@@ -1,0 +1,6 @@
+2025-04-01 05:48:36,807 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+Usage: trtllm-bench throughput [OPTIONS]
+Try 'trtllm-bench throughput --help' for help.
+
+Error: No such option: --mtp_nextn
