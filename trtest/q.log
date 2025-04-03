@@ -1,0 +1,690 @@
+2025-04-02 11:04:08,494 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[33;20mUsing MpiPoolSession to spawn MPI processes
+[0m2025-04-02 11:04:29,934 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:29,967 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:29,993 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:30,014 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:30,016 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:30,019 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:30,020 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+2025-04-02 11:04:30,022 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025040100
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 0/1524 [00:00<?, ?it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.47it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.46it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.46it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.46it/s]Loading weights:   0%|          | 3/1524 [00:00<02:55,  8.67it/s]Loading weights:   0%|          | 3/1524 [00:00<02:58,  8.54it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.45it/s]Loading weights:   0%|          | 3/1524 [00:00<02:59,  8.46it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 33.01it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 33.01it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 33.01it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 32.98it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 32.96it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 32.93it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 33.45it/s]Loading weights:   1%|          | 13/1524 [00:00<00:45, 33.13it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.18it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.66it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.15it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.17it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.38it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.13it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.14it/s]Loading weights:   1%|          | 19/1524 [00:00<00:37, 40.14it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.47it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.46it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.46it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.71it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:20, 71.04it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.43it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.39it/s]Loading weights:   2%|▏         | 35/1524 [00:00<00:21, 70.39it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 70.04it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 70.00it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 69.97it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 70.01it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 70.15it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 70.35it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 69.97it/s]Loading weights:   3%|▎         | 44/1524 [00:00<00:21, 69.97it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.91it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 90.23it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.85it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.86it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.95it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.78it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.70it/s]Loading weights:   4%|▍         | 59/1524 [00:00<00:16, 89.66it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.64it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.50it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.37it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.34it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.23it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.23it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.23it/s]Loading weights:   5%|▍         | 70/1524 [00:01<00:16, 90.18it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.03it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.03it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.02it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.01it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.02it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.02it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 35.01it/s]Loading weights:   6%|▌         | 86/1524 [00:01<00:41, 34.99it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.97it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.99it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.98it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.97it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.96it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.96it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:27, 50.94it/s]Loading weights:   7%|▋         | 104/1524 [00:02<00:28, 50.19it/s]Loading weights:   7%|▋         | 114/1524 [00:02<00:49, 28.75it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.14it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.15it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.15it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.16it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.15it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.14it/s]Loading weights:   8%|▊         | 115/1524 [00:02<00:48, 29.14it/s]Loading weights:   9%|▊         | 131/1524 [00:02<00:34, 40.87it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.79it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.78it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.79it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.79it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.81it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.79it/s]Loading weights:   9%|▉         | 135/1524 [00:02<00:31, 43.79it/s]Loading weights:   9%|▉         | 141/1524 [00:03<00:52, 26.40it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.03it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|▉         | 147/1524 [00:03<00:47, 29.02it/s]Loading weights:  10%|█         | 160/1524 [00:03<00:34, 39.46it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.37it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.37it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.37it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.37it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.37it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.36it/s]Loading weights:  11%|█         | 161/1524 [00:04<00:58, 23.36it/s]Loading weights:  11%|█         | 171/1524 [00:04<00:50, 26.63it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.73it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.72it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.72it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.72it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.72it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:39, 33.72it/s]Loading weights:  12%|█▏        | 179/1524 [00:04<00:40, 33.59it/s]Loading weights:  12%|█▏        | 186/1524 [00:05<00:59, 22.62it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.03it/s]Loading weights:  12%|█▏        | 189/1524 [00:05<00:55, 24.06it/s]Loading weights:  13%|█▎        | 204/1524 [00:05<00:40, 32.67it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.01it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.01it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.01it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.02it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.05it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.01it/s]Loading weights:  14%|█▎        | 206/1524 [00:05<00:38, 34.01it/s]Loading weights:  14%|█▍        | 214/1524 [00:06<00:55, 23.66it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.21it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.20it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.20it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.20it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.21it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.20it/s]Loading weights:  14%|█▍        | 216/1524 [00:06<00:54, 24.20it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.30it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.30it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.54it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.30it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.30it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.30it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.31it/s]Loading weights:  15%|█▌        | 231/1524 [00:06<00:38, 33.29it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 24.18it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.77it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  16%|█▌        | 241/1524 [00:07<00:53, 23.78it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 36.00it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 36.00it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 36.00it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 36.01it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 36.05it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 35.99it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 35.99it/s]Loading weights:  17%|█▋        | 260/1524 [00:07<00:35, 35.99it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:48, 25.58it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:48, 25.57it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:48, 25.57it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:48, 25.58it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:49, 25.57it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:49, 25.57it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:49, 25.57it/s]Loading weights:  18%|█▊        | 271/1524 [00:08<00:48, 25.74it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.10it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:55, 22.23it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  19%|█▉        | 286/1524 [00:09<00:56, 22.09it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.12it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.12it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.12it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.12it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.16it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.11it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:37, 32.11it/s]Loading weights:  20%|█▉        | 304/1524 [00:09<00:38, 32.10it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.41it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.40it/s]Loading weights:  21%|██        | 314/1524 [00:10<00:51, 23.47it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.29it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.28it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.28it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.28it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.28it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.28it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.30it/s]Loading weights:  22%|██▏       | 331/1524 [00:10<00:35, 33.29it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.84it/s]Loading weights:  22%|██▏       | 341/1524 [00:11<00:49, 23.88it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.59it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.59it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.59it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.59it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.58it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.58it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.58it/s]Loading weights:  24%|██▎       | 360/1524 [00:11<00:32, 35.58it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.75it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.74it/s]Loading weights:  24%|██▍       | 371/1524 [00:12<00:44, 25.73it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.17it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  25%|██▌       | 386/1524 [00:12<00:51, 22.16it/s]Loading weights:  27%|██▋       | 404/1524 [00:13<00:35, 31.91it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.71it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 406/1524 [00:13<00:34, 32.70it/s]Loading weights:  27%|██▋       | 414/1524 [00:13<00:46, 23.70it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  27%|██▋       | 415/1524 [00:13<00:46, 23.86it/s]Loading weights:  28%|██▊       | 431/1524 [00:13<00:32, 33.62it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.85it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▊       | 435/1524 [00:13<00:30, 35.84it/s]Loading weights:  29%|██▉       | 441/1524 [00:14<00:44, 24.12it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.82it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  29%|██▉       | 446/1524 [00:14<00:41, 25.81it/s]Loading weights:  30%|███       | 460/1524 [00:14<00:29, 35.92it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  30%|███       | 461/1524 [00:15<00:47, 22.45it/s]Loading weights:  31%|███       | 471/1524 [00:15<00:41, 25.67it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  31%|███▏      | 479/1524 [00:15<00:32, 32.23it/s]Loading weights:  32%|███▏      | 486/1524 [00:16<00:46, 22.31it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  32%|███▏      | 489/1524 [00:16<00:43, 23.67it/s]Loading weights:  33%|███▎      | 504/1524 [00:16<00:31, 32.11it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.42it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.42it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.42it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.42it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.42it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.40it/s]Loading weights:  33%|███▎      | 506/1524 [00:16<00:30, 33.40it/s]Loading weights:  34%|███▎      | 514/1524 [00:17<00:42, 23.55it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  34%|███▍      | 516/1524 [00:17<00:41, 24.08it/s]Loading weights:  35%|███▍      | 531/1524 [00:17<00:29, 33.38it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.79it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.80it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.78it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.78it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.78it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.78it/s]Loading weights:  35%|███▌      | 535/1524 [00:17<00:27, 35.77it/s]Loading weights:  35%|███▌      | 541/1524 [00:18<00:40, 24.10it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.65it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.64it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.65it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.65it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.64it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.64it/s]Loading weights:  36%|███▌      | 546/1524 [00:18<00:38, 25.64it/s]Loading weights:  37%|███▋      | 560/1524 [00:18<00:26, 35.88it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.47it/s]Loading weights:  37%|███▋      | 561/1524 [00:19<00:42, 22.46it/s]Loading weights:  37%|███▋      | 571/1524 [00:19<00:36, 25.90it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.47it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.47it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.47it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.47it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.46it/s]Loading weights:  38%|███▊      | 579/1524 [00:19<00:29, 32.46it/s]Loading weights:  38%|███▊      | 581/1524 [00:19<00:28, 33.14it/s]Loading weights:  38%|███▊      | 586/1524 [00:20<00:42, 22.29it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.54it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.54it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.54it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.53it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.54it/s]Loading weights:  39%|███▊      | 589/1524 [00:20<00:39, 23.53it/s]Loading weights:  39%|███▊      | 590/1524 [00:20<00:39, 23.73it/s]Loading weights:  40%|███▉      | 604/1524 [00:20<00:28, 32.23it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.35it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.34it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.33it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.33it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.28it/s]Loading weights:  40%|███▉      | 606/1524 [00:20<00:27, 33.28it/s]Loading weights:  40%|████      | 610/1524 [00:20<00:25, 35.58it/s]Loading weights:  40%|████      | 614/1524 [00:21<00:38, 23.68it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.19it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.19it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.20it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.19it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.19it/s]Loading weights:  40%|████      | 616/1524 [00:21<00:37, 24.20it/s]Loading weights:  41%|████      | 621/1524 [00:21<00:34, 25.90it/s]Loading weights:  41%|████▏     | 631/1524 [00:21<00:26, 33.55it/s]Loading weights:  41%|████▏     | 631/1524 [00:21<00:26, 33.29it/s]Loading weights:  42%|████▏     | 635/1524 [00:21<00:24, 36.03it/s]Loading weights:  42%|████▏     | 635/1524 [00:21<00:24, 36.02it/s]Loading weights:  42%|████▏     | 635/1524 [00:21<00:24, 36.01it/s]Loading weights:  42%|████▏     | 635/1524 [00:21<00:24, 35.99it/s]Loading weights:  42%|████▏     | 635/1524 [00:21<00:24, 35.99it/s]Loading weights:  42%|████▏     | 636/1524 [00:22<00:39, 22.54it/s]Loading weights:  42%|████▏     | 641/1524 [00:22<00:37, 23.83it/s]Loading weights:  42%|████▏     | 641/1524 [00:22<00:36, 24.23it/s]Loading weights:  42%|████▏     | 646/1524 [00:22<00:34, 25.78it/s]Loading weights:  42%|████▏     | 646/1524 [00:22<00:34, 25.78it/s]Loading weights:  42%|████▏     | 646/1524 [00:22<00:34, 25.77it/s]Loading weights:  42%|████▏     | 646/1524 [00:22<00:34, 25.77it/s]Loading weights:  42%|████▏     | 646/1524 [00:22<00:34, 25.77it/s]Loading weights:  43%|████▎     | 656/1524 [00:22<00:26, 33.01it/s]Loading weights:  43%|████▎     | 660/1524 [00:22<00:23, 36.07it/s]Loading weights:  43%|████▎     | 660/1524 [00:22<00:23, 36.05it/s]Loading weights:  43%|████▎     | 661/1524 [00:22<00:38, 22.40it/s]Loading weights:  43%|████▎     | 661/1524 [00:22<00:38, 22.40it/s]Loading weights:  43%|████▎     | 661/1524 [00:22<00:38, 22.40it/s]Loading weights:  43%|████▎     | 661/1524 [00:22<00:38, 22.40it/s]Loading weights:  43%|████▎     | 661/1524 [00:22<00:38, 22.40it/s]Loading weights:  44%|████▎     | 665/1524 [00:22<00:35, 23.95it/s]Loading weights:  44%|████▍     | 671/1524 [00:22<00:33, 25.61it/s]Loading weights:  44%|████▍     | 671/1524 [00:22<00:33, 25.78it/s]Loading weights:  45%|████▍     | 679/1524 [00:23<00:26, 32.40it/s]Loading weights:  45%|████▍     | 679/1524 [00:23<00:26, 32.40it/s]Loading weights:  45%|████▍     | 679/1524 [00:23<00:26, 32.40it/s]Loading weights:  45%|████▍     | 679/1524 [00:23<00:26, 32.40it/s]Loading weights:  45%|████▍     | 679/1524 [00:23<00:26, 32.40it/s]Loading weights:  45%|████▍     | 685/1524 [00:23<00:23, 35.86it/s]Loading weights:  45%|████▌     | 686/1524 [00:23<00:37, 22.46it/s]Loading weights:  45%|████▌     | 686/1524 [00:23<00:37, 22.32it/s]Loading weights:  45%|████▌     | 689/1524 [00:23<00:35, 23.77it/s]Loading weights:  45%|████▌     | 689/1524 [00:23<00:35, 23.76it/s]Loading weights:  45%|████▌     | 689/1524 [00:23<00:35, 23.76it/s]Loading weights:  45%|████▌     | 689/1524 [00:23<00:35, 23.76it/s]Loading weights:  45%|████▌     | 689/1524 [00:23<00:35, 23.77it/s]Loading weights:  46%|████▌     | 696/1524 [00:23<00:31, 26.04it/s]Loading weights:  46%|████▌     | 704/1524 [00:23<00:25, 32.44it/s]Loading weights:  46%|████▌     | 704/1524 [00:23<00:25, 32.29it/s]Loading weights:  46%|████▋     | 706/1524 [00:23<00:24, 33.66it/s]Loading weights:  46%|████▋     | 706/1524 [00:23<00:24, 33.65it/s]Loading weights:  46%|████▋     | 706/1524 [00:23<00:24, 33.65it/s]Loading weights:  46%|████▋     | 706/1524 [00:23<00:24, 33.64it/s]Loading weights:  46%|████▋     | 706/1524 [00:23<00:24, 33.62it/s]Loading weights:  47%|████▋     | 711/1524 [00:24<00:36, 22.50it/s]Loading weights:  47%|████▋     | 713/1524 [00:24<00:34, 23.38it/s]Loading weights:  47%|████▋     | 714/1524 [00:24<00:34, 23.53it/s]Loading weights:  47%|████▋     | 716/1524 [00:24<00:33, 24.11it/s]Loading weights:  47%|████▋     | 716/1524 [00:24<00:33, 24.11it/s]Loading weights:  47%|████▋     | 716/1524 [00:24<00:33, 24.12it/s]Loading weights:  47%|████▋     | 716/1524 [00:24<00:33, 24.12it/s]Loading weights:  47%|████▋     | 716/1524 [00:24<00:33, 24.11it/s]Loading weights:  48%|████▊     | 729/1524 [00:24<00:24, 32.27it/s]Loading weights:  48%|████▊     | 729/1524 [00:24<00:24, 32.70it/s]Loading weights:  48%|████▊     | 731/1524 [00:24<00:23, 33.43it/s]Loading weights:  48%|████▊     | 735/1524 [00:24<00:21, 35.92it/s]Loading weights:  48%|████▊     | 735/1524 [00:24<00:21, 35.92it/s]Loading weights:  48%|████▊     | 735/1524 [00:24<00:21, 35.91it/s]Loading weights:  48%|████▊     | 735/1524 [00:24<00:21, 35.92it/s]Loading weights:  48%|████▊     | 735/1524 [00:24<00:21, 35.91it/s]Loading weights:  48%|████▊     | 739/1524 [00:25<00:33, 23.67it/s]Loading weights:  48%|████▊     | 739/1524 [00:25<00:33, 23.46it/s]Loading weights:  49%|████▊     | 741/1524 [00:25<00:32, 24.06it/s]Loading weights:  49%|████▉     | 746/1524 [00:25<00:30, 25.64it/s]Loading weights:  49%|████▉     | 746/1524 [00:25<00:30, 25.64it/s]Loading weights:  49%|████▉     | 746/1524 [00:25<00:30, 25.64it/s]Loading weights:  49%|████▉     | 746/1524 [00:25<00:30, 25.64it/s]Loading weights:  49%|████▉     | 746/1524 [00:25<00:30, 25.64it/s]Loading weights:  50%|████▉     | 756/1524 [00:25<00:23, 33.37it/s]Loading weights:  50%|████▉     | 756/1524 [00:25<00:23, 33.16it/s]Loading weights:  50%|████▉     | 756/1524 [00:25<00:22, 33.76it/s]Loading weights:  50%|████▉     | 761/1524 [00:26<00:34, 22.40it/s]Loading weights:  50%|████▉     | 761/1524 [00:26<00:34, 22.40it/s]Loading weights:  50%|████▉     | 761/1524 [00:26<00:34, 22.40it/s]Loading weights:  50%|████▉     | 761/1524 [00:26<00:34, 22.40it/s]Loading weights:  50%|████▉     | 761/1524 [00:26<00:34, 22.40it/s]Loading weights:  50%|█████     | 766/1524 [00:26<00:31, 24.30it/s]Loading weights:  50%|█████     | 766/1524 [00:26<00:31, 23.83it/s]Loading weights:  50%|█████     | 766/1524 [00:26<00:31, 24.21it/s]Loading weights:  51%|█████     | 779/1524 [00:26<00:23, 32.39it/s]Loading weights:  51%|█████     | 779/1524 [00:26<00:23, 32.38it/s]Loading weights:  51%|█████     | 779/1524 [00:26<00:23, 32.39it/s]Loading weights:  51%|█████     | 779/1524 [00:26<00:23, 32.38it/s]Loading weights:  51%|█████     | 779/1524 [00:26<00:23, 32.39it/s]Loading weights:  52%|█████▏    | 785/1524 [00:26<00:20, 36.06it/s]Loading weights:  52%|█████▏    | 785/1524 [00:26<00:20, 36.35it/s]Loading weights:  52%|█████▏    | 785/1524 [00:26<00:20, 36.06it/s]Loading weights:  52%|█████▏    | 789/1524 [00:27<00:31, 23.44it/s]Loading weights:  52%|█████▏    | 789/1524 [00:27<00:31, 23.45it/s]Loading weights:  52%|█████▏    | 789/1524 [00:27<00:31, 23.44it/s]Loading weights:  52%|█████▏    | 789/1524 [00:27<00:31, 23.44it/s]Loading weights:  52%|█████▏    | 789/1524 [00:27<00:31, 23.44it/s]Loading weights:  52%|█████▏    | 796/1524 [00:27<00:28, 25.53it/s]Loading weights:  52%|█████▏    | 796/1524 [00:27<00:28, 25.50it/s]Loading weights:  52%|█████▏    | 796/1524 [00:27<00:28, 25.32it/s]Loading weights:  53%|█████▎    | 806/1524 [00:27<00:21, 33.31it/s]Loading weights:  53%|█████▎    | 806/1524 [00:27<00:21, 33.30it/s]Loading weights:  53%|█████▎    | 806/1524 [00:27<00:21, 33.30it/s]Loading weights:  53%|█████▎    | 806/1524 [00:27<00:21, 33.24it/s]Loading weights:  53%|█████▎    | 806/1524 [00:27<00:21, 33.24it/s]Loading weights:  53%|█████▎    | 811/1524 [00:28<00:32, 22.24it/s]Loading weights:  53%|█████▎    | 811/1524 [00:28<00:32, 22.12it/s]Loading weights:  53%|█████▎    | 811/1524 [00:28<00:32, 22.28it/s]Loading weights:  54%|█████▎    | 816/1524 [00:28<00:29, 24.09it/s]Loading weights:  54%|█████▎    | 816/1524 [00:28<00:29, 24.09it/s]Loading weights:  54%|█████▎    | 816/1524 [00:28<00:29, 24.10it/s]Loading weights:  54%|█████▎    | 816/1524 [00:28<00:29, 24.10it/s]Loading weights:  54%|█████▎    | 816/1524 [00:28<00:29, 24.09it/s]Loading weights:  54%|█████▍    | 829/1524 [00:28<00:21, 32.20it/s]Loading weights:  54%|█████▍    | 829/1524 [00:28<00:21, 32.25it/s]Loading weights:  54%|█████▍    | 829/1524 [00:28<00:21, 32.15it/s]Loading weights:  55%|█████▍    | 831/1524 [00:28<00:20, 33.15it/s]Loading weights:  55%|█████▍    | 831/1524 [00:28<00:20, 33.14it/s]Loading weights:  55%|█████▍    | 831/1524 [00:28<00:20, 33.13it/s]Loading weights:  55%|█████▍    | 831/1524 [00:28<00:20, 33.13it/s]Loading weights:  55%|█████▍    | 831/1524 [00:28<00:20, 33.15it/s]Loading weights:  55%|█████▌    | 839/1524 [00:29<00:29, 23.55it/s]Loading weights:  55%|█████▌    | 839/1524 [00:29<00:29, 23.49it/s]Loading weights:  55%|█████▌    | 839/1524 [00:29<00:29, 23.48it/s]Loading weights:  55%|█████▌    | 841/1524 [00:29<00:28, 23.70it/s]Loading weights:  55%|█████▌    | 841/1524 [00:29<00:28, 23.71it/s]Loading weights:  55%|█████▌    | 841/1524 [00:29<00:28, 23.71it/s]Loading weights:  55%|█████▌    | 841/1524 [00:29<00:28, 23.62it/s]Loading weights:  55%|█████▌    | 841/1524 [00:29<00:28, 23.62it/s]Loading weights:  56%|█████▌    | 856/1524 [00:29<00:19, 33.40it/s]Loading weights:  56%|█████▌    | 856/1524 [00:29<00:20, 33.36it/s]Loading weights:  56%|█████▌    | 856/1524 [00:29<00:19, 33.42it/s]Loading weights:  56%|█████▌    | 856/1524 [00:29<00:20, 33.08it/s]Loading weights:  56%|█████▋    | 860/1524 [00:29<00:18, 35.89it/s]Loading weights:  56%|█████▋    | 860/1524 [00:29<00:18, 35.88it/s]Loading weights:  56%|█████▋    | 860/1524 [00:29<00:18, 35.84it/s]Loading weights:  56%|█████▋    | 860/1524 [00:29<00:18, 35.84it/s]Loading weights:  57%|█████▋    | 866/1524 [00:30<00:27, 23.99it/s]Loading weights:  57%|█████▋    | 866/1524 [00:30<00:27, 23.93it/s]Loading weights:  57%|█████▋    | 866/1524 [00:30<00:28, 23.35it/s]Loading weights:  57%|█████▋    | 866/1524 [00:30<00:27, 23.88it/s]Loading weights:  57%|█████▋    | 871/1524 [00:30<00:25, 25.35it/s]Loading weights:  57%|█████▋    | 871/1524 [00:30<00:25, 25.33it/s]Loading weights:  57%|█████▋    | 871/1524 [00:30<00:25, 25.35it/s]Loading weights:  57%|█████▋    | 871/1524 [00:30<00:25, 25.33it/s]Loading weights:  58%|█████▊    | 885/1524 [00:30<00:17, 35.70it/s]Loading weights:  58%|█████▊    | 885/1524 [00:30<00:17, 35.74it/s]Loading weights:  58%|█████▊    | 885/1524 [00:30<00:17, 35.67it/s]Loading weights:  58%|█████▊    | 885/1524 [00:30<00:17, 35.64it/s]Loading weights:  58%|█████▊    | 886/1524 [00:31<00:28, 22.04it/s]Loading weights:  58%|█████▊    | 886/1524 [00:31<00:28, 22.04it/s]Loading weights:  58%|█████▊    | 886/1524 [00:31<00:28, 22.05it/s]Loading weights:  58%|█████▊    | 886/1524 [00:31<00:28, 22.05it/s]Loading weights:  59%|█████▉    | 896/1524 [00:31<00:24, 25.55it/s]Loading weights:  59%|█████▉    | 896/1524 [00:31<00:24, 25.51it/s]Loading weights:  59%|█████▉    | 896/1524 [00:31<00:24, 25.26it/s]Loading weights:  59%|█████▉    | 896/1524 [00:31<00:24, 25.54it/s]Loading weights:  59%|█████▉    | 904/1524 [00:31<00:19, 32.05it/s]Loading weights:  59%|█████▉    | 904/1524 [00:31<00:19, 32.06it/s]Loading weights:  59%|█████▉    | 904/1524 [00:31<00:19, 32.05it/s]Loading weights:  59%|█████▉    | 904/1524 [00:31<00:19, 32.05it/s]Loading weights:  60%|█████▉    | 911/1524 [00:32<00:27, 22.06it/s]Loading weights:  60%|█████▉    | 911/1524 [00:32<00:27, 22.25it/s]Loading weights:  60%|█████▉    | 911/1524 [00:32<00:27, 22.27it/s]Loading weights:  60%|█████▉    | 911/1524 [00:32<00:27, 22.26it/s]Loading weights:  60%|█████▉    | 914/1524 [00:32<00:25, 23.50it/s]Loading weights:  60%|█████▉    | 914/1524 [00:32<00:25, 23.50it/s]Loading weights:  60%|█████▉    | 914/1524 [00:32<00:25, 23.49it/s]Loading weights:  60%|█████▉    | 914/1524 [00:32<00:25, 23.50it/s]Loading weights:  61%|██████    | 929/1524 [00:32<00:18, 32.06it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:17, 33.43it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:17, 33.43it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:17, 33.43it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:18, 32.88it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:18, 32.84it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:18, 32.89it/s]Loading weights:  61%|██████    | 931/1524 [00:32<00:17, 33.39it/s]Loading weights:  62%|██████▏   | 939/1524 [00:32<00:24, 23.56it/s]Loading weights:  62%|██████▏   | 940/1524 [00:32<00:24, 23.71it/s]Loading weights:  62%|██████▏   | 941/1524 [00:32<00:24, 24.01it/s]Loading weights:  62%|██████▏   | 940/1524 [00:32<00:24, 23.70it/s]Loading weights:  62%|██████▏   | 940/1524 [00:32<00:24, 23.61it/s]Loading weights:  62%|██████▏   | 941/1524 [00:32<00:24, 24.01it/s]Loading weights:  62%|██████▏   | 941/1524 [00:32<00:24, 24.02it/s]Loading weights:  62%|██████▏   | 941/1524 [00:32<00:24, 23.99it/s]Loading weights:  63%|██████▎   | 960/1524 [00:33<00:15, 35.91it/s]Loading weights:  63%|██████▎   | 960/1524 [00:33<00:15, 35.69it/s]Loading weights:  63%|██████▎   | 960/1524 [00:33<00:15, 35.68it/s]Loading weights:  63%|██████▎   | 960/1524 [00:33<00:15, 35.89it/s]Loading weights:  63%|██████▎   | 956/1524 [00:33<00:17, 32.93it/s]Loading weights:  63%|██████▎   | 956/1524 [00:33<00:17, 33.00it/s]Loading weights:  63%|██████▎   | 956/1524 [00:33<00:17, 32.93it/s]Loading weights:  63%|██████▎   | 956/1524 [00:33<00:17, 33.19it/s]Loading weights:  63%|██████▎   | 966/1524 [00:33<00:23, 24.13it/s]Loading weights:  63%|██████▎   | 966/1524 [00:33<00:23, 23.90it/s]Loading weights:  63%|██████▎   | 966/1524 [00:33<00:23, 23.91it/s]Loading weights:  63%|██████▎   | 966/1524 [00:33<00:22, 24.35it/s]Loading weights:  64%|██████▎   | 971/1524 [00:33<00:21, 25.83it/s]Loading weights:  64%|██████▎   | 971/1524 [00:33<00:21, 25.83it/s]Loading weights:  64%|██████▎   | 971/1524 [00:33<00:21, 25.99it/s]Loading weights:  64%|██████▎   | 971/1524 [00:33<00:21, 25.96it/s]Loading weights:  65%|██████▍   | 985/1524 [00:33<00:14, 36.24it/s]Loading weights:  65%|██████▍   | 985/1524 [00:33<00:14, 36.20it/s]Loading weights:  65%|██████▍   | 985/1524 [00:33<00:14, 36.18it/s]Loading weights:  65%|██████▍   | 985/1524 [00:33<00:14, 36.03it/s]Loading weights:  65%|██████▍   | 986/1524 [00:34<00:24, 22.23it/s]Loading weights:  65%|██████▍   | 986/1524 [00:34<00:24, 22.39it/s]Loading weights:  65%|██████▍   | 986/1524 [00:34<00:24, 22.23it/s]Loading weights:  65%|██████▍   | 986/1524 [00:34<00:24, 22.36it/s]Loading weights:  65%|██████▌   | 996/1524 [00:34<00:20, 25.57it/s]Loading weights:  65%|██████▌   | 996/1524 [00:34<00:20, 25.47it/s]Loading weights:  65%|██████▌   | 996/1524 [00:34<00:20, 25.37it/s]Loading weights:  65%|██████▌   | 996/1524 [00:34<00:20, 25.38it/s]Loading weights:  66%|██████▌   | 1004/1524 [00:34<00:16, 32.18it/s]Loading weights:  66%|██████▌   | 1004/1524 [00:34<00:16, 32.17it/s]Loading weights:  66%|██████▌   | 1006/1524 [00:34<00:15, 32.81it/s]Loading weights:  66%|██████▌   | 1006/1524 [00:34<00:15, 32.80it/s]Loading weights:  66%|██████▋   | 1011/1524 [00:35<00:22, 22.31it/s]Loading weights:  66%|██████▋   | 1011/1524 [00:35<00:23, 22.16it/s]Loading weights:  66%|██████▋   | 1011/1524 [00:35<00:23, 22.16it/s]Loading weights:  66%|██████▋   | 1011/1524 [00:35<00:23, 22.24it/s]Loading weights:  67%|██████▋   | 1014/1524 [00:35<00:21, 23.67it/s]Loading weights:  67%|██████▋   | 1014/1524 [00:35<00:21, 23.61it/s]Loading weights:  67%|██████▋   | 1015/1524 [00:35<00:21, 23.79it/s]Loading weights:  67%|██████▋   | 1015/1524 [00:35<00:21, 23.87it/s]Loading weights:  68%|██████▊   | 1029/1524 [00:35<00:15, 32.21it/s]Loading weights:  68%|██████▊   | 1029/1524 [00:35<00:15, 32.21it/s]Loading weights:  68%|██████▊   | 1029/1524 [00:35<00:15, 32.14it/s]Loading weights:  68%|██████▊   | 1029/1524 [00:35<00:15, 32.11it/s]Loading weights:  68%|██████▊   | 1031/1524 [00:35<00:14, 33.43it/s]Loading weights:  68%|██████▊   | 1031/1524 [00:35<00:14, 33.44it/s]Loading weights:  68%|██████▊   | 1035/1524 [00:35<00:13, 35.68it/s]Loading weights:  68%|██████▊   | 1035/1524 [00:35<00:13, 35.70it/s]Loading weights:  68%|██████▊   | 1038/1524 [00:36<00:20, 23.50it/s]Loading weights:  68%|██████▊   | 1039/1524 [00:36<00:20, 23.69it/s]Loading weights:  68%|██████▊   | 1039/1524 [00:36<00:20, 23.66it/s]Loading weights:  68%|██████▊   | 1039/1524 [00:36<00:20, 23.65it/s]Loading weights:  68%|██████▊   | 1041/1524 [00:36<00:19, 24.29it/s]Loading weights:  68%|██████▊   | 1041/1524 [00:36<00:19, 24.26it/s]Loading weights:  69%|██████▊   | 1046/1524 [00:36<00:18, 26.02it/s]Loading weights:  69%|██████▊   | 1046/1524 [00:36<00:18, 25.98it/s]Loading weights:  69%|██████▉   | 1054/1524 [00:36<00:14, 33.02it/s]Loading weights:  69%|██████▉   | 1056/1524 [00:36<00:13, 33.60it/s]Loading weights:  69%|██████▉   | 1056/1524 [00:36<00:13, 33.57it/s]Loading weights:  69%|██████▉   | 1056/1524 [00:36<00:13, 33.58it/s]Loading weights:  70%|██████▉   | 1060/1524 [00:36<00:12, 36.08it/s]Loading weights:  70%|██████▉   | 1060/1524 [00:36<00:12, 36.09it/s]Loading weights:  70%|██████▉   | 1061/1524 [00:37<00:20, 22.52it/s]Loading weights:  70%|██████▉   | 1061/1524 [00:37<00:20, 22.50it/s]Loading weights:  70%|██████▉   | 1064/1524 [00:37<00:19, 23.46it/s]Loading weights:  70%|██████▉   | 1066/1524 [00:37<00:18, 24.13it/s]Loading weights:  70%|██████▉   | 1066/1524 [00:37<00:18, 24.12it/s]Loading weights:  70%|██████▉   | 1066/1524 [00:37<00:18, 24.11it/s]Loading weights:  70%|███████   | 1071/1524 [00:37<00:17, 25.70it/s]Loading weights:  70%|███████   | 1071/1524 [00:37<00:17, 25.71it/s]Loading weights:  71%|███████   | 1079/1524 [00:37<00:13, 32.32it/s]Loading weights:  71%|███████   | 1079/1524 [00:37<00:13, 32.31it/s]Loading weights:  71%|███████   | 1081/1524 [00:37<00:13, 33.78it/s]Loading weights:  71%|███████   | 1081/1524 [00:37<00:13, 33.21it/s]Loading weights:  71%|███████   | 1085/1524 [00:37<00:12, 35.97it/s]Loading weights:  71%|███████   | 1085/1524 [00:37<00:12, 35.95it/s]Loading weights:  71%|███████▏  | 1086/1524 [00:38<00:19, 22.46it/s]Loading weights:  71%|███████▏  | 1086/1524 [00:38<00:19, 22.47it/s]Loading weights:  71%|███████▏  | 1089/1524 [00:38<00:18, 23.85it/s]Loading weights:  71%|███████▏  | 1089/1524 [00:38<00:18, 23.86it/s]Loading weights:  72%|███████▏  | 1091/1524 [00:38<00:17, 24.24it/s]Loading weights:  72%|███████▏  | 1091/1524 [00:38<00:18, 23.89it/s]Loading weights:  72%|███████▏  | 1096/1524 [00:38<00:16, 25.85it/s]Loading weights:  72%|███████▏  | 1096/1524 [00:38<00:16, 25.79it/s]Loading weights:  72%|███████▏  | 1104/1524 [00:38<00:12, 32.45it/s]Loading weights:  72%|███████▏  | 1104/1524 [00:38<00:12, 32.45it/s]Loading weights:  73%|███████▎  | 1106/1524 [00:38<00:12, 33.66it/s]Loading weights:  73%|███████▎  | 1106/1524 [00:38<00:12, 33.66it/s]Loading weights:  73%|███████▎  | 1110/1524 [00:38<00:11, 36.42it/s]Loading weights:  73%|███████▎  | 1110/1524 [00:38<00:11, 36.16it/s]Loading weights:  73%|███████▎  | 1111/1524 [00:39<00:18, 22.37it/s]Loading weights:  73%|███████▎  | 1111/1524 [00:39<00:18, 22.37it/s]Loading weights:  73%|███████▎  | 1114/1524 [00:39<00:17, 23.65it/s]Loading weights:  73%|███████▎  | 1114/1524 [00:39<00:17, 23.64it/s]Loading weights:  73%|███████▎  | 1116/1524 [00:39<00:16, 24.23it/s]Loading weights:  73%|███████▎  | 1116/1524 [00:39<00:16, 24.22it/s]Loading weights:  74%|███████▎  | 1121/1524 [00:39<00:15, 25.55it/s]Loading weights:  74%|███████▎  | 1121/1524 [00:39<00:15, 25.72it/s]Loading weights:  74%|███████▍  | 1129/1524 [00:39<00:12, 32.34it/s]Loading weights:  74%|███████▍  | 1129/1524 [00:39<00:12, 32.36it/s]Loading weights:  74%|███████▍  | 1131/1524 [00:39<00:11, 33.51it/s]Loading weights:  74%|███████▍  | 1131/1524 [00:39<00:11, 33.46it/s]Loading weights:  74%|███████▍  | 1135/1524 [00:39<00:10, 35.96it/s]Loading weights:  74%|███████▍  | 1135/1524 [00:39<00:10, 35.95it/s]Loading weights:  75%|███████▍  | 1136/1524 [00:40<00:17, 22.23it/s]Loading weights:  75%|███████▍  | 1136/1524 [00:40<00:17, 22.11it/s]Loading weights:  75%|███████▍  | 1139/1524 [00:40<00:16, 23.53it/s]Loading weights:  75%|███████▍  | 1139/1524 [00:40<00:16, 23.54it/s]Loading weights:  75%|███████▍  | 1141/1524 [00:40<00:15, 24.04it/s]Loading weights:  75%|███████▍  | 1141/1524 [00:40<00:15, 24.05it/s]Loading weights:  75%|███████▌  | 1146/1524 [00:40<00:14, 25.60it/s]Loading weights:  75%|███████▌  | 1146/1524 [00:40<00:14, 25.60it/s]Loading weights:  76%|███████▌  | 1154/1524 [00:40<00:11, 32.15it/s]Loading weights:  76%|███████▌  | 1154/1524 [00:40<00:11, 32.05it/s]Loading weights:  76%|███████▌  | 1156/1524 [00:40<00:11, 33.41it/s]Loading weights:  76%|███████▌  | 1156/1524 [00:40<00:11, 33.39it/s]Loading weights:  76%|███████▌  | 1160/1524 [00:40<00:10, 35.83it/s]Loading weights:  76%|███████▌  | 1160/1524 [00:40<00:10, 35.79it/s]Loading weights:  76%|███████▋  | 1163/1524 [00:41<00:15, 23.47it/s]Loading weights:  76%|███████▌  | 1161/1524 [00:41<00:16, 22.39it/s]Loading weights:  76%|███████▌  | 1161/1524 [00:41<00:16, 22.39it/s]Loading weights:  76%|███████▋  | 1164/1524 [00:41<00:15, 23.62it/s]Loading weights:  77%|███████▋  | 1166/1524 [00:41<00:14, 24.23it/s]Loading weights:  77%|███████▋  | 1166/1524 [00:41<00:14, 24.23it/s]Loading weights:  77%|███████▋  | 1171/1524 [00:41<00:13, 25.78it/s]Loading weights:  77%|███████▋  | 1171/1524 [00:41<00:13, 25.78it/s]Loading weights:  77%|███████▋  | 1179/1524 [00:41<00:10, 32.34it/s]Loading weights:  77%|███████▋  | 1179/1524 [00:41<00:10, 32.34it/s]Loading weights:  77%|███████▋  | 1179/1524 [00:41<00:10, 32.82it/s]Loading weights:  77%|███████▋  | 1181/1524 [00:41<00:10, 33.34it/s]Loading weights:  77%|███████▋  | 1181/1524 [00:41<00:10, 33.51it/s]Loading weights:  78%|███████▊  | 1185/1524 [00:41<00:09, 36.02it/s]Loading weights:  78%|███████▊  | 1186/1524 [00:42<00:15, 22.17it/s]Loading weights:  78%|███████▊  | 1186/1524 [00:42<00:15, 22.13it/s]Loading weights:  78%|███████▊  | 1189/1524 [00:42<00:14, 23.43it/s]Loading weights:  78%|███████▊  | 1189/1524 [00:42<00:14, 23.29it/s]Loading weights:  78%|███████▊  | 1189/1524 [00:42<00:14, 23.42it/s]Loading weights:  78%|███████▊  | 1191/1524 [00:42<00:14, 23.54it/s]Loading weights:  78%|███████▊  | 1191/1524 [00:42<00:13, 23.91it/s]Loading weights:  78%|███████▊  | 1196/1524 [00:42<00:12, 25.48it/s]Loading weights:  79%|███████▉  | 1206/1524 [00:42<00:09, 33.61it/s]Loading weights:  79%|███████▉  | 1206/1524 [00:42<00:09, 33.20it/s]Loading weights:  79%|███████▉  | 1206/1524 [00:42<00:09, 32.75it/s]Loading weights:  79%|███████▉  | 1206/1524 [00:42<00:09, 33.21it/s]Loading weights:  79%|███████▉  | 1206/1524 [00:42<00:09, 32.72it/s]Loading weights:  79%|███████▉  | 1210/1524 [00:42<00:08, 35.67it/s]Loading weights:  79%|███████▉  | 1210/1524 [00:42<00:08, 35.64it/s]Loading weights:  79%|███████▉  | 1211/1524 [00:42<00:14, 22.29it/s]Loading weights:  80%|███████▉  | 1215/1524 [00:42<00:12, 23.82it/s]Loading weights:  80%|███████▉  | 1216/1524 [00:42<00:12, 24.15it/s]Loading weights:  80%|███████▉  | 1216/1524 [00:42<00:12, 24.10it/s]Loading weights:  80%|███████▉  | 1216/1524 [00:42<00:12, 24.14it/s]Loading weights:  80%|███████▉  | 1215/1524 [00:42<00:12, 23.83it/s]Loading weights:  80%|████████  | 1221/1524 [00:42<00:11, 25.53it/s]Loading weights:  80%|████████  | 1221/1524 [00:42<00:11, 25.69it/s]Loading weights:  81%|████████  | 1231/1524 [00:43<00:08, 32.95it/s]Loading weights:  81%|████████  | 1235/1524 [00:43<00:08, 35.80it/s]Loading weights:  81%|████████  | 1235/1524 [00:43<00:08, 35.96it/s]Loading weights:  81%|████████  | 1235/1524 [00:43<00:08, 35.96it/s]Loading weights:  81%|████████  | 1235/1524 [00:43<00:08, 35.79it/s]Loading weights:  81%|████████  | 1235/1524 [00:43<00:07, 36.20it/s]Loading weights:  81%|████████  | 1236/1524 [00:43<00:12, 22.46it/s]Loading weights:  81%|████████  | 1236/1524 [00:43<00:12, 22.34it/s]Loading weights:  81%|████████▏ | 1240/1524 [00:43<00:11, 23.94it/s]Loading weights:  82%|████████▏ | 1246/1524 [00:43<00:10, 25.88it/s]Loading weights:  82%|████████▏ | 1246/1524 [00:43<00:10, 25.89it/s]Loading weights:  82%|████████▏ | 1246/1524 [00:43<00:10, 26.04it/s]Loading weights:  82%|████████▏ | 1246/1524 [00:43<00:10, 26.05it/s]Loading weights:  82%|████████▏ | 1246/1524 [00:43<00:10, 25.86it/s]Loading weights:  82%|████████▏ | 1254/1524 [00:43<00:08, 32.48it/s]Loading weights:  82%|████████▏ | 1254/1524 [00:43<00:08, 32.41it/s]Loading weights:  83%|████████▎ | 1260/1524 [00:43<00:07, 35.93it/s]Loading weights:  83%|████████▎ | 1261/1524 [00:44<00:11, 22.56it/s]Loading weights:  83%|████████▎ | 1261/1524 [00:44<00:11, 22.41it/s]Loading weights:  83%|████████▎ | 1261/1524 [00:44<00:11, 22.40it/s]Loading weights:  83%|████████▎ | 1261/1524 [00:44<00:11, 22.35it/s]Loading weights:  83%|████████▎ | 1261/1524 [00:44<00:11, 22.50it/s]Loading weights:  83%|████████▎ | 1264/1524 [00:44<00:11, 23.61it/s]Loading weights:  83%|████████▎ | 1264/1524 [00:44<00:10, 23.66it/s]Loading weights:  83%|████████▎ | 1271/1524 [00:44<00:09, 25.90it/s]Loading weights:  84%|████████▍ | 1279/1524 [00:44<00:07, 32.35it/s]Loading weights:  84%|████████▍ | 1279/1524 [00:44<00:07, 32.36it/s]Loading weights:  84%|████████▍ | 1279/1524 [00:44<00:07, 32.37it/s]Loading weights:  84%|████████▍ | 1281/1524 [00:44<00:07, 33.05it/s]Loading weights:  84%|████████▍ | 1281/1524 [00:44<00:07, 33.48it/s]Loading weights:  84%|████████▍ | 1281/1524 [00:44<00:07, 33.00it/s]Loading weights:  84%|████████▍ | 1281/1524 [00:44<00:07, 33.47it/s]Loading weights:  84%|████████▍ | 1286/1524 [00:45<00:10, 22.46it/s]Loading weights:  85%|████████▍ | 1289/1524 [00:45<00:09, 23.60it/s]Loading weights:  85%|████████▍ | 1289/1524 [00:45<00:09, 23.60it/s]Loading weights:  85%|████████▍ | 1289/1524 [00:45<00:09, 23.67it/s]Loading weights:  85%|████████▍ | 1290/1524 [00:45<00:09, 23.80it/s]Loading weights:  85%|████████▍ | 1291/1524 [00:45<00:09, 24.09it/s]Loading weights:  85%|████████▍ | 1291/1524 [00:45<00:09, 24.12it/s]Loading weights:  85%|████████▍ | 1290/1524 [00:45<00:09, 23.81it/s]Loading weights:  86%|████████▌ | 1304/1524 [00:45<00:06, 32.21it/s]Loading weights:  86%|████████▌ | 1306/1524 [00:45<00:06, 33.46it/s]Loading weights:  86%|████████▌ | 1306/1524 [00:45<00:06, 33.46it/s]Loading weights:  86%|████████▌ | 1306/1524 [00:45<00:06, 33.44it/s]Loading weights:  86%|████████▌ | 1310/1524 [00:45<00:05, 35.92it/s]Loading weights:  86%|████████▌ | 1310/1524 [00:45<00:05, 35.78it/s]Loading weights:  86%|████████▌ | 1310/1524 [00:45<00:05, 35.76it/s]Loading weights:  86%|████████▌ | 1310/1524 [00:45<00:05, 35.91it/s]Loading weights:  86%|████████▌ | 1314/1524 [00:46<00:08, 23.69it/s]Loading weights:  86%|████████▋ | 1316/1524 [00:46<00:08, 24.14it/s]Loading weights:  86%|████████▋ | 1316/1524 [00:46<00:08, 24.18it/s]Loading weights:  86%|████████▋ | 1316/1524 [00:46<00:08, 24.14it/s]Loading weights:  87%|████████▋ | 1321/1524 [00:46<00:07, 25.68it/s]Loading weights:  87%|████████▋ | 1321/1524 [00:46<00:07, 25.68it/s]Loading weights:  87%|████████▋ | 1321/1524 [00:46<00:07, 25.91it/s]Loading weights:  87%|████████▋ | 1321/1524 [00:46<00:07, 25.86it/s]Loading weights:  87%|████████▋ | 1331/1524 [00:46<00:05, 33.51it/s]Loading weights:  88%|████████▊ | 1335/1524 [00:46<00:05, 36.02it/s]Loading weights:  88%|████████▊ | 1335/1524 [00:46<00:05, 36.00it/s]Loading weights:  88%|████████▊ | 1335/1524 [00:46<00:05, 36.01it/s]Loading weights:  88%|████████▊ | 1336/1524 [00:47<00:08, 22.43it/s]Loading weights:  88%|████████▊ | 1336/1524 [00:47<00:08, 22.42it/s]Loading weights:  88%|████████▊ | 1336/1524 [00:47<00:08, 22.58it/s]Loading weights:  88%|████████▊ | 1336/1524 [00:47<00:08, 22.62it/s]Loading weights:  88%|████████▊ | 1341/1524 [00:47<00:07, 24.30it/s]Loading weights:  88%|████████▊ | 1346/1524 [00:47<00:06, 25.83it/s]Loading weights:  88%|████████▊ | 1346/1524 [00:47<00:06, 25.82it/s]Loading weights:  88%|████████▊ | 1346/1524 [00:47<00:06, 25.84it/s]Loading weights:  89%|████████▉ | 1354/1524 [00:47<00:05, 32.42it/s]Loading weights:  89%|████████▉ | 1354/1524 [00:47<00:05, 32.41it/s]Loading weights:  89%|████████▉ | 1354/1524 [00:47<00:05, 32.42it/s]Loading weights:  89%|████████▉ | 1354/1524 [00:47<00:05, 32.41it/s]Loading weights:  89%|████████▉ | 1360/1524 [00:47<00:04, 36.05it/s]Loading weights:  89%|████████▉ | 1361/1524 [00:48<00:07, 22.28it/s]Loading weights:  89%|████████▉ | 1361/1524 [00:48<00:07, 22.28it/s]Loading weights:  89%|████████▉ | 1361/1524 [00:48<00:07, 22.29it/s]Loading weights:  90%|████████▉ | 1364/1524 [00:48<00:06, 23.54it/s]Loading weights:  90%|████████▉ | 1364/1524 [00:48<00:06, 23.54it/s]Loading weights:  90%|████████▉ | 1364/1524 [00:48<00:06, 23.62it/s]Loading weights:  90%|████████▉ | 1364/1524 [00:48<00:06, 23.60it/s]Loading weights:  90%|████████▉ | 1371/1524 [00:48<00:05, 25.62it/s]Loading weights:  90%|█████████ | 1379/1524 [00:48<00:04, 32.24it/s]Loading weights:  90%|█████████ | 1379/1524 [00:48<00:04, 32.24it/s]Loading weights:  91%|█████████ | 1381/1524 [00:48<00:04, 33.36it/s]Loading weights:  91%|█████████ | 1381/1524 [00:48<00:04, 33.36it/s]Loading weights:  91%|█████████ | 1381/1524 [00:48<00:04, 32.85it/s]Loading weights:  91%|█████████ | 1381/1524 [00:48<00:04, 33.35it/s]Loading weights:  91%|█████████ | 1381/1524 [00:48<00:04, 33.31it/s]Loading weights:  91%|█████████ | 1386/1524 [00:49<00:06, 22.51it/s]Loading weights:  91%|█████████ | 1389/1524 [00:49<00:05, 23.83it/s]Loading weights:  91%|█████████ | 1389/1524 [00:49<00:05, 23.83it/s]Loading weights:  91%|█████████▏| 1391/1524 [00:49<00:05, 24.37it/s]Loading weights:  91%|█████████▏| 1391/1524 [00:49<00:05, 24.44it/s]Loading weights:  91%|█████████▏| 1391/1524 [00:49<00:05, 24.37it/s]Loading weights:  91%|█████████ | 1390/1524 [00:49<00:05, 24.03it/s]Loading weights:  91%|█████████▏| 1391/1524 [00:49<00:05, 24.41it/s]Loading weights:  92%|█████████▏| 1404/1524 [00:49<00:03, 32.53it/s]Loading weights:  92%|█████████▏| 1406/1524 [00:49<00:03, 33.73it/s]Loading weights:  92%|█████████▏| 1406/1524 [00:49<00:03, 33.73it/s]Loading weights:  93%|█████████▎| 1410/1524 [00:49<00:03, 36.24it/s]Loading weights:  93%|█████████▎| 1410/1524 [00:49<00:03, 36.03it/s]Loading weights:  93%|█████████▎| 1410/1524 [00:49<00:03, 36.24it/s]Loading weights:  93%|█████████▎| 1410/1524 [00:49<00:03, 36.26it/s]Loading weights:  93%|█████████▎| 1410/1524 [00:49<00:03, 36.23it/s]Loading weights:  93%|█████████▎| 1414/1524 [00:50<00:04, 23.78it/s]Loading weights:  93%|█████████▎| 1416/1524 [00:50<00:04, 24.33it/s]Loading weights:  93%|█████████▎| 1416/1524 [00:50<00:04, 24.33it/s]Loading weights:  93%|█████████▎| 1421/1524 [00:50<00:03, 26.06it/s]Loading weights:  93%|█████████▎| 1421/1524 [00:50<00:03, 25.85it/s]Loading weights:  93%|█████████▎| 1421/1524 [00:50<00:03, 25.87it/s]Loading weights:  93%|█████████▎| 1421/1524 [00:50<00:03, 25.88it/s]Loading weights:  93%|█████████▎| 1421/1524 [00:50<00:03, 25.83it/s]Loading weights:  94%|█████████▍| 1431/1524 [00:50<00:02, 33.65it/s]Loading weights:  94%|█████████▍| 1435/1524 [00:50<00:02, 36.18it/s]Loading weights:  94%|█████████▍| 1435/1524 [00:50<00:02, 36.18it/s]Loading weights:  94%|█████████▍| 1436/1524 [00:51<00:03, 22.62it/s]Loading weights:  94%|█████████▍| 1436/1524 [00:51<00:03, 22.48it/s]Loading weights:  94%|█████████▍| 1436/1524 [00:51<00:03, 22.49it/s]Loading weights:  94%|█████████▍| 1436/1524 [00:51<00:03, 22.50it/s]Loading weights:  94%|█████████▍| 1436/1524 [00:51<00:03, 22.47it/s]Loading weights:  95%|█████████▍| 1441/1524 [00:51<00:03, 24.29it/s]Loading weights:  95%|█████████▍| 1446/1524 [00:51<00:03, 25.85it/s]Loading weights:  95%|█████████▍| 1446/1524 [00:51<00:03, 25.84it/s]Loading weights:  95%|█████████▌| 1454/1524 [00:51<00:02, 32.51it/s]Loading weights:  95%|█████████▌| 1454/1524 [00:51<00:02, 32.47it/s]Loading weights:  95%|█████████▌| 1454/1524 [00:51<00:02, 32.44it/s]Loading weights:  95%|█████████▌| 1454/1524 [00:51<00:02, 32.31it/s]Loading weights:  96%|█████████▌| 1456/1524 [00:51<00:02, 33.11it/s]Loading weights:  96%|█████████▌| 1460/1524 [00:51<00:01, 35.98it/s]Loading weights:  96%|█████████▌| 1463/1524 [00:51<00:02, 23.63it/s]Loading weights:  96%|█████████▌| 1461/1524 [00:51<00:02, 22.52it/s]Loading weights:  96%|█████████▌| 1461/1524 [00:51<00:02, 22.52it/s]Loading weights:  96%|█████████▌| 1464/1524 [00:51<00:02, 23.90it/s]Loading weights:  96%|█████████▌| 1464/1524 [00:51<00:02, 23.86it/s]Loading weights:  96%|█████████▌| 1464/1524 [00:51<00:02, 23.83it/s]Loading weights:  96%|█████████▌| 1465/1524 [00:51<00:02, 24.02it/s]Loading weights:  96%|█████████▋| 1470/1524 [00:52<00:02, 25.37it/s]Loading weights:  97%|█████████▋| 1479/1524 [00:52<00:01, 32.55it/s]Loading weights:  97%|█████████▋| 1479/1524 [00:52<00:01, 32.53it/s]Loading weights:  97%|█████████▋| 1479/1524 [00:52<00:01, 32.99it/s]Loading weights:  97%|█████████▋| 1481/1524 [00:52<00:01, 33.73it/s]Loading weights:  97%|█████████▋| 1481/1524 [00:52<00:01, 33.68it/s]Loading weights:  97%|█████████▋| 1481/1524 [00:52<00:01, 33.70it/s]Loading weights:  97%|█████████▋| 1481/1524 [00:52<00:01, 33.41it/s]Loading weights:  98%|█████████▊| 1486/1524 [00:52<00:01, 22.61it/s]Loading weights:  98%|█████████▊| 1489/1524 [00:52<00:01, 23.63it/s]Loading weights:  98%|█████████▊| 1489/1524 [00:52<00:01, 23.72it/s]Loading weights:  98%|█████████▊| 1489/1524 [00:52<00:01, 23.71it/s]Loading weights:  98%|█████████▊| 1491/1524 [00:52<00:01, 24.30it/s]Loading weights:  98%|█████████▊| 1491/1524 [00:52<00:01, 24.10it/s]Loading weights:  98%|█████████▊| 1491/1524 [00:52<00:01, 24.29it/s]Loading weights:  98%|█████████▊| 1491/1524 [00:52<00:01, 24.32it/s]Loading weights:  99%|█████████▊| 1504/1524 [00:52<00:00, 32.55it/s]Loading weights:  99%|█████████▉| 1506/1524 [00:52<00:00, 33.68it/s]Loading weights:  99%|█████████▉| 1506/1524 [00:52<00:00, 34.07it/s]Loading weights:  99%|█████████▉| 1506/1524 [00:52<00:00, 33.68it/s]Loading weights:  99%|█████████▉| 1510/1524 [00:53<00:00, 36.04it/s]Loading weights:  99%|█████████▉| 1510/1524 [00:52<00:00, 36.14it/s]Loading weights:  99%|█████████▉| 1510/1524 [00:53<00:00, 36.17it/s]Loading weights:  99%|█████████▉| 1510/1524 [00:53<00:00, 36.18it/s]Loading weights:  99%|█████████▉| 1514/1524 [00:53<00:00, 23.76it/s]Loading weights:  99%|█████████▉| 1516/1524 [00:53<00:00, 24.13it/s]Loading weights:  99%|█████████▉| 1516/1524 [00:53<00:00, 24.18it/s]Loading weights:  99%|█████████▉| 1516/1524 [00:53<00:00, 24.17it/s]Loading weights: 100%|█████████▉| 1521/1524 [00:53<00:00, 25.53it/s]Loading weights: 100%|█████████▉| 1521/1524 [00:53<00:00, 25.63it/s]Loading weights: 100%|█████████▉| 1521/1524 [00:53<00:00, 25.61it/s]Loading weights: 100%|█████████▉| 1521/1524 [00:53<00:00, 25.59it/s]Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 22.50it/s]Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.09it/s]
+Loading weights: 100%|█████████▉| 1523/1524 [00:54<00:00, 21.84it/s]Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.09it/s]
+Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.09it/s]
+Loading weights: 100%|█████████▉| 1522/1524 [00:54<00:00, 22.12it/s]Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.08it/s]
+Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.08it/s]
+Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.08it/s]
+Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.09it/s]
+Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 22.48it/s]Loading weights: 100%|██████████| 1524/1524 [00:54<00:00, 28.08it/s]
+Model init total -- 63.38s
+Model init total -- 63.38s
+Model init total -- 63.39s
+Model init total -- 63.39s
+Model init total -- 63.39s
+Model init total -- 63.39s
+Model init total -- 63.39s
+Model init total -- 63.39s
+2025-04-02 11:05:41,497 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,497 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,497 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,502 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,509 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,510 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,510 - INFO - flashinfer.jit: Loading JIT ops: norm
+2025-04-02 11:05:41,512 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+2025-04-02 11:05:41,513 - INFO - flashinfer.jit: Loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7f06e719cb90>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:0', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=0, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=0), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7f06850b0620>, 'others': dict_keys([])}
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 0: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+Traceback (most recent call last):
+2025-04-02 11:05:41,529 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+  File "/userdata/foo/trtest/quick_start2.py", line 28, in <module>
+    main()
+  File "/userdata/foo/trtest/quick_start2.py", line 15, in main
+    llm = LLM(model="/userdata/llms/deepseek-ai/DeepSeek-R1", tensor_parallel_size=8, enable_attention_dp=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/llm.py", line 27, in __init__
+    super().__init__(model, tokenizer, tokenizer_mode, skip_tokenizer_init,
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/llmapi/llm.py", line 173, in __init__
+    raise e
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/llmapi/llm.py", line 168, in __init__
+    self._build_model()
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/llmapi/llm.py", line 570, in _build_model
+    self._executor = self._executor_cls.create(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/executor.py", line 364, in create
+    return ExecutorBindingsProxy(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/proxy.py", line 94, in __init__
+    self._start_executor_workers(worker_kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/proxy.py", line 296, in _start_executor_workers
+    raise ready_signal
+RuntimeError: N must be a multiple of 128, (N=2112)
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7f614efd7110>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:7', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=7, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=7), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7f614eab22d0>, 'others': dict_keys([])}
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 7: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+2025-04-02 11:05:41,561 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7fd1f9667b60>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:4', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=4, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=4), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7fd205d0d340>, 'others': dict_keys([])}
+2025-04-02 11:05:41,574 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7f16750b3650>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:2', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=2, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=2), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7f166ebd85c0>, 'others': dict_keys([])}
+2025-04-02 11:05:41,611 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7ff114a845c0>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:6', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=6, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=6), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7ff112504350>, 'others': dict_keys([])}
+2025-04-02 11:05:41,624 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7f2616870e00>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:5', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=5, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=5), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7f25fe424200>, 'others': dict_keys([])}
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 4: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 2: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+2025-04-02 11:05:41,667 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7f5c7d19c440>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:3', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=3, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=3), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7f5c76b88080>, 'others': dict_keys([])}
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 6: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+2025-04-02 11:05:41,724 - INFO - flashinfer.jit: Finished loading JIT ops: norm
+>>> {'position_ids': torch.Size([1, 8192]), 'hidden_states': torch.Size([8192, 7168]), 'attn_metadata': TrtllmAttentionMetadata(max_num_requests=2048, max_num_tokens=8192, kv_cache_manager=None, mapping=<tensorrt_llm.mapping.Mapping object at 0x7feebc4c70e0>, is_mla=True, seq_lens=tensor([8192], dtype=torch.int32), num_contexts=1, position_ids=None, kv_cache_params=None, seq_lens_kv=tensor([8192], dtype=torch.int32), cross=None, request_ids=None, prompt_lens=None, runtime_features=AttentionRuntimeFeatures(chunked_prefill=False, cache_reuse=True, has_speculative_draft_tokens=False), all_rank_num_tokens=[8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192], workspace=tensor([], device='cuda:1', dtype=torch.int8)), 'fusion_config': EagerFusionConfig(PRE_MOE_FUSION=False, PRE_MLP_FUSION=False, POST_MLP_FUSION=False, POST_MOE_FUSION=False), 'parallel_config': ParallelConfig(tensor_parallel_size=8, tensor_parallel_rank=1, gpus_per_node=8, tensor_parallel_mode=None, gather_output=False, pipeline_parallel_size=1, parallel_rank=1), 'enable_attention_dp': True, 'all_reduce_params': <tensorrt_llm.functional.AllReduceParams object at 0x7feeba00fe00>, 'others': dict_keys([])}
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 5: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 1: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Failed to initialize executor on rank 3: N must be a multiple of 128, (N=2112)
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+
+[04/02/2025-11:05:41] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 622, in worker_main
+    worker: ExecutorBindingsWorker = worker_cls(
+                                     ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 118, in __init__
+    self.engine = _create_engine()
+                  ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/executor/worker.py", line 114, in _create_engine
+    return create_executor(executor_config=executor_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 186, in create_py_executor
+    kv_cache_max_tokens = estimate_max_kv_cache_tokens(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/_util.py", line 146, in estimate_max_kv_cache_tokens
+    model_engine.forward(req, resource_manager)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1563, in forward
+    return self._forward_step(inputs, gather_ids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1644, in _forward_step
+    logits = self.model.forward(**inputs,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 917, in forward
+    hidden_states = self.model(
+                    ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 785, in forward
+    hidden_states, residual = decoder_layer(position_ids=position_ids,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/models/modeling_deepseekv3.py", line 504, in forward
+    hidden_states = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/attention.py", line 437, in forward
+    compressed_q, compressed_kv, k_pe = self.fused_a(
+                                        ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1740, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1751, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 409, in forward
+    output = self.apply_linear(input, self.weight, self.bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/tensorrt_llm/_torch/modules/linear.py", line 330, in apply_linear
+    output = torch.ops.trtllm.fp8_block_scaling_gemm(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: N must be a multiple of 128, (N=2112)
+

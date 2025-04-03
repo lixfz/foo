@@ -13,6 +13,7 @@ def main():
 
     #llm = LLM(model="/userdata/llms/DeepSeek-R1-FP4", tensor_parallel_size=8, enable_attention_dp=True)
     llm = LLM(model="/userdata/llms/deepseek-ai/DeepSeek-R1", tensor_parallel_size=8, enable_attention_dp=True)
+    #llm = LLM(model="/userdata/llms/deepseek-ai/DeepSeek-R1", tensor_parallel_size=8, moe_expert_parallel_size=4, enable_attention_dp=False)
 
     outputs = llm.generate(prompts, sampling_params)
 
