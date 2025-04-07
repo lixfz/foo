@@ -63,27 +63,22 @@ function doit(){
 #doit 600 600 
 #doit 600 1000
 #doit 100 100
-#
 
 
-#DATASET_PATH=/userdata/foo/trtest/dataset-sharegpt.txt
-#OUTPUT_DIR=$(gen_odir outputs-sharegpt)
-##OUTPUT_DIR=outputs-sharegpt-0401-02
-##mkdir $OUTPUT_DIR
-#TRTLLM_DG_ENABLED=
-#
-#doit 300 300
-#doit 300 600
-#doit 600 600
-#doit 600 1000
+
+DATASET_PATH=/userdata/foo/trtest/dataset-sharegpt.txt
+OUTPUT_DIR=$(gen_odir outputs-sharegpt)
+TRTLLM_DG_ENABLED=
+
+doit 300 300
+doit 300 600
+doit 600 600
+doit 600 1000
 ##doit 100 100
 #
 #DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1-o8k.txt
 DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1.txt
-#OUTPUT_DIR=$(gen_odir)
-#OUTPUT_DIR=outputs-o8k
 OUTPUT_DIR=$(gen_odir outputs-1k1k)
-#mkdir $OUTPUT_DIR
 TRTLLM_DG_ENABLED=
 
 doit 300 300
@@ -92,11 +87,12 @@ doit 600 600
 doit 600 1000
 #doit 100 100
 
-#export TRTLLM_DG_ENABLED=1
-#
-#doit 300 300
-#doit 300 600
-#doit 600 600
+export TRTLLM_DG_ENABLED=1
+
+doit 300 300
+doit 300 600
+doit 600 600
+doit 600 1000
 
 export TRTLLM_DG_ENABLED=
 
