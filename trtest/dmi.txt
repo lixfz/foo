@@ -1,0 +1,2898 @@
+# dmidecode 3.3
+Getting SMBIOS data from sysfs.
+SMBIOS 3.6.0 present.
+# SMBIOS implementations newer than version 3.5.0 are not
+# fully supported by this version of dmidecode.
+Table at 0x76D01000.
+
+Handle 0x0000, DMI type 0, 26 bytes
+BIOS Information
+	Vendor: American Megatrends International, LLC.
+	Version: 10.32
+	Release Date: 02/27/2025
+	Address: 0xF0000
+	Runtime Size: 64 kB
+	ROM Size: 64 MB
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		BIOS shadowing is allowed
+		Boot from CD is supported
+		Selectable boot is supported
+		BIOS ROM is socketed
+		EDD is supported
+		ACPI is supported
+		BIOS boot specification is supported
+		Targeted content distribution is supported
+		UEFI is supported
+	BIOS Revision: 5.32
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: ASRockRack
+	Product Name: 8U8X-EGS2 SYN B200
+	Version:                       
+	Serial Number: J3S0R8000183
+	UUID: 6aa7f142-bfde-11d3-01b7-9c6b004e25a1
+	Wake-up Type: Power Switch
+	SKU Number:                       
+	Family:                       
+
+Handle 0x0002, DMI type 2, 15 bytes
+Base Board Information
+	Manufacturer: ASRockRack
+	Product Name: SP2C741D32G-2L+
+	Version:                       
+	Serial Number: BR80H4011200005
+	Asset Tag:                       
+	Features:
+		Board is a hosting board
+		Board is replaceable
+	Location In Chassis:                       
+	Chassis Handle: 0x0003
+	Type: Motherboard
+	Contained Object Handles: 0
+
+Handle 0x0003, DMI type 3, 22 bytes
+Chassis Information
+	Manufacturer:                       
+	Type: Other
+	Lock: Not Present
+	Version:                       
+	Serial Number: K61252145700044
+	Asset Tag:                       
+	Boot-up State: Safe
+	Power Supply State: Safe
+	Thermal State: Safe
+	Security Status: None
+	OEM Information: 0x00000000
+	Height: Unspecified
+	Number Of Power Cords: 1
+	Contained Elements: 0
+	SKU Number:                       
+
+Handle 0x0004, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: VGA1
+	Internal Connector Type: None
+	External Reference Designator: AST2600 VGA
+	External Connector Type: DB-15 female
+	Port Type: Video Port
+
+Handle 0x0005, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: COM1
+	Internal Connector Type: None
+	External Reference Designator: COM 1
+	External Connector Type: DB-9 female
+	Port Type: Serial Port 16450 Compatible
+
+Handle 0x0006, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_1_2
+	Internal Connector Type: None
+	External Reference Designator: USB3_1
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x0007, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_1_2
+	Internal Connector Type: None
+	External Reference Designator: USB3_2
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x0008, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_3_4
+	Internal Connector Type: None
+	External Reference Designator: USB3_3
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x0009, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_3_4
+	Internal Connector Type: None
+	External Reference Designator: USB3_4
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x000A, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_5_6
+	Internal Connector Type: None
+	External Reference Designator: USB3_5
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x000B, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_5_6
+	Internal Connector Type: None
+	External Reference Designator: USB3_6
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x000C, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_7_8
+	Internal Connector Type: None
+	External Reference Designator: USB3_7
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x000D, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: USB3_7_8
+	Internal Connector Type: None
+	External Reference Designator: USB3_8
+	External Connector Type: Access Bus (USB)
+	Port Type: USB
+
+Handle 0x000E, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: M2_1:M.2 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x000F, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: M2_2:M.2 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0010, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: TPM_BIOS_PH1:TPM CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0011, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: RAID1:VROC CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0012, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO1:MCIO1 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0013, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO2:MCIO2 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0014, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO3:MCIO3 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0015, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO4:MCIO4 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0016, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO5:MCIO5 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0017, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO6:MCIO6 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0018, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO7:MCIO7 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0019, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO8:MCIO8 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001A, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO9:MCIO9 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001B, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO10:MCIO10 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001C, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO11:MCIO11 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001D, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO12:MCIO12 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001E, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO13:MCIO13 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x001F, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO14:MCIO14 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0020, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO15:MCIO15 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0021, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO16:MCIO16 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0022, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO17:MCIO17 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0023, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO18:MCIO18 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0024, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO19:MCIO19 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0025, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO20:MCIO20 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0026, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO21:MCIO21 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0027, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: MCIO22:MCIO22 CONNECTOR
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0028, DMI type 8, 9 bytes
+Port Connector Information
+	Internal Reference Designator: XDP1:CPU & PCH XDP HEADER
+	Internal Connector Type: Other
+	External Reference Designator: Not Specified
+	External Connector Type: None
+	Port Type: Other
+
+Handle 0x0029, DMI type 11, 5 bytes
+OEM Strings
+	String 1: To Be Filled By O.E.M.
+
+Handle 0x002A, DMI type 32, 20 bytes
+System Boot Information
+	Status: No errors detected
+
+Handle 0x002B, DMI type 44, 9 bytes
+Unknown Type
+	Header and Data:
+		2C 09 2B 00 FF FF 01 01 00
+
+Handle 0x002C, DMI type 38, 18 bytes
+IPMI Device Information
+	Interface Type: KCS (Keyboard Control Style)
+	Specification Version: 2.0
+	I2C Slave Address: 0x10
+	NV Storage Device: Not Present
+	Base Address: 0x0000000000000CA2 (I/O)
+	Register Spacing: Successive Byte Boundaries
+
+Handle 0x002D, DMI type 45, 26 bytes
+Firmware Inventory Information
+	Firmware Component Name: BMC Firmware
+	Firmware Version: 50.38
+	Firmware ID: Not Specified
+	Release Date: Not Specified
+	Manufacturer: C1D6
+	Lowest Supported Firmware Version: Not Specified
+	Image Size: Unknown
+	Characteristics:
+		Updatable: Yes
+		Write-Protect: No
+	State: Enabled
+	Associated Components: 1
+		0x002C
+
+Handle 0x002E, DMI type 42, 17 bytes
+Management Controller Host Interface
+	Host Interface Type: KCS: Keyboard Controller Style
+
+Handle 0x0036, DMI type 15, 73 bytes
+System Event Log
+	Area Length: 4095 bytes
+	Header Start Offset: 0x0000
+	Header Length: 16 bytes
+	Data Start Offset: 0x0010
+	Access Method: Memory-mapped physical 32-bit address
+	Access Address: 0xFF110000
+	Status: Valid, Not Full
+	Change Token: 0x00000001
+	Header Format: Type 1
+	Supported Log Type Descriptors: 25
+	Descriptor 1: Single-bit ECC memory error
+	Data Format 1: Multiple-event handle
+	Descriptor 2: Multi-bit ECC memory error
+	Data Format 2: Multiple-event handle
+	Descriptor 3: Parity memory error
+	Data Format 3: None
+	Descriptor 4: Bus timeout
+	Data Format 4: None
+	Descriptor 5: I/O channel block
+	Data Format 5: None
+	Descriptor 6: Software NMI
+	Data Format 6: None
+	Descriptor 7: POST memory resize
+	Data Format 7: None
+	Descriptor 8: POST error
+	Data Format 8: POST results bitmap
+	Descriptor 9: PCI parity error
+	Data Format 9: Multiple-event handle
+	Descriptor 10: PCI system error
+	Data Format 10: Multiple-event handle
+	Descriptor 11: CPU failure
+	Data Format 11: None
+	Descriptor 12: EISA failsafe timer timeout
+	Data Format 12: None
+	Descriptor 13: Correctable memory log disabled
+	Data Format 13: None
+	Descriptor 14: Logging disabled
+	Data Format 14: None
+	Descriptor 15: System limit exceeded
+	Data Format 15: None
+	Descriptor 16: Asynchronous hardware timer expired
+	Data Format 16: None
+	Descriptor 17: System configuration information
+	Data Format 17: None
+	Descriptor 18: Hard disk information
+	Data Format 18: None
+	Descriptor 19: System reconfigured
+	Data Format 19: None
+	Descriptor 20: Uncorrectable CPU-complex error
+	Data Format 20: None
+	Descriptor 21: Log area reset/cleared
+	Data Format 21: None
+	Descriptor 22: System boot
+	Data Format 22: None
+	Descriptor 23: End of log
+	Data Format 23: None
+	Descriptor 24: OEM-specific
+	Data Format 24: OEM-specific
+	Descriptor 25: OEM-specific
+	Data Format 25: OEM-specific
+
+Handle 0x0038, DMI type 133, 12 bytes
+OEM-specific Type
+	Header and Data:
+		85 0C 38 00 00 90 E7 6F 00 40 00 00
+
+Handle 0x0039, DMI type 16, 23 bytes
+Physical Memory Array
+	Location: System Board Or Motherboard
+	Use: System Memory
+	Error Correction Type: Single-bit ECC
+	Maximum Capacity: 8 TB
+	Error Information Handle: Not Provided
+	Number Of Devices: 32
+
+Handle 0x003A, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_A1
+	Bank Locator: NODE 0
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A374
+	Asset Tag: CPU1_DIMM_A1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x003B, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_A2
+	Bank Locator: NODE 0
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A371
+	Asset Tag: CPU1_DIMM_A2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x003C, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_B1
+	Bank Locator: NODE 0
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A59E00
+	Asset Tag: CPU1_DIMM_B1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x003D, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_B2
+	Bank Locator: NODE 0
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A148
+	Asset Tag: CPU1_DIMM_B2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x003E, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_C1
+	Bank Locator: NODE 1
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A48F
+	Asset Tag: CPU1_DIMM_C1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x003F, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_C2
+	Bank Locator: NODE 1
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A370
+	Asset Tag: CPU1_DIMM_C2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0040, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_D1
+	Bank Locator: NODE 1
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A59E59
+	Asset Tag: CPU1_DIMM_D1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0041, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_D2
+	Bank Locator: NODE 1
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A494
+	Asset Tag: CPU1_DIMM_D2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0042, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_E1
+	Bank Locator: NODE 2
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A4B1
+	Asset Tag: CPU1_DIMM_E1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0043, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_E2
+	Bank Locator: NODE 2
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A59E63
+	Asset Tag: CPU1_DIMM_E2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0044, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_F1
+	Bank Locator: NODE 2
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC31
+	Asset Tag: CPU1_DIMM_F1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0045, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_F2
+	Bank Locator: NODE 2
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5ABBF
+	Asset Tag: CPU1_DIMM_F2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0046, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_G1
+	Bank Locator: NODE 3
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC49
+	Asset Tag: CPU1_DIMM_G1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0047, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_G2
+	Bank Locator: NODE 3
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AAE4
+	Asset Tag: CPU1_DIMM_G2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0048, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_H1
+	Bank Locator: NODE 3
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5ACA1
+	Asset Tag: CPU1_DIMM_H1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0049, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_DIMM_H2
+	Bank Locator: NODE 3
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5ABBD
+	Asset Tag: CPU1_DIMM_H2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004A, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_I1
+	Bank Locator: NODE 4
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5ABBE
+	Asset Tag: CPU2_DIMM_I1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004B, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_I2
+	Bank Locator: NODE 4
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC33
+	Asset Tag: CPU2_DIMM_I2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004C, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_J1
+	Bank Locator: NODE 4
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC71
+	Asset Tag: CPU2_DIMM_J1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004D, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_J2
+	Bank Locator: NODE 4
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC70
+	Asset Tag: CPU2_DIMM_J2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004E, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_K1
+	Bank Locator: NODE 5
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5ABB9
+	Asset Tag: CPU2_DIMM_K1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x004F, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_K2
+	Bank Locator: NODE 5
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC8E
+	Asset Tag: CPU2_DIMM_K2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0050, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_L1
+	Bank Locator: NODE 5
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC90
+	Asset Tag: CPU2_DIMM_L1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0051, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_L2
+	Bank Locator: NODE 5
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5AC91
+	Asset Tag: CPU2_DIMM_L2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0052, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_M1
+	Bank Locator: NODE 6
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A40A
+	Asset Tag: CPU2_DIMM_M1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0053, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_M2
+	Bank Locator: NODE 6
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A399
+	Asset Tag: CPU2_DIMM_M2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0054, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_N1
+	Bank Locator: NODE 6
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A473
+	Asset Tag: CPU2_DIMM_N1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0055, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_N2
+	Bank Locator: NODE 6
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A429
+	Asset Tag: CPU2_DIMM_N2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0056, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_O1
+	Bank Locator: NODE 7
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A59D78
+	Asset Tag: CPU2_DIMM_O1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0057, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_O2
+	Bank Locator: NODE 7
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A358
+	Asset Tag: CPU2_DIMM_O2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0058, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_P1
+	Bank Locator: NODE 7
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A35C
+	Asset Tag: CPU2_DIMM_P1_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x0059, DMI type 17, 92 bytes
+Memory Device
+	Array Handle: 0x0039
+	Error Information Handle: Not Provided
+	Total Width: 80 bits
+	Data Width: 64 bits
+	Size: 64 GB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU2_DIMM_P2
+	Bank Locator: NODE 7
+	Type: DDR5
+	Type Detail: Synchronous Registered (Buffered)
+	Speed: 4800 MT/s
+	Manufacturer: Micron
+	Serial Number: D0A5A14B
+	Asset Tag: CPU2_DIMM_P2_AssetTag
+	Part Number: MTC40F2046S1RC48BA1           
+	Rank: 2
+	Configured Memory Speed: 4400 MT/s
+	Minimum Voltage: 1.1 V
+	Maximum Voltage: 1.1 V
+	Configured Voltage: 1.1 V
+	Memory Technology: DRAM
+	Memory Operating Mode Capability: Volatile memory
+	Firmware Version: 0000 
+	Module Manufacturer ID: Bank 1, Hex 0x2C
+	Module Product ID: 0x2C00
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Memory Subsystem Controller Product ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 64 GB
+	Cache Size: None
+	Logical Size: None
+
+Handle 0x005A, DMI type 19, 31 bytes
+Memory Array Mapped Address
+	Starting Address: 0x00000000000
+	Ending Address: 0x0007FFFFFFF
+	Range Size: 2 GB
+	Physical Array Handle: 0x0039
+	Partition Width: 8
+
+Handle 0x005B, DMI type 19, 31 bytes
+Memory Array Mapped Address
+	Starting Address: 0x00100000000
+	Ending Address: 0x0807FFFFFFF
+	Range Size: 510 GB
+	Physical Array Handle: 0x0039
+	Partition Width: 8
+
+Handle 0x005C, DMI type 19, 31 bytes
+Memory Array Mapped Address
+	Starting Address: 0x08080000000
+	Ending Address: 0x1007FFFFFFF
+	Range Size: 512 GB
+	Physical Array Handle: 0x0039
+	Partition Width: 8
+
+Handle 0x005D, DMI type 19, 31 bytes
+Memory Array Mapped Address
+	Starting Address: 0x10080000000
+	Ending Address: 0x1807FFFFFFF
+	Range Size: 512 GB
+	Physical Array Handle: 0x0039
+	Partition Width: 8
+
+Handle 0x005E, DMI type 19, 31 bytes
+Memory Array Mapped Address
+	Starting Address: 0x18080000000
+	Ending Address: 0x2007FFFFFFF
+	Range Size: 512 GB
+	Physical Array Handle: 0x0039
+	Partition Width: 8
+
+Handle 0x005F, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L1-Cache
+	Configuration: Enabled, Not Socketed, Level 1
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 4480 kB
+	Maximum Size: 4480 kB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 12-way Set-associative
+
+Handle 0x0060, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L2-Cache
+	Configuration: Enabled, Not Socketed, Level 2
+	Operational Mode: Varies With Memory Address
+	Location: Internal
+	Installed Size: 112 MB
+	Maximum Size: 112 MB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 16-way Set-associative
+
+Handle 0x0061, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L3-Cache
+	Configuration: Enabled, Not Socketed, Level 3
+	Operational Mode: Varies With Memory Address
+	Location: Internal
+	Installed Size: 300 MB
+	Maximum Size: 300 MB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 20-way Set-associative
+
+Handle 0x0062, DMI type 4, 50 bytes
+Processor Information
+	Socket Designation: CPU1
+	Type: Central Processor
+	Family: Xeon
+	Manufacturer: Intel(R) Corporation
+	ID: F2 06 0C 00 FF FB EB BF
+	Signature: Type 0, Family 6, Model 207, Stepping 2
+	Flags:
+		FPU (Floating-point unit on-chip)
+		VME (Virtual mode extension)
+		DE (Debugging extension)
+		PSE (Page size extension)
+		TSC (Time stamp counter)
+		MSR (Model specific registers)
+		PAE (Physical address extension)
+		MCE (Machine check exception)
+		CX8 (CMPXCHG8 instruction supported)
+		APIC (On-chip APIC hardware supported)
+		SEP (Fast system call)
+		MTRR (Memory type range registers)
+		PGE (Page global enable)
+		MCA (Machine check architecture)
+		CMOV (Conditional move instruction supported)
+		PAT (Page attribute table)
+		PSE-36 (36-bit page size extension)
+		CLFSH (CLFLUSH instruction supported)
+		DS (Debug store)
+		ACPI (ACPI supported)
+		MMX (MMX technology supported)
+		FXSR (FXSAVE and FXSTOR instructions supported)
+		SSE (Streaming SIMD extensions)
+		SSE2 (Streaming SIMD extensions 2)
+		SS (Self-snoop)
+		HTT (Multi-threading)
+		TM (Thermal monitor supported)
+		PBE (Pending break enabled)
+	Version: INTEL(R) XEON(R) PLATINUM 8570
+	Voltage: 1.6 V
+	External Clock: 100 MHz
+	Max Speed: 4000 MHz
+	Current Speed: 2100 MHz
+	Status: Populated, Enabled
+	Upgrade: Socket LGA4677
+	L1 Cache Handle: 0x005F
+	L2 Cache Handle: 0x0060
+	L3 Cache Handle: 0x0061
+	Serial Number: Not Specified
+	Asset Tag: UNKNOWN
+	Part Number: Not Specified
+	Core Count: 56
+	Core Enabled: 56
+	Thread Count: 112
+	Characteristics:
+		64-bit capable
+		Multi-Core
+		Hardware Thread
+		Execute Protection
+		Enhanced Virtualization
+		Power/Performance Control
+
+Handle 0x0063, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L1-Cache
+	Configuration: Enabled, Not Socketed, Level 1
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 4480 kB
+	Maximum Size: 4480 kB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 12-way Set-associative
+
+Handle 0x0064, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L2-Cache
+	Configuration: Enabled, Not Socketed, Level 2
+	Operational Mode: Varies With Memory Address
+	Location: Internal
+	Installed Size: 112 MB
+	Maximum Size: 112 MB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 16-way Set-associative
+
+Handle 0x0065, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: L3-Cache
+	Configuration: Enabled, Not Socketed, Level 3
+	Operational Mode: Varies With Memory Address
+	Location: Internal
+	Installed Size: 300 MB
+	Maximum Size: 300 MB
+	Supported SRAM Types:
+		Synchronous
+	Installed SRAM Type: Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Unified
+	Associativity: 20-way Set-associative
+
+Handle 0x0066, DMI type 4, 50 bytes
+Processor Information
+	Socket Designation: CPU2
+	Type: Central Processor
+	Family: Xeon
+	Manufacturer: Intel(R) Corporation
+	ID: F2 06 0C 00 FF FB EB BF
+	Signature: Type 0, Family 6, Model 207, Stepping 2
+	Flags:
+		FPU (Floating-point unit on-chip)
+		VME (Virtual mode extension)
+		DE (Debugging extension)
+		PSE (Page size extension)
+		TSC (Time stamp counter)
+		MSR (Model specific registers)
+		PAE (Physical address extension)
+		MCE (Machine check exception)
+		CX8 (CMPXCHG8 instruction supported)
+		APIC (On-chip APIC hardware supported)
+		SEP (Fast system call)
+		MTRR (Memory type range registers)
+		PGE (Page global enable)
+		MCA (Machine check architecture)
+		CMOV (Conditional move instruction supported)
+		PAT (Page attribute table)
+		PSE-36 (36-bit page size extension)
+		CLFSH (CLFLUSH instruction supported)
+		DS (Debug store)
+		ACPI (ACPI supported)
+		MMX (MMX technology supported)
+		FXSR (FXSAVE and FXSTOR instructions supported)
+		SSE (Streaming SIMD extensions)
+		SSE2 (Streaming SIMD extensions 2)
+		SS (Self-snoop)
+		HTT (Multi-threading)
+		TM (Thermal monitor supported)
+		PBE (Pending break enabled)
+	Version: INTEL(R) XEON(R) PLATINUM 8570
+	Voltage: 1.6 V
+	External Clock: 100 MHz
+	Max Speed: 4000 MHz
+	Current Speed: 2100 MHz
+	Status: Populated, Enabled
+	Upgrade: Socket LGA4677
+	L1 Cache Handle: 0x0063
+	L2 Cache Handle: 0x0064
+	L3 Cache Handle: 0x0065
+	Serial Number: Not Specified
+	Asset Tag: UNKNOWN
+	Part Number: Not Specified
+	Core Count: 56
+	Core Enabled: 56
+	Thread Count: 112
+	Characteristics:
+		64-bit capable
+		Multi-Core
+		Hardware Thread
+		Execute Protection
+		Enhanced Virtualization
+		Power/Performance Control
+
+Handle 0x006B, DMI type 168, 47 bytes
+OEM-specific Type
+	Header and Data:
+		A8 2F 6B 00 01 00 01 02 05 00 01 D8 00 00 00 00
+		7E F8 83 06 00 00 00 00 00 00 00 00 00 00 00 00
+		7F 00 07 00 00 00 00 00 00 00 00 00 00 00 00
+	Strings:
+		Member: OTA General Information
+
+Handle 0x006C, DMI type 14, 8 bytes
+Group Associations
+	Name: Group: One Touch Activation (OTA)
+	Items: 1
+		0x006B (OEM-specific)
+
+Handle 0x006E, DMI type 42, 143 bytes
+Management Controller Host Interface
+	Host Interface Type: Network
+	Device Type: <OUT OF SPEC>
+	Vendor ID: 0x1e:0x6b:0x04:0xb0
+	Protocol ID: 04 (Redfish over IP)
+		Service UUID: 6aa7f142-bfde-11d3-01b7-a1254e006b9c
+		Host IP Assignment Type: Static
+		Host IP Address Format: IPv4
+		IPv4 Address: 169.254.0.18
+		IPv4 Mask: 255.255.0.0
+		Redfish Service IP Discovery Type: Static
+		Redfish Service IP Address Format: IPv4
+		IPv4 Redfish Service Address: 169.254.0.17
+		IPv4 Redfish Service Mask: 255.255.0.0
+		Redfish Service Port: 443
+		Redfish Service Vlan: 4294967295
+		Redfish Service Hostname: 169.254.0.17
+
+Handle 0x006F, DMI type 221, 159 bytes
+OEM-specific Type
+	Header and Data:
+		DD 9F 6F 00 16 01 02 FF FF FF FF FF 03 04 FF FF
+		FF FF FF 05 06 FF FF FF FF FF 07 08 FF FF FF FF
+		FF 09 0A FF FF FF FF FF 0B 0C FF FF FF FF FF 0D
+		0E FF FF FF FF FF 0F 10 FF FF FF FF FF 11 12 FF
+		FF FF FF FF 13 14 FF FF FF FF FF 15 16 FF FF FF
+		FF FF 17 18 FF FF FF FF FF 19 1A FF FF FF FF FF
+		1B 1C FF FF FF FF FF 1D 1E FF FF FF FF FF 1F 20
+		FF FF FF FF FF 21 22 FF FF FF FF FF 23 24 FF FF
+		FF FF FF 25 26 FF FF FF FF FF 27 28 FF FF FF FF
+		FF 29 2A FF FF FF FF FF 2B 2C FF FF FF FF FF
+	Strings:
+		IFWI Version
+		N/A
+		ME FW Version
+		18:6.1.4.75
+		BIOS ACM Version
+		1.1.A
+		BMC FW Version
+		32.38.0000
+		FRU SDR Version
+		N/A
+		FRU Version
+
+Handle 0x0070, DMI type 13, 22 bytes
+BIOS Language Information
+	Language Description Format: Long
+	Installable Languages: 1
+		en|US|iso8859-1
+	Currently Installed Language: en|US|iso8859-1
+
+Handle 0x0071, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 129
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:15:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0072, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 130
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:15:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0073, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 131
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:15:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0074, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 132
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:15:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0075, DMI type 9, 24 bytes
+System Slot Information
+	Designation: L1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 136
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:3f:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0076, DMI type 9, 24 bytes
+System Slot Information
+	Designation: L1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 135
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:3f:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0077, DMI type 9, 24 bytes
+System Slot Information
+	Designation: L1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 134
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:3f:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0078, DMI type 9, 24 bytes
+System Slot Information
+	Designation: L1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 133
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:3f:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0079, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-2
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 137
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:69:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007A, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-2-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 138
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:69:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007B, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-2-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 139
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:69:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007C, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX1-2-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 140
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:69:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007D, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 146
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:93:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007E, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 145
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:93:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x007F, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 148
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:93:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0080, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 147
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:93:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0081, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-2
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 141
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bd:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0082, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-2-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 142
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bd:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0083, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-2-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 143
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bd:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0084, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX2-2-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 144
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bd:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0085, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-2
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 149
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:15:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0086, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-2-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 150
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:15:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0087, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-2-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 151
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:15:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0088, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-2-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 152
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:15:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0089, DMI type 9, 24 bytes
+System Slot Information
+	Designation: R1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 156
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:3f:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008A, DMI type 9, 24 bytes
+System Slot Information
+	Designation: R1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 155
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:3f:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008B, DMI type 9, 24 bytes
+System Slot Information
+	Designation: R1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 154
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:3f:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008C, DMI type 9, 24 bytes
+System Slot Information
+	Designation: R1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 153
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:3f:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008D, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 157
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:69:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008E, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 158
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:69:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x008F, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 159
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:69:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0090, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX3-1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 160
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:69:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0091, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-1
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 165
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:93:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0092, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-1-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 166
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:93:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0093, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-1-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 167
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:93:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0094, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-1-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 168
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:93:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0095, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-2
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 161
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bd:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0096, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-2-3
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 162
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bd:03.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0097, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-2-5
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 163
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bd:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0098, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PLX4-2-7
+	Type: x4 PCI Express 5 x4
+	Current Usage: Available
+	Length: Short
+	ID: 164
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bd:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x0099, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME10
+	Type: x4 PCI Express 4 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 170
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:00:05.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009A, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME9
+	Type: x4 PCI Express 4 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 169
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:00:07.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009B, DMI type 9, 24 bytes
+System Slot Information
+	Designation: MCIO22-1  
+	Type: x4 PCI Express 3 x4
+	Current Usage: Available
+	Length: Short
+	ID: 171
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:00:08.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009C, DMI type 9, 24 bytes
+System Slot Information
+	Designation: MCIO22-2  
+	Type: x4 PCI Express 3 x4
+	Current Usage: Available
+	Length: Short
+	ID: 172
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:00:0a.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009D, DMI type 9, 24 bytes
+System Slot Information
+	Designation: M2_2      
+	Type: x4 PCI Express 3 x4
+	Current Usage: Available
+	Length: Short
+	ID: 34
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:00:10.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009E, DMI type 9, 24 bytes
+System Slot Information
+	Designation: M2_1      
+	Type: x4 PCI Express 3 x4
+	Current Usage: Available
+	Length: Short
+	ID: 33
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:00:1a.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x009F, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE1     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 17
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:17:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A0, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE2     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 18
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:95:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A1, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE3     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 19
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:6b:00.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A2, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE4     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 20
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bf:00.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A3, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE5     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 21
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:17:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A4, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE6     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 22
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bf:01.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A5, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE7     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 23
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:6b:00.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A6, DMI type 9, 24 bytes
+System Slot Information
+	Designation: PCIE8     
+	Type: x16 PCI Express 5 x16
+	Current Usage: In Use
+	Length: Long
+	ID: 24
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:95:00.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A7, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME1     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 173
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:95:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A8, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME2     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 174
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:bf:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00A9, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME3     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 175
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:6b:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AA, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME4     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 175
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0001:17:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AB, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME5     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 176
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:bf:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AC, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME6     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 177
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:95:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AD, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME7     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 178
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:17:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AE, DMI type 9, 24 bytes
+System Slot Information
+	Designation: NVME8     
+	Type: x4 PCI Express 5 x4
+	Current Usage: In Use
+	Length: Short
+	ID: 179
+	Characteristics:
+		3.3 V is provided
+		PME signal is supported
+	Bus Address: 0000:6b:02.0
+	Data Bus Width: 0
+	Peer Devices: 0
+	Height: Not applicable
+
+Handle 0x00AF, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Onboard ETHERNET Controller
+	Type: Ethernet
+	Status: Enabled
+	Type Instance: 1
+	Bus Address: 0000:02:00.0
+
+Handle 0x00B0, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Onboard ETHERNET Controller
+	Type: Ethernet
+	Status: Enabled
+	Type Instance: 2
+	Bus Address: 0000:02:00.1
+
+Handle 0x00B1, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Onboard VGA
+	Type: Video
+	Status: Enabled
+	Type Instance: 1
+	Bus Address: 0000:04:00.0
+
+Handle 0x00B2, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Onboard SATA Controller
+	Type: SATA Controller
+	Status: Enabled
+	Type Instance: 1
+	Bus Address: 0000:00:17.0
+
+Handle 0x00B3, DMI type 127, 4 bytes
+End Of Table
+
