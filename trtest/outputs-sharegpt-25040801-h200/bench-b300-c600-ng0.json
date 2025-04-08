@@ -1,0 +1,107 @@
+{
+    "engine": {
+        "model": "deepseek-ai/DeepSeek-R1",
+        "model_path": "/userdata/llms/deepseek-ai/DeepSeek-R1",
+        "engine_dir": "None",
+        "version": "0.19.0.dev2025040800",
+        "backend": "Pytorch",
+        "dtype": "bfloat16",
+        "kv_cache_dtype": null,
+        "quantization": "FP8_BLOCK_SCALES"
+    },
+    "world_info": {
+        "tp_size": 8,
+        "pp_size": 1,
+        "ep_size": 4,
+        "world_size": 8,
+        "max_batch_size": 300,
+        "max_num_tokens": 1160,
+        "scheduling_policy": "GUARANTEED_NO_EVICT",
+        "kv_cache_percentage": 80.0,
+        "issue_rate": 8.019703293166667e+16
+    },
+    "request_info": {
+        "num_requests": 3000,
+        "avg_num_concurrent_requests": 521.403605138982,
+        "avg_input_length": 369.905,
+        "avg_output_length": 204.21066666666667
+    },
+    "performance": {
+        "total_latency_ms": 283778.46433,
+        "avg_request_latency_ms": 49321.038120822,
+        "request_throughput_req_s": 10.57162673384321,
+        "system_output_throughput_tok_s": 2158.838943069278,
+        "system_total_throughput_tok_s": 6069.336530051551,
+        "output_throughput_per_user_tok_s": 4.40864635283739,
+        "output_throughput_per_gpu_tok_s": 269.8548678836597,
+        "request_latency_percentiles_ms": {
+            "p50": 45043.053801999995,
+            "p90": 67852.45116499999,
+            "p95": 119236.649477,
+            "p99": 206697.609647,
+            "minimum": 11692.757947999999,
+            "maximum": 283720.615276,
+            "average": 49321.038120822
+        }
+    },
+    "streaming_metrics": {
+        "token_output_speed_tok_s": 4.242646939244736,
+        "avg_ttft_ms": 2063.861799298333,
+        "avg_tpot_ms": 235.70191305572487,
+        "tpot_percentiles": {
+            "p50": 251.43474985624997,
+            "p90": 285.01410451875,
+            "p95": 289.38883331875,
+            "p99": 292.3866992875,
+            "minimum": 70.26999506874999,
+            "maximum": 293.5835457,
+            "average": 235.70191305572487
+        },
+        "ttft_percentiles": {
+            "p50": 884.575327,
+            "p90": 7868.696814,
+            "p95": 9374.091585,
+            "p99": 11697.020417,
+            "minimum": 309.988762,
+            "maximum": 11801.658544,
+            "average": 2063.861799298333
+        }
+    },
+    "dataset": {
+        "isl_stats": {
+            "p50": 298.0,
+            "p90": 766.0,
+            "p95": 872.0,
+            "p99": 1000.0,
+            "minimum": 100.0,
+            "maximum": 1023.0,
+            "average": 369.905
+        },
+        "osl_stats": {
+            "p50": 310.0,
+            "p90": 738.0,
+            "p95": 813.0,
+            "p99": 1152.0,
+            "minimum": 100.0,
+            "maximum": 1843.0,
+            "average": 372.16266666666667
+        },
+        "seq_len_stats": {
+            "p50": 670.0,
+            "p90": 1238.0,
+            "p95": 1425.0,
+            "p99": 1738.0,
+            "minimum": 203.0,
+            "maximum": 2009.0,
+            "average": 742.0676666666667
+        },
+        "num_requests": 3000,
+        "dataset_path": "/userdata/projects/foo/trtest/dataset-sharegpt.txt",
+        "max_isl": 1023,
+        "max_osl": 1843,
+        "max_sequence_length": 2009,
+        "avg_isl": 369,
+        "avg_osl": 372,
+        "avg_sequence_length": 742
+    }
+}
