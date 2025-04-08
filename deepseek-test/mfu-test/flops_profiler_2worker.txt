@@ -1,0 +1,1152 @@
+
+-------------------------- DeepSpeed Flops Profiler --------------------------
+Profile Summary at step 5:
+Notations:
+data parallel size (dp_size), model parallel size(mp_size),
+number of parameters (params), number of multiply-accumulate operations(MACs),
+number of floating-point operations (flops), floating-point operations per second (FLOPS),
+fwd latency (forward propagation latency), bwd latency (backward propagation latency),
+step (weights update latency), iter latency (sum of fwd, bwd and step latency)
+
+world size:                                                             16      
+data parallel size:                                                     16      
+model parallel size:                                                    1       
+batch size per GPU:                                                     8       
+params per GPU:                                                         499.3 M 
+params of model = params per GPU * mp_size:                             499.3 M 
+fwd MACs per GPU:                                                       5903.98 TMACs
+fwd flops per GPU:                                                      11808.2 T
+fwd flops of model = fwd flops per GPU * mp_size:                       11808.2 T
+fwd latency:                                                            7.47 s  
+fwd FLOPS per GPU = fwd flops per GPU / fwd latency:                    1580.86 TFLOPS
+bwd latency:                                                            17.75 s 
+bwd FLOPS per GPU = 2 * fwd flops per GPU / bwd latency:                1330.8 TFLOPS
+fwd+bwd FLOPS per GPU = 3 * fwd flops per GPU / (fwd+bwd latency):      1404.88 TFLOPS
+step latency:                                                           96.04 ms
+iter latency:                                                           25.31 s 
+FLOPS per GPU = 3 * fwd flops per GPU / iter latency:                   1399.55 TFLOPS
+samples/second:                                                         5.06    
+
+----------------------------- Aggregated Profile per GPU -----------------------------
+Top 1 modules in terms of params, MACs or fwd latency at different model depths:
+depth 0:
+    params      - {'RWForCausalLM': '499.3 M'}
+    MACs        - {'RWForCausalLM': '5903.98 TMACs'}
+    fwd latency - {'RWForCausalLM': '7.47 s'}
+depth 1:
+    params      - {'RWModel': '499.3 M'}
+    MACs        - {'RWModel': '5871.39 TMACs'}
+    fwd latency - {'RWModel': '7.33 s'}
+depth 2:
+    params      - {'Embedding': '497.32 M'}
+    MACs        - {'ModuleList': '5871.39 TMACs'}
+    fwd latency - {'ModuleList': '7.17 s'}
+depth 3:
+    params      - {'DecoderLayer': '1.97 M'}
+    MACs        - {'DecoderLayer': '5871.39 TMACs'}
+    fwd latency - {'DecoderLayer': '7.17 s'}
+depth 4:
+    params      - {'LayerNorm': '1.97 M'}
+    MACs        - {'MLP': '4222.12 TMACs'}
+    fwd latency - {'MLP': '3.29 s'}
+
+------------------------------ Detailed Profile per GPU ------------------------------
+Each module profile is listed after its name in the following order: 
+params, percentage of total params, MACs, percentage of total MACs, fwd latency, percentage of total fwd latency, fwd FLOPS
+
+Note: 1. A module can have torch.nn.module or torch.nn.functional to compute logits (e.g. CrossEntropyLoss). They are not counted as submodules, thus not to be printed out. However they make up the difference between a parent's MACs (or latency) and the sum of its submodules'.
+2. Number of floating-point operations is a theoretical estimation, thus FLOPS computed using that could be larger than the maximum system throughput.
+3. The fwd latency listed in the top module's profile is directly captured at the module forward function in PyTorch, thus it's less than the fwd latency shown above which is captured in DeepSpeed.
+
+RWForCausalLM(
+  499.3 M = 100% Params, 5903.98 TMACs = 100% MACs, 7.47 s = 100% latency, 1581.5 TFLOPS
+  (transformer): RWModel(
+    499.3 M = 100% Params, 5871.39 TMACs = 99.45% MACs, 7.33 s = 98.19% latency, 1601.78 TFLOPS
+    (word_embeddings): Embedding(497.32 M = 99.6% Params, 0 MACs = 0% MACs, 1.63 ms = 0.02% latency, 0 FLOPS, 60708, 8192)
+    (h): ModuleList(
+      (0): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 94.22 ms = 1.26% latency, 2077.3 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 495.43 us = 0.01% latency, 2.71 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 495.2 us = 0.01% latency, 2.71 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 33.37 ms = 0.45% latency, 1647.24 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.58 ms = 0.07% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 6.84 ms = 0.09% latency, 2892.45 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.13 ms = 0.08% latency, 2867.52 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.08 ms = 0.72% latency, 2602.24 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.32 ms = 0.33% latency, 2893.21 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.98 ms = 0.03% latency, 541.49 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.13 ms = 0.34% latency, 2799.76 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (1): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 93.91 ms = 1.26% latency, 2084.04 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 538.35 us = 0.01% latency, 2.49 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 523.09 us = 0.01% latency, 2.57 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.27 ms = 0.49% latency, 1515.76 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.23 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.64 ms = 0.1% latency, 2589.22 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.92 ms = 0.09% latency, 2540.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.76 ms = 0.73% latency, 2570.24 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 26.48 ms = 0.35% latency, 2657.89 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 2.01 ms = 0.03% latency, 533.85 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.01 ms = 0.32% latency, 2930.58 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (2): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 119.92 ms = 1.61% latency, 1632.08 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 533.34 us = 0.01% latency, 2.52 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 518.8 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 40.04 ms = 0.54% latency, 1372.95 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.87 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.39 ms = 0.1% latency, 2678.1 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.18 ms = 0.08% latency, 2845.84 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.82 ms = 0.71% latency, 2664.45 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.08 ms = 0.32% latency, 2922.84 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.79 ms = 0.02% latency, 600.56 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.8 ms = 0.33% latency, 2837.91 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (3): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 114.62 ms = 1.54% latency, 1707.51 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 508.55 us = 0.01% latency, 2.64 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.09 ms = 0.46% latency, 1612.55 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.81 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.09 ms = 0.09% latency, 2792.33 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2860.07 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.13 ms = 0.71% latency, 2648.74 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.06 ms = 0.32% latency, 2925.24 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 587.17 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.07 ms = 0.34% latency, 2807.03 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (4): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 117.21 ms = 1.57% latency, 1669.85 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 598.91 us = 0.01% latency, 2.24 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 585.56 us = 0.01% latency, 2.29 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.87 ms = 0.51% latency, 1451.65 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.12 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.83 ms = 0.12% latency, 2240.62 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2866.52 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.14 ms = 0.71% latency, 2648.2 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.16 ms = 0.32% latency, 2913.14 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 587.63 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2819.93 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (5): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 118.1 ms = 1.58% latency, 1657.16 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 533.34 us = 0.01% latency, 2.52 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 519.75 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.7 ms = 0.48% latency, 1540.1 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.23 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.52 ms = 0.1% latency, 2630.82 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.7 ms = 0.09% latency, 2626.71 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 55.78 ms = 0.75% latency, 2523.17 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 26.35 ms = 0.35% latency, 2670.56 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.91 ms = 0.03% latency, 562.74 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2820.58 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (6): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 116.17 ms = 1.56% latency, 1684.7 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 511.88 us = 0.01% latency, 2.62 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.75 ms = 0.51% latency, 1456.38 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.78 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.28 ms = 0.1% latency, 2719.87 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2864.96 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.73 ms = 0.71% latency, 2669.19 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.89 ms = 0.32% latency, 2945.73 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.77 ms = 0.02% latency, 607.12 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.92 ms = 0.33% latency, 2824.03 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (7): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.36 ms = 1.55% latency, 1696.6 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 534.3 us = 0.01% latency, 2.51 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 518.56 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.26 ms = 0.47% latency, 1559.17 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.89 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.55 ms = 0.1% latency, 2622.76 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2860.85 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.69 ms = 0.71% latency, 2671.1 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.94 ms = 0.32% latency, 2939.52 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 617.27 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.86 ms = 0.33% latency, 2831.02 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (8): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 117.78 ms = 1.58% latency, 1661.73 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 529.53 us = 0.01% latency, 2.53 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 508.31 us = 0.01% latency, 2.64 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.46 ms = 0.5% latency, 1467.75 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.07 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.27 ms = 0.1% latency, 2721.92 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.49 ms = 0.09% latency, 2711.76 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.32 ms = 0.71% latency, 2639.38 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.48 ms = 0.33% latency, 2874.92 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.76 ms = 0.02% latency, 610.91 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.89 ms = 0.33% latency, 2827.3 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (9): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.75 ms = 1.55% latency, 1690.9 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 540.02 us = 0.01% latency, 2.49 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 524.04 us = 0.01% latency, 2.56 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.31 ms = 0.49% latency, 1513.86 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.87 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 6.91 ms = 0.09% latency, 2863.71 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2861.96 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.94 ms = 0.71% latency, 2658.42 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.89 ms = 0.32% latency, 2945.79 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.75 ms = 0.02% latency, 613.65 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.07 ms = 0.34% latency, 2807.11 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (10): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 123.19 ms = 1.65% latency, 1588.77 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 555.04 us = 0.01% latency, 2.42 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 541.69 us = 0.01% latency, 2.48 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 45.5 ms = 0.61% latency, 1208.3 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.98 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.72 ms = 0.1% latency, 2564.03 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.13 ms = 0.08% latency, 2871.42 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.12 ms = 0.71% latency, 2649.69 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.92 ms = 0.32% latency, 2942.33 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.71 ms = 0.02% latency, 626.81 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.19 ms = 0.34% latency, 2793.43 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (11): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 126.31 ms = 1.69% latency, 1549.45 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 616.55 us = 0.01% latency, 2.18 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 604.87 us = 0.01% latency, 2.22 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.8 ms = 0.59% latency, 1255.26 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.35 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.27 ms = 0.12% latency, 2134.44 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 8.44 ms = 0.11% latency, 2085.38 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 55.51 ms = 0.74% latency, 2535.59 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 26.02 ms = 0.35% latency, 2704.03 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.97 ms = 0.03% latency, 545.89 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.03 ms = 0.34% latency, 2811.25 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (12): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 122.25 ms = 1.64% latency, 1600.92 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 609.87 us = 0.01% latency, 2.2 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 589.61 us = 0.01% latency, 2.28 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 41.28 ms = 0.55% latency, 1331.86 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.07 ms = 0.09% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.78 ms = 0.12% latency, 2253.14 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 7.83 ms = 0.1% latency, 2246.18 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.26 ms = 0.73% latency, 2593.8 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.38 ms = 0.34% latency, 2772.54 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.9 ms = 0.03% latency, 566.56 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.76 ms = 0.33% latency, 2842.55 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (13): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 114.93 ms = 1.54% latency, 1702.97 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 547.17 us = 0.01% latency, 2.45 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 527.14 us = 0.01% latency, 2.55 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 33.95 ms = 0.45% latency, 1619.52 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.89 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.66 ms = 0.1% latency, 2585.03 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.19 ms = 0.08% latency, 2840.69 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.08 ms = 0.71% latency, 2651.39 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.19 ms = 0.32% latency, 2908.43 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.82 ms = 0.02% latency, 591.1 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.87 ms = 0.33% latency, 2828.9 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (14): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 116.44 ms = 1.56% latency, 1680.87 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 532.63 us = 0.01% latency, 2.52 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 518.08 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.43 ms = 0.49% latency, 1509.19 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.86 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.55 ms = 0.1% latency, 2622.76 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.18 ms = 0.08% latency, 2845.95 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.42 ms = 0.72% latency, 2634.36 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.94 ms = 0.32% latency, 2939.34 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 618.71 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.03 ms = 0.34% latency, 2811.79 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (15): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 120.12 ms = 1.61% latency, 1629.3 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 532.63 us = 0.01% latency, 2.52 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 518.8 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 38.05 ms = 0.51% latency, 1444.95 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.24 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.52 ms = 0.1% latency, 2632.57 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.74 ms = 0.09% latency, 2608.79 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 55.23 ms = 0.74% latency, 2548.42 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.77 ms = 0.35% latency, 2730.52 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.92 ms = 0.03% latency, 558.62 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.01 ms = 0.33% latency, 2813.61 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (16): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.76 ms = 1.55% latency, 1690.77 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 621.08 us = 0.01% latency, 2.16 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 607.01 us = 0.01% latency, 2.21 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.66 ms = 0.46% latency, 1585.98 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.92 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.17 ms = 0.11% latency, 2423.09 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.2 ms = 0.08% latency, 2839.6 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.47 ms = 0.72% latency, 2632.07 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.28 ms = 0.33% latency, 2898.01 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 585.49 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.93 ms = 0.33% latency, 2822.84 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (17): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 118.05 ms = 1.58% latency, 1657.89 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 544.07 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 528.1 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.77 ms = 0.49% latency, 1494.95 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.28 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.7 ms = 0.1% latency, 2569.34 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.2 ms = 0.08% latency, 2838.83 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.6 ms = 0.72% latency, 2625.66 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.43 ms = 0.33% latency, 2880.76 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.95 ms = 0.03% latency, 549.69 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.92 ms = 0.33% latency, 2823.46 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (18): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 122.35 ms = 1.64% latency, 1599.63 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 618.93 us = 0.01% latency, 2.17 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 600.81 us = 0.01% latency, 2.23 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 40.71 ms = 0.55% latency, 1350.4 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.42 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.22 ms = 0.12% latency, 2147.41 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.19 ms = 0.08% latency, 2839.82 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.87 ms = 0.71% latency, 2662 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.01 ms = 0.32% latency, 2931.34 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 617.61 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.9 ms = 0.33% latency, 2826.44 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (19): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 119 ms = 1.59% latency, 1644.73 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 505.92 us = 0.01% latency, 2.65 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.42 ms = 0.5% latency, 1469.19 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.04 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.15 ms = 0.1% latency, 2766.55 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.36 ms = 0.09% latency, 2764.39 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.45 ms = 0.73% latency, 2584.84 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.15 ms = 0.34% latency, 2798.49 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.84 ms = 0.02% latency, 583.9 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.03 ms = 0.34% latency, 2811.6 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (20): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.56 ms = 1.55% latency, 1693.65 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 527.62 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 511.65 us = 0.01% latency, 2.62 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 38.79 ms = 0.52% latency, 1417.42 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.7 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.33 ms = 0.1% latency, 2700.14 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.17 ms = 0.08% latency, 2852.11 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.77 ms = 0.72% latency, 2617.25 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.45 ms = 0.33% latency, 2877.81 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.97 ms = 0.03% latency, 546.16 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.06 ms = 0.34% latency, 2807.54 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (21): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.51 ms = 1.55% latency, 1694.41 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 636.58 us = 0.01% latency, 2.11 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 623.46 us = 0.01% latency, 2.15 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.96 ms = 0.48% latency, 1528.71 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.18 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.22 ms = 0.12% latency, 2146.13 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.19 ms = 0.08% latency, 2843.21 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.34 ms = 0.71% latency, 2638.27 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.1 ms = 0.32% latency, 2920 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.77 ms = 0.02% latency, 606.87 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.93 ms = 0.33% latency, 2823.14 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (22): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 118.72 ms = 1.59% latency, 1648.5 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 544.31 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 529.05 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.94 ms = 0.51% latency, 1449.02 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.92 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.15 ms = 0.1% latency, 2767.93 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.28 ms = 0.08% latency, 2802.18 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.58 ms = 0.72% latency, 2626.49 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.39 ms = 0.33% latency, 2884.78 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 2 ms = 0.03% latency, 538.19 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.85 ms = 0.33% latency, 2831.67 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (23): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 113.2 ms = 1.52% latency, 1728.98 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 537.63 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 526.43 us = 0.01% latency, 2.55 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.58 ms = 0.46% latency, 1589.84 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.01 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.59 ms = 0.1% latency, 2606.95 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2859.63 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.88 ms = 0.71% latency, 2661.55 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.85 ms = 0.32% latency, 2949.95 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.77 ms = 0.02% latency, 607.2 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.97 ms = 0.33% latency, 2817.91 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (24): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 117.81 ms = 1.58% latency, 1661.26 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 543.59 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.57 ms = 0.5% latency, 1463.11 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.59 ms = 0.1% latency, 2608.01 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.19 ms = 0.08% latency, 2844.2 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.99 ms = 0.71% latency, 2656.1 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.98 ms = 0.32% latency, 2934.46 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.71 ms = 0.02% latency, 629.7 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.02 ms = 0.34% latency, 2812.51 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (25): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 114.49 ms = 1.53% latency, 1709.54 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 527.38 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 508.07 us = 0.01% latency, 2.64 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 33.66 ms = 0.45% latency, 1633.38 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.95 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.03 ms = 0.09% latency, 2815.91 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.25 ms = 0.08% latency, 2812.75 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.85 ms = 0.72% latency, 2613.51 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.57 ms = 0.33% latency, 2863.46 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 586.71 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.9 ms = 0.33% latency, 2826.28 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (26): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.53 ms = 1.55% latency, 1694.13 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 536.44 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 511.41 us = 0.01% latency, 2.62 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.55 ms = 0.48% latency, 1546.35 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.73 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.01 ms = 0.09% latency, 2825.02 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2864.4 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.93 ms = 0.72% latency, 2609.89 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.56 ms = 0.33% latency, 2865.65 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.99 ms = 0.03% latency, 540.65 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.99 ms = 0.33% latency, 2815.84 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (27): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 121.6 ms = 1.63% latency, 1609.58 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 629.43 us = 0.01% latency, 2.13 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 611.54 us = 0.01% latency, 2.19 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 41.44 ms = 0.55% latency, 1326.7 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.41 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.21 ms = 0.12% latency, 2148.86 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.49 ms = 0.09% latency, 2711.26 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.01 ms = 0.71% latency, 2655 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.98 ms = 0.32% latency, 2934.98 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.81 ms = 0.02% latency, 594.14 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.94 ms = 0.33% latency, 2821.9 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (28): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 118.55 ms = 1.59% latency, 1650.87 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 537.87 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 520.23 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.07 ms = 0.48% latency, 1523.93 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.24 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.56 ms = 0.1% latency, 2619.04 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.83 ms = 0.09% latency, 2576.99 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.94 ms = 0.74% latency, 2561.61 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.61 ms = 0.34% latency, 2747.91 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.98 ms = 0.03% latency, 541.69 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2820.14 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (29): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 116.49 ms = 1.56% latency, 1680.05 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 538.11 us = 0.01% latency, 2.49 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 524.28 us = 0.01% latency, 2.56 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.52 ms = 0.5% latency, 1465.4 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.65 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.3 ms = 0.1% latency, 2711.16 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2859.07 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.08 ms = 0.71% latency, 2651.41 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.96 ms = 0.32% latency, 2936.8 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.72 ms = 0.02% latency, 625.5 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.13 ms = 0.34% latency, 2800.34 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (30): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 118.12 ms = 1.58% latency, 1656.94 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 531.44 us = 0.01% latency, 2.53 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 517.85 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 38.17 ms = 0.51% latency, 1440.4 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.04 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.56 ms = 0.1% latency, 2616.89 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2866.52 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.34 ms = 0.71% latency, 2638.33 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.96 ms = 0.32% latency, 2936.77 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.8 ms = 0.02% latency, 595.08 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.13 ms = 0.34% latency, 2800.03 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (31): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 126.55 ms = 1.69% latency, 1546.6 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 614.4 us = 0.01% latency, 2.18 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 600.81 us = 0.01% latency, 2.23 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.41 ms = 0.58% latency, 1266.38 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.36 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.25 ms = 0.12% latency, 2139.06 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 7.9 ms = 0.11% latency, 2226.66 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 55.04 ms = 0.74% latency, 2557.12 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.41 ms = 0.34% latency, 2768.9 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 2.01 ms = 0.03% latency, 533.54 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.05 ms = 0.34% latency, 2809.3 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (32): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 121.71 ms = 1.63% latency, 1608.06 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 610.83 us = 0.01% latency, 2.2 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 598.19 us = 0.01% latency, 2.24 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.93 ms = 0.59% latency, 1251.46 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.17 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.32 ms = 0.11% latency, 2378.11 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.63 ms = 0.09% latency, 2653.25 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.96 ms = 0.72% latency, 2608.22 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.58 ms = 0.33% latency, 2862.48 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.82 ms = 0.02% latency, 590.4 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2819.98 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (33): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 124.13 ms = 1.66% latency, 1576.73 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 536.68 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 520.94 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 45.82 ms = 0.61% latency, 1199.7 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.73 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.29 ms = 0.1% latency, 2715.95 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.12 ms = 0.08% latency, 2873.32 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 52.96 ms = 0.71% latency, 2657.49 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.01 ms = 0.32% latency, 2930.55 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.72 ms = 0.02% latency, 622.56 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.97 ms = 0.33% latency, 2817.94 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (34): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 126.35 ms = 1.69% latency, 1549.01 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 560.76 us = 0.01% latency, 2.39 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 543.83 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 45.72 ms = 0.61% latency, 1202.34 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.68 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.19 ms = 0.11% latency, 2416.6 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.12 ms = 0.08% latency, 2872.43 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.15 ms = 0.71% latency, 2648.02 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.86 ms = 0.32% latency, 2949.21 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.72 ms = 0.02% latency, 623.34 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.03 ms = 0.34% latency, 2810.93 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (35): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 126.38 ms = 1.69% latency, 1548.65 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 537.16 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 519.75 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 46.54 ms = 0.62% latency, 1181.19 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.86 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.54 ms = 0.1% latency, 2624 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2865.62 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.42 ms = 0.72% latency, 2634.68 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.86 ms = 0.32% latency, 2949.09 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.77 ms = 0.02% latency, 607.94 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.2 ms = 0.34% latency, 2792.21 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (36): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 120.1 ms = 1.61% latency, 1629.57 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 602.72 us = 0.01% latency, 2.23 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 588.18 us = 0.01% latency, 2.28 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 39.62 ms = 0.53% latency, 1387.43 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.1 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.72 ms = 0.12% latency, 2269.59 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.26 ms = 0.08% latency, 2809.76 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.76 ms = 0.73% latency, 2570.08 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.18 ms = 0.34% latency, 2794.17 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.92 ms = 0.03% latency, 559.31 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.98 ms = 0.33% latency, 2816.59 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (37): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 128.31 ms = 1.72% latency, 1525.37 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 556.23 us = 0.01% latency, 2.41 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 541.93 us = 0.01% latency, 2.48 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 46.91 ms = 0.63% latency, 1172.06 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.97 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.89 ms = 0.11% latency, 2507.03 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.34 ms = 0.08% latency, 2774.26 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.8 ms = 0.72% latency, 2615.8 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.22 ms = 0.32% latency, 2905.46 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 617.52 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.04 ms = 0.34% latency, 2810 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (38): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 124.96 ms = 1.67% latency, 1566.19 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 531.2 us = 0.01% latency, 2.53 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 509.5 us = 0.01% latency, 2.63 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 46.48 ms = 0.62% latency, 1182.85 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.76 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.05 ms = 0.09% latency, 2807.91 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.2 ms = 0.08% latency, 2835.34 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.41 ms = 0.72% latency, 2635.23 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.91 ms = 0.32% latency, 2942.59 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 585.19 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.08 ms = 0.34% latency, 2805.62 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (39): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 119.21 ms = 1.6% latency, 1641.81 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 537.16 us = 0.01% latency, 2.5 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 515.46 us = 0.01% latency, 2.6 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 38.27 ms = 0.51% latency, 1436.69 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.15 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.39 ms = 0.1% latency, 2679.74 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2864.4 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.61 ms = 0.72% latency, 2625.33 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.02 ms = 0.32% latency, 2929.39 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.82 ms = 0.02% latency, 591.49 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.26 ms = 0.34% latency, 2785.54 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (40): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 121.23 ms = 1.62% latency, 1614.48 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 611.31 us = 0.01% latency, 2.2 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 584.36 us = 0.01% latency, 2.3 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 41.83 ms = 0.56% latency, 1314.24 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.15 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.82 ms = 0.12% latency, 2242.92 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 7.83 ms = 0.1% latency, 2245.63 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.36 ms = 0.73% latency, 2589.13 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.05 ms = 0.34% latency, 2809.54 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.88 ms = 0.03% latency, 570.94 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.04 ms = 0.34% latency, 2810.56 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (41): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 120.34 ms = 1.61% latency, 1626.37 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 610.35 us = 0.01% latency, 2.2 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 586.99 us = 0.01% latency, 2.29 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 41.52 ms = 0.56% latency, 1324.03 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.14 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.83 ms = 0.12% latency, 2240.5 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 7.86 ms = 0.11% latency, 2238.61 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.84 ms = 0.73% latency, 2566.13 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.5 ms = 0.34% latency, 2759.84 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.84 ms = 0.02% latency, 582.99 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.01 ms = 0.33% latency, 2814.18 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (42): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 129.26 ms = 1.73% latency, 1514.18 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 585.08 us = 0.01% latency, 2.29 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 569.58 us = 0.01% latency, 2.36 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 46.71 ms = 0.63% latency, 1176.85 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.08 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.11 ms = 0.11% latency, 2439.4 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.5 ms = 0.09% latency, 2706.88 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.92 ms = 0.74% latency, 2562.48 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.45 ms = 0.34% latency, 2764.62 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.86 ms = 0.02% latency, 577.24 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2820.52 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (43): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 121.1 ms = 1.62% latency, 1616.19 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 539.06 us = 0.01% latency, 2.49 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 515.22 us = 0.01% latency, 2.61 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 40.74 ms = 0.55% latency, 1349.49 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.68 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.17 ms = 0.1% latency, 2759.84 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.17 ms = 0.08% latency, 2851.56 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.1 ms = 0.71% latency, 2650.63 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.98 ms = 0.32% latency, 2934.96 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.81 ms = 0.02% latency, 593.59 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.08 ms = 0.34% latency, 2806.28 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (44): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 114.01 ms = 1.53% latency, 1716.67 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 638.01 us = 0.01% latency, 2.1 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 614.88 us = 0.01% latency, 2.18 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.08 ms = 0.47% latency, 1567.19 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.06 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.15 ms = 0.11% latency, 2428.84 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.31 ms = 0.08% latency, 2788.73 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.39 ms = 0.72% latency, 2636.09 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.04 ms = 0.32% latency, 2927.74 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.77 ms = 0.02% latency, 606.63 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.98 ms = 0.33% latency, 2817.02 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (45): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.39 ms = 1.55% latency, 1696.16 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 543.36 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 511.41 us = 0.01% latency, 2.62 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.79 ms = 0.47% latency, 1580.23 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.1 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.32 ms = 0.1% latency, 2704.98 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.59 ms = 0.09% latency, 2670.64 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.29 ms = 0.73% latency, 2592.39 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.6 ms = 0.33% latency, 2860.88 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 2.01 ms = 0.03% latency, 533.03 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.94 ms = 0.33% latency, 2821.14 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (46): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 121.95 ms = 1.63% latency, 1604.87 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 543.36 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 531.44 us = 0.01% latency, 2.53 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.8 ms = 0.59% latency, 1255.14 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.68 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.77 ms = 0.1% latency, 2547.74 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.16 ms = 0.08% latency, 2856.31 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.18 ms = 0.71% latency, 2646.53 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.03 ms = 0.32% latency, 2928.72 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.73 ms = 0.02% latency, 621.96 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.1 ms = 0.34% latency, 2803.27 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (47): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 123.1 ms = 1.65% latency, 1589.94 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 542.16 us = 0.01% latency, 2.48 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.39 ms = 0.58% latency, 1266.87 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.83 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.63 ms = 0.1% latency, 2593.67 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.17 ms = 0.08% latency, 2851.23 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.84 ms = 0.72% latency, 2613.97 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.54 ms = 0.33% latency, 2867.91 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.91 ms = 0.03% latency, 562.74 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.03 ms = 0.34% latency, 2810.99 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (48): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 124.68 ms = 1.67% latency, 1569.77 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 635.62 us = 0.01% latency, 2.11 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 617.03 us = 0.01% latency, 2.18 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 43.08 ms = 0.58% latency, 1276 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 7.55 ms = 0.1% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 9.38 ms = 0.13% latency, 2110.72 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 7.24 ms = 0.1% latency, 2429.28 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 55.3 ms = 0.74% latency, 2545.12 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.86 ms = 0.35% latency, 2721.61 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 2.06 ms = 0.03% latency, 520.41 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.9 ms = 0.33% latency, 2826.55 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (49): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 119.94 ms = 1.61% latency, 1631.74 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 626.33 us = 0.01% latency, 2.14 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 596.52 us = 0.01% latency, 2.25 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 35.9 ms = 0.48% latency, 1531.45 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.17 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.99 ms = 0.11% latency, 2476.15 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.68 ms = 0.09% latency, 2632.99 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 59.79 ms = 0.8% latency, 2354.04 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.61 ms = 0.34% latency, 2747.89 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.97 ms = 0.03% latency, 545.89 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.02 ms = 0.34% latency, 2812.08 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (50): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 112.88 ms = 1.51% latency, 1733.83 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 529.29 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 510.22 us = 0.01% latency, 2.63 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 33.42 ms = 0.45% latency, 1644.81 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.8 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.25 ms = 0.1% latency, 2730.78 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.3 ms = 0.08% latency, 2792.32 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.08 ms = 0.72% latency, 2602.43 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.71 ms = 0.33% latency, 2847.27 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.96 ms = 0.03% latency, 547.75 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.95 ms = 0.33% latency, 2820.44 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (51): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.56 ms = 1.55% latency, 1693.65 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 551.22 us = 0.01% latency, 2.43 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 518.8 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 38.67 ms = 0.52% latency, 1421.57 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.86 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.53 ms = 0.1% latency, 2626.99 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.17 ms = 0.08% latency, 2849.69 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.22 ms = 0.71% latency, 2644.42 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.06 ms = 0.32% latency, 2924.6 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 618.29 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.05 ms = 0.34% latency, 2808.77 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (52): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 117.16 ms = 1.57% latency, 1670.46 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 550.03 us = 0.01% latency, 2.44 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 508.07 us = 0.01% latency, 2.64 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.34 ms = 0.46% latency, 1600.94 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.03 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.19 ms = 0.1% latency, 2753.98 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.46 ms = 0.09% latency, 2725.18 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.42 ms = 0.73% latency, 2586.13 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.18 ms = 0.34% latency, 2794.7 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.84 ms = 0.02% latency, 582.84 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.96 ms = 0.33% latency, 2819.5 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (53): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 116.46 ms = 1.56% latency, 1680.57 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 541.21 us = 0.01% latency, 2.48 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.66 us = 0.01% latency, 2.57 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.4 ms = 0.49% latency, 1510.24 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.86 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 6.96 ms = 0.09% latency, 2842.04 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2862.73 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.27 ms = 0.71% latency, 2642.03 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.9 ms = 0.32% latency, 2944.44 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.74 ms = 0.02% latency, 617.86 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.89 ms = 0.33% latency, 2827.14 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (54): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 115.9 ms = 1.55% latency, 1688.73 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 564.58 us = 0.01% latency, 2.38 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 543.83 us = 0.01% latency, 2.47 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 34.25 ms = 0.46% latency, 1605.25 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.97 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.06 ms = 0.11% latency, 2454.11 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.14 ms = 0.08% latency, 2864.18 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.37 ms = 0.71% latency, 2636.89 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.85 ms = 0.32% latency, 2950.86 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.76 ms = 0.02% latency, 611.49 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.97 ms = 0.33% latency, 2817.75 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (55): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 117.49 ms = 1.57% latency, 1665.88 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 585.32 us = 0.01% latency, 2.29 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 531.91 us = 0.01% latency, 2.52 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 37.64 ms = 0.5% latency, 1460.44 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.27 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.72 ms = 0.1% latency, 2563 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.92 ms = 0.09% latency, 2543.68 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 54.3 ms = 0.73% latency, 2591.92 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.78 ms = 0.33% latency, 2840.12 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.88 ms = 0.03% latency, 571.96 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.15 ms = 0.34% latency, 2798.46 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (56): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 112 ms = 1.5% latency, 1747.48 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 549.32 us = 0.01% latency, 2.44 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 528.34 us = 0.01% latency, 2.54 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 33.03 ms = 0.44% latency, 1664.33 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.73 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.39 ms = 0.1% latency, 2677.23 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.2 ms = 0.08% latency, 2837.31 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.77 ms = 0.72% latency, 2617.3 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 23.99 ms = 0.32% latency, 2933.47 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.75 ms = 0.02% latency, 612.15 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 25.13 ms = 0.34% latency, 2799.84 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (57): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 127.27 ms = 1.7% latency, 1537.87 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 539.54 us = 0.01% latency, 2.49 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 521.18 us = 0.01% latency, 2.58 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 45.46 ms = 0.61% latency, 1209.44 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.87 ms = 0.08% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 7.54 ms = 0.1% latency, 2623.84 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.15 ms = 0.08% latency, 2859.3 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 53.44 ms = 0.72% latency, 2633.79 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.01 ms = 0.32% latency, 2930.53 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.99 ms = 0.03% latency, 539.94 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.97 ms = 0.33% latency, 2818.15 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (58): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 150.01 ms = 2.01% latency, 1304.68 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 581.98 us = 0.01% latency, 2.31 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 561 us = 0.01% latency, 2.39 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 36.77 ms = 0.49% latency, 1495.3 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 6.57 ms = 0.09% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 8.34 ms = 0.11% latency, 2372.06 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.33 ms = 0.08% latency, 2778.96 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 110.96 ms = 1.49% latency, 1268.37 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.85 ms = 0.33% latency, 2831.64 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.75 ms = 0.02% latency, 612.65 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.91 ms = 0.33% latency, 2824.87 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+      (59): DecoderLayer(
+        32.77 K = 0.01% Params, 97.86 TMACs = 1.66% MACs, 146.18 ms = 1.96% latency, 1338.88 TFLOPS
+        (ln_attn): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 494.72 us = 0.01% latency, 2.71 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (ln_mlp): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 477.08 us = 0.01% latency, 2.81 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+        (self_attention): Attention(
+          0 = 0% Params, 27.49 TMACs = 0.47% MACs, 31.19 ms = 0.42% latency, 1762.8 TFLOPS
+          (maybe_rotary): RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 5.58 ms = 0.07% latency, 0 FLOPS)
+          (query_key_value): Linear(0 = 0% Params, 9.9 TMACs = 0.17% MACs, 6.81 ms = 0.09% latency, 2905.61 TFLOPS, in_features=8192, out_features=9216, bias=False)
+          (dense): Linear(0 = 0% Params, 8.8 TMACs = 0.15% MACs, 6.16 ms = 0.08% latency, 2854.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (attention_dropout): Dropout(0 = 0% Params, 0 MACs = 0% MACs, 0 s = 0% latency, 0 FLOPS, p=0.0, inplace=False)
+        )
+        (mlp): MLP(
+          0 = 0% Params, 70.37 TMACs = 1.19% MACs, 51.04 ms = 0.68% latency, 2757.37 TFLOPS
+          (dense_h_to_4h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.07 ms = 0.32% latency, 2923.56 TFLOPS, in_features=8192, out_features=32768, bias=False)
+          (act): GELU(0 = 0% Params, 0 MACs = 0% MACs, 1.83 ms = 0.02% latency, 586.41 GFLOPS, approximate='none')
+          (dense_4h_to_h): Linear(0 = 0% Params, 35.18 TMACs = 0.6% MACs, 24.51 ms = 0.33% latency, 2870.5 TFLOPS, in_features=32768, out_features=8192, bias=False)
+        )
+      )
+    )
+    (ln_f): LayerNorm(16.38 K = 0% Params, 0 MACs = 0% MACs, 517.61 us = 0.01% latency, 2.59 TFLOPS, (8192,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(497.32 M = 99.6% Params, 32.59 TMACs = 0.55% MACs, 125.79 ms = 1.68% latency, 518.21 TFLOPS, in_features=8192, out_features=60708, bias=False)
+)
+------------------------------------------------------------------------------

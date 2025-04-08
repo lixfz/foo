@@ -1,0 +1,1672 @@
+
+-------------------------- DeepSpeed Flops Profiler --------------------------
+Profile Summary at step 5:
+Notations:
+data parallel size (dp_size), model parallel size(mp_size),
+number of parameters (params), number of multiply-accumulate operations(MACs),
+number of floating-point operations (flops), floating-point operations per second (FLOPS),
+fwd latency (forward propagation latency), bwd latency (backward propagation latency),
+step (weights update latency), iter latency (sum of fwd, bwd and step latency)
+
+world size:                                                             480     
+data parallel size:                                                     480     
+model parallel size:                                                    1       
+batch size per GPU:                                                     6       
+params per GPU:                                                         2.14 M  
+params of model = params per GPU * mp_size:                             2.14 M  
+fwd MACs per GPU:                                                       3607.48 TMACs
+fwd flops per GPU:                                                      7215.01 T
+fwd flops of model = fwd flops per GPU * mp_size:                       7215.01 T
+fwd latency:                                                            10.12 s 
+fwd FLOPS per GPU = fwd flops per GPU / fwd latency:                    712.81 TFLOPS
+bwd latency:                                                            31.07 s 
+bwd FLOPS per GPU = 2 * fwd flops per GPU / bwd latency:                464.41 TFLOPS
+fwd+bwd FLOPS per GPU = 3 * fwd flops per GPU / (fwd+bwd latency):      525.44 TFLOPS
+step latency:                                                           417.42 ms
+iter latency:                                                           41.61 s 
+FLOPS per GPU = 3 * fwd flops per GPU / iter latency:                   520.17 TFLOPS
+samples/second:                                                         69.21   
+
+----------------------------- Aggregated Profile per GPU -----------------------------
+Top 1 modules in terms of params, MACs or fwd latency at different model depths:
+depth 0:
+    params      - {'Qwen2ForCausalLM': '2.14 M'}
+    MACs        - {'Qwen2ForCausalLM': '3607.48 TMACs'}
+    fwd latency - {'Qwen2ForCausalLM': '10.09 s'}
+depth 1:
+    params      - {'Qwen2Model': '2.14 M'}
+    MACs        - {'Qwen2Model': '3583.03 TMACs'}
+    fwd latency - {'Qwen2Model': '9.96 s'}
+depth 2:
+    params      - {'ModuleList': '2.13 M'}
+    MACs        - {'ModuleList': '3583.03 TMACs'}
+    fwd latency - {'ModuleList': '9.39 s'}
+depth 3:
+    params      - {'Qwen2DecoderLayer': '2.13 M'}
+    MACs        - {'Qwen2DecoderLayer': '3583.03 TMACs'}
+    fwd latency - {'Qwen2DecoderLayer': '9.39 s'}
+depth 4:
+    params      - {'Qwen2RMSNorm': '1.31 M'}
+    MACs        - {'Qwen2MLP': '2857.36 TMACs'}
+    fwd latency - {'Qwen2MLP': '5.49 s'}
+
+------------------------------ Detailed Profile per GPU ------------------------------
+Each module profile is listed after its name in the following order: 
+params, percentage of total params, MACs, percentage of total MACs, fwd latency, percentage of total fwd latency, fwd FLOPS
+
+Note: 1. A module can have torch.nn.module or torch.nn.functional to compute logits (e.g. CrossEntropyLoss). They are not counted as submodules, thus not to be printed out. However they make up the difference between a parent's MACs (or latency) and the sum of its submodules'.
+2. Number of floating-point operations is a theoretical estimation, thus FLOPS computed using that could be larger than the maximum system throughput.
+3. The fwd latency listed in the top module's profile is directly captured at the module forward function in PyTorch, thus it's less than the fwd latency shown above which is captured in DeepSpeed.
+
+Qwen2ForCausalLM(
+  2.14 M = 100% Params, 3607.48 TMACs = 100% MACs, 10.09 s = 100% latency, 715.3 TFLOPS
+  (model): Qwen2Model(
+    2.14 M = 100% Params, 3583.03 TMACs = 99.32% MACs, 9.96 s = 98.77% latency, 719.26 TFLOPS
+    (embed_tokens): Embedding(0 = 0% Params, 0 MACs = 0% MACs, 1.39 ms = 0.01% latency, 0 FLOPS, 60708, 8192)
+    (layers): ModuleList(
+      (0): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 211.65 ms = 2.1% latency, 423.23 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 104.15 ms = 1.03% latency, 174.19 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.49 ms = 0.05% latency, 1201.38 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 790.36 us = 0.01% latency, 1043.37 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 842.81 us = 0.01% latency, 978.43 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.77 ms = 0.05% latency, 1382.12 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 138.76 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 84.59 ms = 0.84% latency, 844.53 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.73 ms = 0.17% latency, 1423.55 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.37 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.72 ms = 0.18% latency, 1343.81 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.12 ms = 0.01% latency, 647.38 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.18 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (1): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 132.21 ms = 1.31% latency, 677.51 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.21 ms = 0.4% latency, 451.19 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.29 ms = 0.05% latency, 1247.19 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.3 us = 0.01% latency, 1099.07 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.32 us = 0.01% latency, 1130.68 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.79 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.99 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 84.47 ms = 0.84% latency, 845.67 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.16% latency, 1430.95 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.16% latency, 1430.93 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.38 ms = 0.17% latency, 1370.4 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.07 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (2): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 130.23 ms = 1.29% latency, 687.82 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.31 ms = 0.4% latency, 450.01 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.29 ms = 0.05% latency, 1246.29 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.3 us = 0.01% latency, 1099.07 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.04 us = 0.01% latency, 1129.58 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1408.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 91.08 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 82.39 ms = 0.82% latency, 867.01 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1432.1 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.97 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.42 ms = 0.17% latency, 1367 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.75 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.2 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (3): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 121.67 ms = 1.21% latency, 736.23 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.26 ms = 0.39% latency, 462.13 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.29 ms = 0.05% latency, 1246.4 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 749.35 us = 0.01% latency, 1100.47 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 721.45 us = 0.01% latency, 1143.02 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1408.36 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.75 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 74.81 ms = 0.74% latency, 954.92 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.58 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.56 ms = 0.17% latency, 1355.72 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.38 ms = 0.17% latency, 1370.27 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.45 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (4): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.29 ms = 1.16% latency, 763.74 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.81 ms = 0.41% latency, 433.92 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.29 ms = 0.06% latency, 1048.31 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 764.13 us = 0.01% latency, 1079.18 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 740.05 us = 0.01% latency, 1114.29 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.73 ms = 0.05% latency, 1394.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.75 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.62 ms = 0.67% latency, 1056.34 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.23 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.66 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1362.92 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 681.08 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.49 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (5): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.19 ms = 1.16% latency, 764.34 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.29 ms = 0.41% latency, 439.33 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.37 ms = 0.06% latency, 1036.37 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 797.99 us = 0.01% latency, 1033.39 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 775.58 us = 0.01% latency, 1063.25 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 5.08 ms = 0.05% latency, 1298.03 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.51 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.03 ms = 0.67% latency, 1050.04 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1430.36 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.62 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.57 ms = 0.17% latency, 1355.15 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 681.24 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.5 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (6): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.68 ms = 1.16% latency, 767.72 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.72 ms = 0.4% latency, 445.54 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6 ms = 0.06% latency, 1099.46 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 779.15 us = 0.01% latency, 1058.37 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 757.69 us = 0.01% latency, 1088.35 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.73 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.98 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.17 ms = 0.68% latency, 1047.96 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1430.09 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.82 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.06 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 682.61 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.42 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (7): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.74 ms = 1.14% latency, 780.72 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.12 ms = 0.39% latency, 463.77 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.61 ms = 0.06% latency, 1175.8 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.26 us = 0.01% latency, 1090.4 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 731.71 us = 0.01% latency, 1127 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.65 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.94 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.92 ms = 0.67% latency, 1051.78 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.87 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.01 ms = 0.17% latency, 1399.45 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.49 ms = 0.17% latency, 1361.17 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.14 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (8): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115 ms = 1.14% latency, 778.93 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.87 ms = 0.39% latency, 466.68 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.57 ms = 0.06% latency, 1184.66 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 757.22 us = 0.01% latency, 1089.03 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 734.81 us = 0.01% latency, 1122.25 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1408.94 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.03 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.45 ms = 0.68% latency, 1043.57 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.29 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.9 ms = 0.17% latency, 1408.63 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.8 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.68 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.34 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (9): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.53 ms = 1.14% latency, 782.16 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.24 ms = 0.39% latency, 462.28 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.43 ms = 0.05% latency, 1215.95 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.5 us = 0.01% latency, 1090.06 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 727.65 us = 0.01% latency, 1133.28 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.58 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.89 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.63 ms = 0.67% latency, 1056.3 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.27 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.74 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.6 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 681.24 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.31 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (10): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.71 ms = 1.15% latency, 774.17 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.71 ms = 0.38% latency, 468.66 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1242.6 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 754.36 us = 0.01% latency, 1093.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.56 us = 0.01% latency, 1130.32 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.8 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.35 ms = 0.69% latency, 1030.08 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.58 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.89 ms = 0.18% latency, 1330.61 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.53 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.29 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (11): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.25 ms = 1.13% latency, 784.07 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.79 ms = 0.38% latency, 467.72 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.37 ms = 0.05% latency, 1227.49 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.73 us = 0.01% latency, 1096.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 727.65 us = 0.01% latency, 1133.28 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1407.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 102.52 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.83 ms = 0.67% latency, 1053.09 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1430.17 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.06 ms = 0.17% latency, 1395.91 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.37 ms = 0.17% latency, 1370.66 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 676.85 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.29 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (12): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.09 ms = 1.14% latency, 778.32 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.22 ms = 0.39% latency, 462.61 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1243.77 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 754.12 us = 0.01% latency, 1093.51 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.46 us = 0.01% latency, 1135.14 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.03 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.27 ms = 0.68% latency, 1046.34 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.91 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.46 ms = 0.17% latency, 1363.7 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.41 ms = 0.17% latency, 1367.43 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.65 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (13): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.45 ms = 1.14% latency, 775.89 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.73 ms = 0.39% latency, 456.65 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.37 ms = 0.05% latency, 1229.02 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.02 us = 0.01% latency, 1098.02 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 727.18 us = 0.01% latency, 1134.02 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1408.01 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.61 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.12 ms = 0.68% latency, 1048.73 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.17% latency, 1430.64 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.94 ms = 0.17% latency, 1405.62 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.83 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.28 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (14): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.41 ms = 1.13% latency, 782.93 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.15 ms = 0.39% latency, 463.35 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.57 ms = 0.06% latency, 1184.66 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.03 us = 0.01% latency, 1090.75 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.51 us = 0.01% latency, 1128.84 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.7 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.62 ms = 0.67% latency, 1056.42 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.01 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.78 ms = 0.17% latency, 1419.14 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.38 ms = 0.17% latency, 1369.66 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 678.35 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (15): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.78 ms = 1.14% latency, 780.39 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.45 ms = 0.39% latency, 459.88 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1243.82 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 769.14 us = 0.01% latency, 1072.15 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 741.72 us = 0.01% latency, 1111.79 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.5 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.22 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.76 ms = 0.67% latency, 1054.2 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.13 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.74 ms = 0.17% latency, 1422.76 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.4 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.32 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (16): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.38 ms = 1.15% latency, 769.69 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.89 ms = 0.41% latency, 443.71 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1245.5 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 771.05 us = 0.01% latency, 1069.5 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.97 us = 0.01% latency, 1103.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.73 ms = 0.05% latency, 1393.89 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.18 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.91 ms = 0.67% latency, 1051.84 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.54 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.48 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.55 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (17): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.97 ms = 1.15% latency, 772.38 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.44 ms = 0.4% latency, 448.62 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.36 ms = 0.06% latency, 1037.34 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 769.85 us = 0.01% latency, 1071.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 745.3 us = 0.01% latency, 1106.45 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1403.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.65 ms = 0.67% latency, 1056 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.35 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.31 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.52 ms = 0.17% latency, 1359.45 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 682.61 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.52 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (18): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.22 ms = 1.16% latency, 764.15 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.06 ms = 0.41% latency, 441.85 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.15 ms = 0.06% latency, 1072.69 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 778.91 us = 0.01% latency, 1058.7 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 752.45 us = 0.01% latency, 1095.93 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.91 ms = 0.05% latency, 1342.62 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.18 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.27 ms = 0.68% latency, 1046.37 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.38 ms = 0.17% latency, 1370.08 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1425.15 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.14 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 674.3 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.45 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.33 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (19): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.64 ms = 1.16% latency, 767.96 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.08 ms = 0.41% latency, 441.62 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.97 ms = 0.06% latency, 1104.2 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 771.52 us = 0.01% latency, 1068.84 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 743.63 us = 0.01% latency, 1108.93 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.72 ms = 0.05% latency, 1397.27 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.7 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.93 ms = 0.67% latency, 1051.63 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.54 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.03 ms = 0.17% latency, 1397.84 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.04 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.99 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.28 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (20): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.68 ms = 1.14% latency, 781.1 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.93 ms = 0.39% latency, 466.06 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.55 ms = 0.06% latency, 1188.78 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 753.16 us = 0.01% latency, 1094.89 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.7 us = 0.01% latency, 1134.77 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.99 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.07 ms = 0.67% latency, 1049.41 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.43 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.13 ms = 0.17% latency, 1389.95 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.49 ms = 0.17% latency, 1361.75 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682.15 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (21): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.67 ms = 1.15% latency, 774.44 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.29 ms = 0.39% latency, 461.75 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.44 ms = 0.05% latency, 1212.48 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.97 us = 0.01% latency, 1096.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.22 us = 0.01% latency, 1135.51 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.93 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 90.84 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.73 ms = 0.68% latency, 1039.32 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.92 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.68 ms = 0.18% latency, 1346.62 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.42 ms = 0.17% latency, 1367.21 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.6 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (22): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.74 ms = 1.14% latency, 780.7 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.93 ms = 0.39% latency, 466.04 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.34 ms = 0.05% latency, 1234.83 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 757.22 us = 0.01% latency, 1089.03 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 728.61 us = 0.01% latency, 1131.79 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.08 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.12 ms = 0.68% latency, 1048.66 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.71 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.22 ms = 0.17% latency, 1382.5 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1363.23 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.91 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (23): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.17 ms = 1.14% latency, 777.77 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.65 ms = 0.38% latency, 469.45 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.32 ms = 0.05% latency, 1239.92 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 747.68 us = 0.01% latency, 1102.92 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 727.89 us = 0.01% latency, 1132.91 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.37 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.46 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.88 ms = 0.68% latency, 1037.1 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1433.03 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.3 ms = 0.17% latency, 1376.54 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.45 ms = 0.17% latency, 1364.87 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 674.15 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.28 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (24): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.82 ms = 1.15% latency, 773.42 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.4 ms = 0.4% latency, 449 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1243.77 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.26 us = 0.01% latency, 1090.4 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 731.71 us = 0.01% latency, 1127 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1408.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 99.42 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.82 ms = 0.67% latency, 1053.36 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.61 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.7 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.45 ms = 0.17% latency, 1364.7 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.78 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.2 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (25): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.46 ms = 1.13% latency, 782.63 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.13 ms = 0.39% latency, 463.68 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1242.82 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 755.07 us = 0.01% latency, 1092.13 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.32 us = 0.01% latency, 1130.68 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.71 ms = 0.05% latency, 1400.03 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 89.65 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.75 ms = 0.67% latency, 1054.32 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1425.4 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.74 ms = 0.17% latency, 1422.72 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1361.91 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 678.81 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (26): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.99 ms = 1.15% latency, 772.31 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.86 ms = 0.4% latency, 455.17 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.8 ms = 0.06% latency, 1137.33 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 824.45 us = 0.01% latency, 1000.22 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 744.82 us = 0.01% latency, 1107.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.72 ms = 0.05% latency, 1398.19 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 100.37 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.38 ms = 0.68% latency, 1044.67 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.13 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.99 ms = 0.17% latency, 1401.81 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.42 ms = 0.17% latency, 1367 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.8 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.34 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (27): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.02 ms = 1.16% latency, 765.45 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.54 ms = 0.41% latency, 436.78 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.35 ms = 0.06% latency, 1039.14 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 769.85 us = 0.01% latency, 1071.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.25 us = 0.01% latency, 1105.04 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1410.09 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.57 ms = 0.67% latency, 1057.19 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.61 ms = 0.16% latency, 1433.85 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.16% latency, 1430.73 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.47 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 681.69 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.54 ms = 0.04% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (28): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.5 ms = 1.15% latency, 768.89 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.03 ms = 0.41% latency, 442.17 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.14 ms = 0.06% latency, 1073.9 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 776.53 us = 0.01% latency, 1061.95 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.03 us = 0.01% latency, 1090.75 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.92 ms = 0.05% latency, 1341 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.75 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.61 ms = 0.67% latency, 1056.5 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.78 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.17% latency, 1430.64 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.54 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682.15 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.48 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (29): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.16 ms = 1.15% latency, 771.13 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.8 ms = 0.4% latency, 444.7 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6 ms = 0.06% latency, 1100.16 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 783.44 us = 0.01% latency, 1052.58 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.97 us = 0.01% latency, 1096.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.74 ms = 0.05% latency, 1393.19 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.75 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.58 ms = 0.67% latency, 1057.01 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.82 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.72 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1360.08 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.68 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.4 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (30): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.63 ms = 1.14% latency, 781.45 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.18 ms = 0.39% latency, 463.06 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.66 ms = 0.06% latency, 1165.06 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 753.64 us = 0.01% latency, 1094.2 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.8 us = 0.01% latency, 1129.95 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406.29 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.73 ms = 0.67% latency, 1054.65 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.55 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.82 ms = 0.17% latency, 1415.72 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.55 ms = 0.17% latency, 1356.47 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.6 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.36 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (31): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.68 ms = 1.15% latency, 774.34 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.61 ms = 0.39% latency, 458.06 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.74 ms = 0.06% latency, 1150.19 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 755.79 us = 0.01% latency, 1091.09 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 732.66 us = 0.01% latency, 1125.53 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406.22 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.18 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.35 ms = 0.68% latency, 1045.17 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.88 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.85 ms = 0.17% latency, 1413.25 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.5 ms = 0.17% latency, 1360.86 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.45 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.37 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (32): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.48 ms = 1.13% latency, 782.44 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.16 ms = 0.39% latency, 463.3 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.33 ms = 0.05% latency, 1237.43 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 785.83 us = 0.01% latency, 1049.38 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 737.67 us = 0.01% latency, 1117.89 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1410.59 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 98.23 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.69 ms = 0.67% latency, 1055.24 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.78 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.46 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1362.62 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 685.22 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (33): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.9 ms = 1.15% latency, 772.86 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.95 ms = 0.39% latency, 465.8 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.39 ms = 0.05% latency, 1224.77 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 759.6 us = 0.01% latency, 1085.61 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.28 us = 0.01% latency, 1129.21 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.43 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.7 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.26 ms = 0.69% latency, 1031.33 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.76 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.94 ms = 0.18% latency, 1327.06 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.41 ms = 0.17% latency, 1367.79 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.63 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.31 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (34): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.9 ms = 1.14% latency, 779.62 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.11 ms = 0.39% latency, 463.88 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.35 ms = 0.05% latency, 1233.02 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.97 us = 0.01% latency, 1103.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 722.17 us = 0.01% latency, 1141.88 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1407.58 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.51 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.14 ms = 0.68% latency, 1048.35 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1432.1 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.26 ms = 0.17% latency, 1379.58 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.49 ms = 0.17% latency, 1361.47 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682.15 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.28 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (35): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.59 ms = 1.14% latency, 781.72 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.04 ms = 0.39% latency, 464.67 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.32 ms = 0.05% latency, 1240.76 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.26 us = 0.01% latency, 1097.67 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.04 us = 0.01% latency, 1129.58 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.22 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 96.08 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.93 ms = 0.67% latency, 1051.59 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.33 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.15 ms = 0.17% latency, 1388.28 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.39 ms = 0.17% latency, 1369.35 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.65 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (36): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.29 ms = 1.13% latency, 783.74 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.64 ms = 0.38% latency, 469.48 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.34 ms = 0.05% latency, 1234.89 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 752.21 us = 0.01% latency, 1096.28 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 725.51 us = 0.01% latency, 1136.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1410.45 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 91.79 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.05 ms = 0.67% latency, 1049.69 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.61 ms = 0.16% latency, 1433.25 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17 ms = 0.17% latency, 1400.51 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.46 ms = 0.17% latency, 1364.07 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.29 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (37): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.95 ms = 1.14% latency, 779.24 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.29 ms = 0.39% latency, 461.72 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.43 ms = 0.05% latency, 1215.15 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 753.88 us = 0.01% latency, 1093.85 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 728.85 us = 0.01% latency, 1131.42 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.73 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.07 ms = 0.67% latency, 1049.43 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.53 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.07 ms = 0.17% latency, 1395.17 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1360 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.09 ms = 0.01% latency, 664.02 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (38): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.48 ms = 1.15% latency, 769.05 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.41 ms = 0.4% latency, 448.92 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.32 ms = 0.05% latency, 1239.59 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 772 us = 0.01% latency, 1068.18 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 752.45 us = 0.01% latency, 1095.93 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1403.51 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 90.36 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.42 ms = 0.68% latency, 1044.13 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1425.64 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.92 ms = 0.17% latency, 1407.42 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1363.12 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.63 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.28 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (39): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.56 ms = 1.17% latency, 761.97 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 42.26 ms = 0.42% latency, 429.29 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.4 ms = 0.05% latency, 1222.02 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 772 us = 0.01% latency, 1068.18 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.54 us = 0.01% latency, 1098.72 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1402.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 89.88 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.7 ms = 0.67% latency, 1055.1 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.41 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.31 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1357.97 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.63 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (40): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 118.45 ms = 1.17% latency, 756.22 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.96 ms = 0.41% latency, 442.91 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.19 ms = 0.06% latency, 1066.16 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 796.56 us = 0.01% latency, 1035.25 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 771.52 us = 0.01% latency, 1068.84 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.71 ms = 0.05% latency, 1401.87 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 96.08 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.63 ms = 0.69% latency, 1025.96 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.33 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1426.01 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1360.11 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.14 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.49 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (41): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.07 ms = 1.16% latency, 765.14 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.29 ms = 0.4% latency, 450.27 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.65 ms = 0.06% latency, 1167.56 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 772.24 us = 0.01% latency, 1067.85 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 740.53 us = 0.01% latency, 1113.58 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.72 ms = 0.05% latency, 1398.26 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.04 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.05 ms = 0.68% latency, 1034.46 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1425.91 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.17 ms = 0.17% latency, 1386.72 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.49 ms = 0.17% latency, 1361.43 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682.3 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (42): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.02 ms = 1.15% latency, 772.07 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.16 ms = 0.4% latency, 451.79 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.54 ms = 0.05% latency, 1190.01 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.74 us = 0.01% latency, 1089.72 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 734.81 us = 0.01% latency, 1122.25 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1402.58 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.7 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.12 ms = 0.68% latency, 1048.72 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.21 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.17 ms = 0.17% latency, 1386.94 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.08 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.93 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (43): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.68 ms = 1.14% latency, 781.09 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.15 ms = 0.39% latency, 463.38 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.33 ms = 0.05% latency, 1238.42 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 749.59 us = 0.01% latency, 1100.12 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.56 us = 0.01% latency, 1130.32 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.7 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.86 ms = 0.67% latency, 1052.73 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.16% latency, 1430.97 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.98 ms = 0.17% latency, 1402.67 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.41 ms = 0.17% latency, 1367.56 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.5 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (44): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.57 ms = 1.14% latency, 781.82 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.67 ms = 0.38% latency, 469.16 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1241.65 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 748.4 us = 0.01% latency, 1101.87 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 725.98 us = 0.01% latency, 1135.88 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.73 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.98 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.29 ms = 0.68% latency, 1046.05 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.17% latency, 1430.58 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.34 ms = 0.17% latency, 1373.56 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.46 ms = 0.17% latency, 1363.75 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.65 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.27 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (45): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.16 ms = 1.14% latency, 777.88 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.22 ms = 0.39% latency, 462.57 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1241.76 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 744.82 us = 0.01% latency, 1107.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 721.93 us = 0.01% latency, 1142.26 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406.43 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 99.66 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.32 ms = 0.68% latency, 1045.65 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.75 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.08 ms = 0.17% latency, 1393.85 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.36 ms = 0.17% latency, 1371.49 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 679.56 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (46): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.85 ms = 1.14% latency, 779.93 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.92 ms = 0.39% latency, 466.08 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.32 ms = 0.05% latency, 1239.37 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 747.68 us = 0.01% latency, 1102.92 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.46 us = 0.01% latency, 1135.14 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.65 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 98.47 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.31 ms = 0.68% latency, 1045.68 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.37 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.95 ms = 0.17% latency, 1404.47 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.3 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 676.25 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (47): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.35 ms = 1.15% latency, 769.88 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.5 ms = 0.4% latency, 447.92 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.94 ms = 0.06% latency, 1110.71 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 818.97 us = 0.01% latency, 1006.92 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 794.65 us = 0.01% latency, 1037.73 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.71 ms = 0.05% latency, 1399.32 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 98.71 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.15 ms = 0.68% latency, 1048.17 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1425.64 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.73 ms = 0.17% latency, 1422.88 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.52 ms = 0.17% latency, 1358.89 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.17 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (48): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.58 ms = 1.15% latency, 775.02 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.76 ms = 0.38% latency, 468.07 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1243.27 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.97 us = 0.01% latency, 1096.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.28 us = 0.01% latency, 1129.21 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.79 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.65 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.01 ms = 0.68% latency, 1035.08 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.4 ms = 0.17% latency, 1368.31 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.81 ms = 0.17% latency, 1416.16 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.6 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.9 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.45 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (49): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.93 ms = 1.17% latency, 759.57 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.96 ms = 0.42% latency, 432.35 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.39 ms = 0.06% latency, 1033.01 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 775.81 us = 0.01% latency, 1062.93 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 745.06 us = 0.01% latency, 1106.8 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.87 ms = 0.05% latency, 1354.65 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68 ms = 0.67% latency, 1050.53 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.18 ms = 0.17% latency, 1385.99 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.62 ms = 0.16% latency, 1432.41 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.43 ms = 0.17% latency, 1365.88 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 682.76 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.52 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (50): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.1 ms = 1.14% latency, 778.25 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.75 ms = 0.39% latency, 456.35 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.98 ms = 0.06% latency, 1103.01 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 768.42 us = 0.01% latency, 1073.15 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 739.34 us = 0.01% latency, 1115.37 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.15 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.74 ms = 0.67% latency, 1054.59 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.37 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.84 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.57 ms = 0.17% latency, 1355.39 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 682.15 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (51): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.9 ms = 1.15% latency, 772.89 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.5 ms = 0.4% latency, 448 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.92 ms = 0.06% latency, 1113.8 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 771.05 us = 0.01% latency, 1069.5 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.01 us = 0.01% latency, 1105.39 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.73 ms = 0.05% latency, 1393.47 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.22 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.63 ms = 0.67% latency, 1056.25 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.19 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.66 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.41 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.22 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.4 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (52): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.17 ms = 1.15% latency, 771.09 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.19 ms = 0.39% latency, 462.91 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.49 ms = 0.05% latency, 1201.43 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.06 us = 0.01% latency, 1099.42 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 730.28 us = 0.01% latency, 1129.21 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.61 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.32 ms = 0.69% latency, 1030.45 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1426.19 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.92 ms = 0.18% latency, 1329 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.64 ms = 0.17% latency, 1349.73 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.17 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (53): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.99 ms = 1.16% latency, 765.71 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.13 ms = 0.4% latency, 452.08 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.44 ms = 0.05% latency, 1213.76 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 755.07 us = 0.01% latency, 1092.13 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 731.71 us = 0.01% latency, 1127 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.71 ms = 0.05% latency, 1402.08 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.46 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.15 ms = 0.69% latency, 1033.09 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.66 ms = 0.17% latency, 1429.07 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.68 ms = 0.18% latency, 1346.62 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1359.61 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 672.37 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (54): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.04 ms = 1.15% latency, 771.96 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.52 ms = 0.4% latency, 447.77 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.62 ms = 0.06% latency, 1174.1 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 747.2 us = 0.01% latency, 1103.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 728.13 us = 0.01% latency, 1132.54 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1408.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 91.08 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.83 ms = 0.67% latency, 1053.13 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1429.74 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.89 ms = 0.17% latency, 1410.16 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.02 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.45 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (55): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.55 ms = 1.15% latency, 775.23 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.23 ms = 0.4% latency, 451.01 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.66 ms = 0.06% latency, 1166.33 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 766.28 us = 0.01% latency, 1076.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 737.67 us = 0.01% latency, 1117.89 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.22 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 102.04 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.62 ms = 0.67% latency, 1056.49 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.45 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.65 ms = 0.17% latency, 1430.34 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1363.2 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 680.47 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (56): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 120.01 ms = 1.19% latency, 746.41 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 43.17 ms = 0.43% latency, 420.24 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.24 ms = 0.06% latency, 1057.89 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 856.16 us = 0.01% latency, 963.18 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 831.13 us = 0.01% latency, 992.19 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 5.55 ms = 0.06% latency, 1188.17 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 101.33 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.64 ms = 0.68% latency, 1040.76 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.33 ms = 0.17% latency, 1373.64 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.61 ms = 0.16% latency, 1433.33 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1362.84 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 679.41 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.46 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.46 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (57): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.53 ms = 1.15% latency, 775.36 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.25 ms = 0.4% latency, 450.77 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.13 ms = 0.06% latency, 1076.83 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 786.3 us = 0.01% latency, 1048.75 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 763.65 us = 0.01% latency, 1079.85 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1406.14 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.65 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.56 ms = 0.67% latency, 1057.41 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.61 ms = 0.16% latency, 1433.19 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.94 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.66 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 682.91 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (58): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.56 ms = 1.14% latency, 781.92 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.9 ms = 0.39% latency, 466.39 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1245.28 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 755.31 us = 0.01% latency, 1091.78 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.94 us = 0.01% latency, 1134.39 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1407.65 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 98.71 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.08 ms = 0.67% latency, 1049.24 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.74 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1425.09 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.67 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.07 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (59): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.37 ms = 1.14% latency, 776.41 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40 ms = 0.4% latency, 453.54 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.6 ms = 0.06% latency, 1178.3 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 763.65 us = 0.01% latency, 1079.85 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 736.95 us = 0.01% latency, 1118.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.86 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.66 ms = 0.67% latency, 1055.81 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.62 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1427.11 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.19 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.37 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (60): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.39 ms = 1.15% latency, 769.63 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.78 ms = 0.39% latency, 456.08 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.65 ms = 0.06% latency, 1166.97 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 753.88 us = 0.01% latency, 1093.85 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 732.18 us = 0.01% latency, 1126.27 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.22 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 93.46 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.9 ms = 0.68% latency, 1036.75 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.92 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.56 ms = 0.17% latency, 1356.03 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.49 ms = 0.17% latency, 1361.19 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.99 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (61): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.32 ms = 1.14% latency, 776.74 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.9 ms = 0.39% latency, 466.4 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.41 ms = 0.05% latency, 1220.45 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 756.74 us = 0.01% latency, 1089.72 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 728.13 us = 0.01% latency, 1132.54 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.71 ms = 0.05% latency, 1402.01 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.65 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.74 ms = 0.68% latency, 1039.14 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.41 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.65 ms = 0.17% latency, 1349.15 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.52 ms = 0.17% latency, 1358.93 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 669.86 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.31 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (62): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.93 ms = 1.15% latency, 772.69 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.07 ms = 0.4% latency, 452.74 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.37 ms = 0.05% latency, 1228.31 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.97 us = 0.01% latency, 1103.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 725.27 us = 0.01% latency, 1137 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1403.29 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 99.18 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.21 ms = 0.68% latency, 1047.25 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.39 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.31 ms = 0.17% latency, 1375.78 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.38 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 676.4 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (63): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.9 ms = 1.14% latency, 779.59 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.87 ms = 0.39% latency, 466.78 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.4 ms = 0.05% latency, 1221.48 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 752.45 us = 0.01% latency, 1095.93 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.8 us = 0.01% latency, 1129.95 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.36 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 91.79 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.43 ms = 0.68% latency, 1043.97 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.35 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.03 ms = 0.17% latency, 1398.43 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.46 ms = 0.17% latency, 1364.02 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.14 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (64): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.28 ms = 1.14% latency, 777.02 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.46 ms = 0.39% latency, 459.73 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.74 ms = 0.06% latency, 1148.52 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 758.65 us = 0.01% latency, 1086.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 734.33 us = 0.01% latency, 1122.98 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.43 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.37 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.11 ms = 0.68% latency, 1048.78 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.73 ms = 0.17% latency, 1423.28 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.04 ms = 0.17% latency, 1397.26 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.53 ms = 0.17% latency, 1358.3 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.45 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.26 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (65): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 120.11 ms = 1.19% latency, 745.76 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 42.61 ms = 0.42% latency, 425.79 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.98 ms = 0.06% latency, 1103.89 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 826.36 us = 0.01% latency, 997.91 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 799.66 us = 0.01% latency, 1031.24 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 5.31 ms = 0.05% latency, 1242.71 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 89.17 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 69.58 ms = 0.69% latency, 1026.62 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 18.46 ms = 0.18% latency, 1289.7 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.72 ms = 0.17% latency, 1424.06 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.41 ms = 0.17% latency, 1367.79 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 678.81 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.37 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.41 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (66): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 113.98 ms = 1.13% latency, 785.92 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.74 ms = 0.38% latency, 468.33 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1245.06 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 753.16 us = 0.01% latency, 1094.89 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.32 us = 0.01% latency, 1130.68 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.68 ms = 0.05% latency, 1409.01 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.89 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.65 ms = 0.67% latency, 1055.87 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.64 ms = 0.16% latency, 1430.89 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.63 ms = 0.16% latency, 1431.59 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.58 ms = 0.17% latency, 1354.45 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.53 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (67): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.29 ms = 1.14% latency, 776.97 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.65 ms = 0.39% latency, 457.6 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.55 ms = 0.06% latency, 1188.02 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 777.48 us = 0.01% latency, 1060.65 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 754.36 us = 0.01% latency, 1093.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1405 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 89.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.95 ms = 0.67% latency, 1051.27 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.37 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.13 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1359.93 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.68 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.33 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (68): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.81 ms = 1.15% latency, 773.49 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.29 ms = 0.4% latency, 450.3 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.08 ms = 0.06% latency, 1085.66 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 792.26 us = 0.01% latency, 1040.86 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 762.22 us = 0.01% latency, 1081.88 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.89 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.72 ms = 0.67% latency, 1054.89 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1425.46 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1425.13 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.67 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.99 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.42 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (69): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.64 ms = 1.16% latency, 767.95 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.42 ms = 0.4% latency, 448.86 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.88 ms = 0.06% latency, 1121.61 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 770.57 us = 0.01% latency, 1070.16 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.73 us = 0.01% latency, 1104.33 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.85 ms = 0.05% latency, 1361.38 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 92.98 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.4 ms = 0.68% latency, 1044.43 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.16 ms = 0.17% latency, 1387.84 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.96 ms = 0.17% latency, 1404.21 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1363.27 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.08 ms = 0.01% latency, 675.5 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.39 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.31 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (70): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.72 ms = 1.15% latency, 774.1 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.64 ms = 0.39% latency, 457.67 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.53 ms = 0.05% latency, 1192.83 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 754.59 us = 0.01% latency, 1092.82 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 727.42 us = 0.01% latency, 1133.65 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1403.72 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.65 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.4 ms = 0.68% latency, 1044.39 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.68 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.37 ms = 0.17% latency, 1371.07 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.51 ms = 0.17% latency, 1359.91 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.14 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.33 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.22 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (71): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 113.79 ms = 1.13% latency, 787.19 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 38.57 ms = 0.38% latency, 470.39 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.33 ms = 0.05% latency, 1238.09 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.78 us = 0.01% latency, 1098.37 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 726.7 us = 0.01% latency, 1134.77 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.15 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.57 ms = 0.67% latency, 1057.25 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.54 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1426.15 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.48 ms = 0.17% latency, 1362.06 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.45 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.3 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.21 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (72): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 117.08 ms = 1.16% latency, 765.07 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.95 ms = 0.41% latency, 443.08 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.81 ms = 0.06% latency, 1136.4 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 773.67 us = 0.01% latency, 1065.88 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 751.97 us = 0.01% latency, 1096.63 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.88 ms = 0.05% latency, 1352.86 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 96.8 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.26 ms = 0.68% latency, 1046.5 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.89 ms = 0.17% latency, 1409.92 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.04 ms = 0.17% latency, 1397.08 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.55 ms = 0.17% latency, 1356.53 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.99 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.42 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.32 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (73): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.94 ms = 1.15% latency, 772.6 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.79 ms = 0.39% latency, 455.95 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.42 ms = 0.05% latency, 1217.29 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 750.3 us = 0.01% latency, 1099.07 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 729.32 us = 0.01% latency, 1130.68 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1405.43 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.37 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.53 ms = 0.68% latency, 1042.4 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.72 ms = 0.17% latency, 1424.1 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.98 ms = 0.17% latency, 1402.26 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.02 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 677.3 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (74): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.55 ms = 1.16% latency, 768.57 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41.13 ms = 0.41% latency, 441.11 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.96 ms = 0.06% latency, 1107.38 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 827.07 us = 0.01% latency, 997.05 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 806.33 us = 0.01% latency, 1022.7 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 95.13 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.72 ms = 0.67% latency, 1054.85 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.7 ms = 0.17% latency, 1426.01 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1424.66 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.52 ms = 0.17% latency, 1358.8 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 678.35 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.35 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (75): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.57 ms = 1.16% latency, 768.43 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.78 ms = 0.4% latency, 444.86 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.56 ms = 0.06% latency, 1185.98 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 778.2 us = 0.01% latency, 1059.67 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 754.59 us = 0.01% latency, 1092.82 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1402.37 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 101.33 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.17 ms = 0.68% latency, 1047.95 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.67 ms = 0.17% latency, 1428.58 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.9 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1362.79 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 678.66 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (76): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 116.25 ms = 1.15% latency, 770.53 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 40.16 ms = 0.4% latency, 451.69 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 6.28 ms = 0.06% latency, 1051.3 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 773.67 us = 0.01% latency, 1065.88 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 746.01 us = 0.01% latency, 1105.39 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1402.37 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 97.51 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 68.27 ms = 0.68% latency, 1046.34 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.71 ms = 0.17% latency, 1425.05 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.73 ms = 0.17% latency, 1423.55 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.54 ms = 0.17% latency, 1357.9 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 683.07 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.45 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (77): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 115.24 ms = 1.14% latency, 777.3 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 39.88 ms = 0.4% latency, 454.95 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.89 ms = 0.06% latency, 1119.43 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 781.06 us = 0.01% latency, 1055.79 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 747.92 us = 0.01% latency, 1102.57 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.7 ms = 0.05% latency, 1404.15 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 94.41 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 67.59 ms = 0.67% latency, 1056.86 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.68 ms = 0.17% latency, 1427.74 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.98 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.47 ms = 0.17% latency, 1362.97 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.06 ms = 0.01% latency, 684.76 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.39 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.25 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (78): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 111.13 ms = 1.1% latency, 806.02 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 41 ms = 0.41% latency, 442.5 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.93 ms = 0.06% latency, 1113.35 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 771.28 us = 0.01% latency, 1069.17 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 748.4 us = 0.01% latency, 1101.87 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.75 ms = 0.05% latency, 1389.13 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 108.96 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 62.38 ms = 0.62% latency, 1145.13 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.69 ms = 0.17% latency, 1426.29 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.8 ms = 0.17% latency, 1417.18 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 17.44 ms = 0.17% latency, 1365.19 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.07 ms = 0.01% latency, 679.87 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.4 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.24 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+      (79): Qwen2DecoderLayer(
+        26.62 K = 1.25% Params, 44.79 TMACs = 1.24% MACs, 114.68 ms = 1.14% latency, 781.07 TFLOPS
+        (self_attn): Qwen2SdpaAttention(
+          10.24 K = 0.48% Params, 9.07 TMACs = 0.25% MACs, 33.02 ms = 0.33% latency, 549.39 TFLOPS
+          (q_proj): Linear(8.19 K = 0.38% Params, 3.3 TMACs = 0.09% MACs, 5.3 ms = 0.05% latency, 1245.5 TFLOPS, in_features=8192, out_features=8192, bias=True)
+          (k_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 744.1 us = 0.01% latency, 1108.22 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (v_proj): Linear(1.02 K = 0.05% Params, 412.32 GMACs = 0.01% MACs, 717.16 us = 0.01% latency, 1149.86 TFLOPS, in_features=8192, out_features=1024, bias=True)
+          (o_proj): Linear(0 = 0% Params, 3.3 TMACs = 0.09% MACs, 4.69 ms = 0.05% latency, 1407.15 TFLOPS, in_features=8192, out_features=8192, bias=False)
+          (rotary_emb): Qwen2RotaryEmbedding(0 = 0% Params, 0 MACs = 0% MACs, 99.18 us = 0% latency, 0 FLOPS)
+        )
+        (mlp): Qwen2MLP(
+          0 = 0% Params, 35.72 TMACs = 0.99% MACs, 52.74 ms = 0.52% latency, 1354.35 TFLOPS
+          (gate_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.52 ms = 0.16% latency, 1441.3 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (up_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.34 ms = 0.16% latency, 1456.83 TFLOPS, in_features=8192, out_features=29568, bias=False)
+          (down_proj): Linear(0 = 0% Params, 11.91 TMACs = 0.33% MACs, 16.96 ms = 0.17% latency, 1403.66 TFLOPS, in_features=29568, out_features=8192, bias=False)
+          (act_fn): SiLU(0 = 0% Params, 0 MACs = 0% MACs, 1.05 ms = 0.01% latency, 688.93 GFLOPS)
+        )
+        (input_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+        (post_attention_layernorm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.19 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+      )
+    )
+    (norm): Qwen2RMSNorm(8.19 K = 0.38% Params, 0 MACs = 0% MACs, 3.23 ms = 0.03% latency, 0 FLOPS, (8192,), eps=1e-06)
+  )
+  (lm_head): Linear(0 = 0% Params, 24.44 TMACs = 0.68% MACs, 100.06 ms = 0.99% latency, 488.57 TFLOPS, in_features=8192, out_features=60708, bias=False)
+)
+------------------------------------------------------------------------------

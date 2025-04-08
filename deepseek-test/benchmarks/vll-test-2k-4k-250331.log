@@ -1,0 +1,372 @@
+sharedgpt dataset benchmark
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 100 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 03-31 11:47:11 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=100, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 100
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  6770.44   
+Total input tokens:                      1601058   
+Total generated tokens:                  7568400   
+Request throughput (req/s):              0.74      
+Output token throughput (tok/s):         1117.86   
+Total Token throughput (tok/s):          1354.34   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          327.26    
+Median TTFT (ms):                        206.52    
+P99 TTFT (ms):                           4205.51   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          88.35     
+Median TPOT (ms):                        87.23     
+P99 TPOT (ms):                           121.97    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           88.35     
+Median ITL (ms):                         82.77     
+P99 ITL (ms):                            228.88    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          133980.04 
+Median E2EL (ms):                        140099.43 
+P99 E2EL (ms):                           220016.94 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 100 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 03-31 13:41:33 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=100, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 100
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  8303.50   
+Total input tokens:                      1601058   
+Total generated tokens:                  9080047   
+Request throughput (req/s):              0.60      
+Output token throughput (tok/s):         1093.52   
+Total Token throughput (tok/s):          1286.34   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          323.78    
+Median TTFT (ms):                        206.31    
+P99 TTFT (ms):                           4150.68   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          89.52     
+Median TPOT (ms):                        88.65     
+P99 TPOT (ms):                           116.76    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           89.51     
+Median ITL (ms):                         84.92     
+P99 ITL (ms):                            226.55    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          162796.05 
+Median E2EL (ms):                        140634.06 
+P99 E2EL (ms):                           372153.07 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 150 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 03-31 16:01:28 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=150, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 150
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  5133.39   
+Total input tokens:                      1601058   
+Total generated tokens:                  7582615   
+Request throughput (req/s):              0.97      
+Output token throughput (tok/s):         1477.12   
+Total Token throughput (tok/s):          1789.01   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          432.96    
+Median TTFT (ms):                        229.37    
+P99 TTFT (ms):                           6845.14   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          99.79     
+Median TPOT (ms):                        98.37     
+P99 TPOT (ms):                           135.29    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           99.76     
+Median ITL (ms):                         91.81     
+P99 ITL (ms):                            230.72    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          151633.59 
+Median E2EL (ms):                        157650.45 
+P99 E2EL (ms):                           251905.63 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 150 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 03-31 17:28:33 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=150, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 150
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  6253.18   
+Total input tokens:                      1601058   
+Total generated tokens:                  9066986   
+Request throughput (req/s):              0.80      
+Output token throughput (tok/s):         1449.98   
+Total Token throughput (tok/s):          1706.02   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          433.28    
+Median TTFT (ms):                        230.55    
+P99 TTFT (ms):                           7010.84   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          100.41    
+Median TPOT (ms):                        99.41     
+P99 TPOT (ms):                           130.80    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           100.32    
+Median ITL (ms):                         94.05     
+P99 ITL (ms):                            229.83    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          182257.88 
+Median E2EL (ms):                        158281.34 
+P99 E2EL (ms):                           422049.70 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 200 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 03-31 19:14:19 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=200, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 200
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  4198.69   
+Total input tokens:                      1601058   
+Total generated tokens:                  7573489   
+Request throughput (req/s):              1.19      
+Output token throughput (tok/s):         1803.77   
+Total Token throughput (tok/s):          2185.10   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          573.84    
+Median TTFT (ms):                        252.52    
+P99 TTFT (ms):                           10107.81  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          108.40    
+Median TPOT (ms):                        106.83    
+P99 TPOT (ms):                           142.44    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           108.36    
+Median ITL (ms):                         97.75     
+P99 ITL (ms):                            241.40    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          164612.55 
+Median E2EL (ms):                        170978.86 
+P99 E2EL (ms):                           271599.76 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 200 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 03-31 20:25:50 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=200, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 200
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  5151.36   
+Total input tokens:                      1601058   
+Total generated tokens:                  9098960   
+Request throughput (req/s):              0.97      
+Output token throughput (tok/s):         1766.32   
+Total Token throughput (tok/s):          2077.13   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          572.50    
+Median TTFT (ms):                        249.25    
+P99 TTFT (ms):                           10127.14  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          108.86    
+Median TPOT (ms):                        107.85    
+P99 TPOT (ms):                           142.69    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           108.71    
+Median ITL (ms):                         100.20    
+P99 ITL (ms):                            232.74    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          198303.60 
+Median E2EL (ms):                        173358.84 
+P99 E2EL (ms):                           464040.52 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 250 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 03-31 21:53:15 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=250, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 250
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  3658.07   
+Total input tokens:                      1601058   
+Total generated tokens:                  7552984   
+Request throughput (req/s):              1.37      
+Output token throughput (tok/s):         2064.75   
+Total Token throughput (tok/s):          2502.43   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          765.98    
+Median TTFT (ms):                        329.34    
+P99 TTFT (ms):                           13139.58  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          117.68    
+Median TPOT (ms):                        116.01    
+P99 TPOT (ms):                           152.05    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           117.65    
+Median ITL (ms):                         105.71    
+P99 ITL (ms):                            280.48    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          178387.13 
+Median E2EL (ms):                        184880.98 
+P99 E2EL (ms):                           294578.53 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 250 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 03-31 22:55:46 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=250, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 250
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  4503.49   
+Total input tokens:                      1601058   
+Total generated tokens:                  9065789   
+Request throughput (req/s):              1.11      
+Output token throughput (tok/s):         2013.06   
+Total Token throughput (tok/s):          2368.57   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          751.21    
+Median TTFT (ms):                        323.94    
+P99 TTFT (ms):                           13037.08  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          118.48    
+Median TPOT (ms):                        117.31    
+P99 TPOT (ms):                           153.13    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           118.30    
+Median ITL (ms):                         107.77    
+P99 ITL (ms):                            253.73    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          215132.79 
+Median E2EL (ms):                        188267.83 
+P99 E2EL (ms):                           513215.85 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 300 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 04-01 00:12:23 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=300, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 300
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  3424.13   
+Total input tokens:                      1601058   
+Total generated tokens:                  7550159   
+Request throughput (req/s):              1.46      
+Output token throughput (tok/s):         2204.99   
+Total Token throughput (tok/s):          2672.57   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          973.39    
+Median TTFT (ms):                        350.47    
+P99 TTFT (ms):                           15555.10  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          131.92    
+Median TPOT (ms):                        130.10    
+P99 TPOT (ms):                           165.32    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           131.81    
+Median ITL (ms):                         118.19    
+P99 ITL (ms):                            322.79    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          199901.50 
+Median E2EL (ms):                        207117.63 
+P99 E2EL (ms):                           321593.99 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 300 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 04-01 01:11:01 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=300, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 300
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  4220.45   
+Total input tokens:                      1601058   
+Total generated tokens:                  9106571   
+Request throughput (req/s):              1.18      
+Output token throughput (tok/s):         2157.73   
+Total Token throughput (tok/s):          2537.08   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          967.37    
+Median TTFT (ms):                        349.75    
+P99 TTFT (ms):                           15605.57  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          131.99    
+Median TPOT (ms):                        131.07    
+P99 TPOT (ms):                           166.81    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           131.67    
+Median ITL (ms):                         120.39    
+P99 ITL (ms):                            298.36    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          240650.78 
+Median E2EL (ms):                        209871.04 
+P99 E2EL (ms):                           580780.54 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 350 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 2048
+INFO 04-01 02:22:57 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=350, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=2048, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 350
+============ Serving Benchmark Result ============
+Successful requests:                     5000      
+Benchmark duration (s):                  3332.12   
+Total input tokens:                      1601058   
+Total generated tokens:                  7575898   
+Request throughput (req/s):              1.50      
+Output token throughput (tok/s):         2273.60   
+Total Token throughput (tok/s):          2754.09   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1251.79   
+Median TTFT (ms):                        371.50    
+P99 TTFT (ms):                           18696.23  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          148.72    
+Median TPOT (ms):                        144.07    
+P99 TPOT (ms):                           200.06    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           148.73    
+Median ITL (ms):                         130.09    
+P99 ITL (ms):                            377.15    
+----------------End-to-end Latency----------------
+Mean E2EL (ms):                          226478.45 
+Median E2EL (ms):                        233236.12 
+P99 E2EL (ms):                           374063.55 
+==================================================
+python3 benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 350 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json --sharegpt-output-len 4096
+INFO 04-01 03:20:02 [__init__.py:239] Automatically detected platform cuda.
+Namespace(backend='openai-chat', base_url=None, host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', dataset_name='sharegpt', dataset_path='/userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json', max_concurrency=350, model='/userdata/llms/deepseek-ai/DeepSeek-R1', tokenizer=None, best_of=1, use_beam_search=False, num_prompts=5000, logprobs=None, request_rate=inf, burstiness=1.0, seed=0, trust_remote_code=False, disable_tqdm=False, profile=False, save_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=False, percentile_metrics='ttft,tpot,itl,e2el', metric_percentiles='99', goodput=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=4096, random_input_len=1024, random_output_len=128, random_range_ratio=1.0, random_prefix_len=0, hf_subset=None, hf_split=None, hf_output_len=None, tokenizer_mode='auto', served_model_name=None, lora_modules=None)
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: inf
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 350

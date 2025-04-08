@@ -1,0 +1,1 @@
+huggingface-cli download --repo-type dataset --resume-download anon8231489123/ShareGPT_Vicuna_unfiltered --local-dir /userdata/sharegpt

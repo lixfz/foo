@@ -1,0 +1,193 @@
+2025-03-28 02:16:14,342 - INFO - flashinfer.jit: Prebuilt kernels not found, using JIT backend
+[TensorRT-LLM] TensorRT-LLM version: 0.19.0.dev2025032500
+[03/28/2025-02:16:14] [TRT-LLM] [I] Preparing to run throughput benchmark...
+[03/28/2025-02:16:16] [TRT-LLM] [I] 
+===========================================================
+= DATASET DETAILS
+===========================================================
+Dataset Path:         /userdata/dataset.txt
+Number of Sequences:  8192
+
+-- Percentiles statistics ---------------------------------
+
+        Input              Output           Seq. Length
+-----------------------------------------------------------
+MIN:  1000.0000          1000.0000          2000.0000
+MAX:  1000.0000          1000.0000          2000.0000
+AVG:  1000.0000          1000.0000          2000.0000
+P50:  1000.0000          1000.0000          2000.0000
+P90:  1000.0000          1000.0000          2000.0000
+P95:  1000.0000          1000.0000          2000.0000
+P99:  1000.0000          1000.0000          2000.0000
+===========================================================
+
+[03/28/2025-02:16:16] [TRT-LLM] [I] Use user-provided max batch size and max num tokens.
+[03/28/2025-02:16:16] [TRT-LLM] [I] Setting PyTorch max sequence length to 2000
+[03/28/2025-02:16:16] [TRT-LLM] [I] Setting up throughput benchmark.
+[03/28/2025-02:16:16] [TRT-LLM] [W] Overriding pytorch_backend_config because it's specified in /userdata/deepseek-test/trt-llm-R1/extra-llm-api-config.yml
+[03/28/2025-02:16:16] [TRT-LLM] [W] Using default gpus_per_node: 8
+[03/28/2025-02:16:16] [TRT-LLM] [I] Compute capability: (10, 0)
+[03/28/2025-02:16:16] [TRT-LLM] [I] SM count: 148
+[03/28/2025-02:16:16] [TRT-LLM] [I] SM clock: 1965 MHz
+[03/28/2025-02:16:16] [TRT-LLM] [I] int4 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] int8 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] fp8 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] float16 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] bfloat16 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] float32 TFLOPS: 0
+[03/28/2025-02:16:16] [TRT-LLM] [I] Total Memory: 179 GiB
+[03/28/2025-02:16:16] [TRT-LLM] [I] Memory clock: 3996 MHz
+[03/28/2025-02:16:16] [TRT-LLM] [I] Memory bus width: 7680
+[03/28/2025-02:16:16] [TRT-LLM] [I] Memory bandwidth: 7672 GB/s
+[03/28/2025-02:16:16] [TRT-LLM] [I] NVLink is active: True
+[03/28/2025-02:16:16] [TRT-LLM] [I] NVLink version: 4
+[03/28/2025-02:16:16] [TRT-LLM] [I] NVLink bandwidth: 450 GB/s
+[03/28/2025-02:16:16] [TRT-LLM] [W] Conflict detected in LlmArgs build_config.max_batch_size (2048) != max_batch_size (161).The 'max_batch_size' specified in LlmArgs is ignored at engine build and will override at runtime.
+[03/28/2025-02:16:16] [TRT-LLM] [W] Conflict detected in LlmArgs build_config.max_num_tokens (8192) != max_batch_size (1160).The 'max_num_tokens' specified in LlmArgs is ignored at engine build and will override at runtime.
+[03/28/2025-02:16:16] [TRT-LLM] [I] Set nccl_plugin to None.
+[03/28/2025-02:16:16] [TRT-LLM] [I] start MpiSession with 8 workers
+[03/28/2025-02:16:16] [TRT-LLM] [I] PyTorchConfig(extra_resource_managers={}, use_cuda_graph=False, cuda_graph_batch_sizes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 64, 128], cuda_graph_max_batch_size=128, cuda_graph_padding_enabled=False, enable_overlap_scheduler=True, attn_backend='TRTLLM', mixed_decoder=False, enable_trtllm_decoder=False, kv_cache_dtype='auto', use_kv_cache=True, enable_iter_perf_stats=False, print_iter_log=False, torch_compile_enabled=False, torch_compile_fullgraph=False, torch_compile_inductor_enabled=False, torch_compile_enable_userbuffers=True, autotuner_enabled=True, enable_layerwise_nvtx_marker=False, load_format=<LoadFormat.AUTO: 0>)
+[33;20mUsing MpiPoolSession to spawn MPI processes
+[0m[1743128179.821323] [9d103391f035:14414:0]        mm_iface.c:810  UCX  ERROR mm_iface failed to allocate receive FIFO
+[1743128179.821348] [9d103391f035:14414:0]      ucp_worker.c:1413 UCX  ERROR uct_iface_open(posix/memory) failed: Out of memory
+[1743128179.821737] [9d103391f035:14414:0]  tl_ucp_context.c:212  TL_UCP ERROR failed to create ucp worker, Out of memory
+[1743128179.821822] [9d103391f035:14414:0]     ucc_context.c:408  UCC  ERROR failed to create tl context for ucp
+[9d103391f035:14414:0:14414] Caught signal 11 (Segmentation fault: address not mapped to object at address (nil))
+[9d103391f035:14413:0:14413] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x8)
+==== backtrace (tid:  14414) ====
+ 0  /opt/hpcx/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7f18401b9614]
+ 1  /opt/hpcx/ucx/lib/libucs.so.0(+0x3680c) [0x7f18401b980c]
+ 2  /opt/hpcx/ucx/lib/libucs.so.0(+0x36a48) [0x7f18401b9a48]
+=================================
+[9d103391f035:14414] *** Process received signal ***
+[9d103391f035:14414] Signal: Segmentation fault (11)
+[9d103391f035:14414] Signal code:  (-6)
+[9d103391f035:14414] Failing at address: 0x384e
+[9d103391f035:14414] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7f1842ec2330]
+[9d103391f035:14414] *** End of error message ***
+==== backtrace (tid:  14413) ====
+ 0  /opt/hpcx/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7f94b83cb614]
+ 1  /opt/hpcx/ucx/lib/libucs.so.0(+0x3680c) [0x7f94b83cb80c]
+ 2  /opt/hpcx/ucx/lib/libucs.so.0(+0x36a48) [0x7f94b83cba48]
+ 3  /opt/hpcx/ucx/lib/libucp.so.0(ucp_address_unpack+0x86) [0x7f94b84b6f06]
+ 4  /opt/hpcx/ucx/lib/libucp.so.0(+0x3e18b) [0x7f94b844318b]
+ 5  /opt/hpcx/ucx/lib/libucp.so.0(ucp_ep_create+0x368) [0x7f94b8445c08]
+ 6  /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_connect_team_ep+0x1a7) [0x7f94a4013eb7]
+ 7  /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_allgather_ring_progress+0x706) [0x7f94a40167f6]
+ 8  /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_allgather_ring_start+0xba) [0x7f94a4015bea]
+ 9  /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_service_allgather+0x22c) [0x7f94a40155ec]
+10  /opt/hpcx/ucc/lib/libucc.so.1(ucc_service_allgather+0xf8) [0x7f94b00d3088]
+11  /opt/hpcx/ucc/lib/libucc.so.1(+0x1417a) [0x7f94b00d317a]
+12  /opt/hpcx/ucc/lib/ucc/libucc_tl_shm.so(ucc_tl_shm_team_t_init+0x1220) [0x7f94a40724b0]
+13  /opt/hpcx/ucc/lib/ucc/libucc_tl_shm.so(ucc_tl_shm_team_t_new+0x69) [0x7f94a4070d89]
+14  /opt/hpcx/ucc/lib/libucc.so.1(ucc_tl_team_create_multiple+0x1c7) [0x7f94b00e6697]
+15  /opt/hpcx/ucc/lib/ucc/libucc_cl_basic.so(ucc_cl_basic_team_create_test+0x34) [0x7f94b001a5a4]
+16  /opt/hpcx/ucc/lib/libucc.so.1(ucc_team_create_test_single+0x12c) [0x7f94b00cec8c]
+17  /opt/hpcx/ompi/lib/openmpi/mca_coll_ucc.so(+0x4359) [0x7f94b8013359]
+18  /opt/hpcx/ompi/lib/libmpi.so.40(mca_coll_base_comm_select+0x22b3) [0x7f94ba804683]
+19  /opt/hpcx/ompi/lib/libmpi.so.40(ompi_mpi_init+0xee3) [0x7f94ba84f613]
+20  /opt/hpcx/ompi/lib/libmpi.so.40(PMPI_Init_thread+0x81) [0x7f94ba7f2d71]
+21  /usr/local/lib/python3.12/dist-packages/mpi4py/MPI.cpython-312-x86_64-linux-gnu.so(+0x33651) [0x7f94ba8d0651]
+22  /usr/local/lib/python3.12/dist-packages/mpi4py/MPI.cpython-312-x86_64-linux-gnu.so(+0x33cef) [0x7f94ba8d0cef]
+23  /usr/bin/python(PyModule_ExecDef+0x17f) [0x582ccf]
+24  /usr/bin/python() [0x5fd9f4]
+25  /usr/bin/python() [0x582012]
+26  /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a) [0x5db68a]
+27  /usr/bin/python() [0x549c97]
+28  /usr/bin/python(PyObject_CallMethodObjArgs+0xe3) [0x54b523]
+29  /usr/bin/python(PyImport_ImportModuleLevelObject+0x395) [0x5fde65]
+30  /usr/bin/python() [0x5d38d4]
+31  /usr/bin/python() [0x581f7d]
+32  /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a) [0x5db68a]
+33  /usr/bin/python() [0x549c97]
+34  /usr/bin/python(PyObject_CallMethodObjArgs+0xe3) [0x54b523]
+35  /usr/bin/python(PyImport_ImportModuleLevelObject+0x5eb) [0x5fe0bb]
+36  /usr/bin/python(_PyEval_EvalFrameDefault+0x5ef3) [0x5dc943]
+37  /usr/bin/python(PyEval_EvalCode+0x15b) [0x5d59fb]
+38  /usr/bin/python() [0x5d358c]
+39  /usr/bin/python() [0x581f7d]
+40  /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a) [0x5db68a]
+41  /usr/bin/python() [0x549c97]
+42  /usr/bin/python(PyObject_CallMethodObjArgs+0xe3) [0x54b523]
+43  /usr/bin/python(PyImport_ImportModuleLevelObject+0x395) [0x5fde65]
+44  /usr/bin/python() [0x5d38d4]
+45  /usr/bin/python() [0x581f7d]
+46  /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a) [0x5db68a]
+47  /usr/bin/python() [0x549c97]
+48  /usr/bin/python(PyObject_CallMethodObjArgs+0xe3) [0x54b523]
+49  /usr/bin/python(PyImport_ImportModuleLevelObject+0x5eb) [0x5fe0bb]
+50  /usr/bin/python(_PyEval_EvalFrameDefault+0x5ef3) [0x5dc943]
+51  /usr/bin/python(PyEval_EvalCode+0x15b) [0x5d59fb]
+52  /usr/bin/python() [0x5d358c]
+53  /usr/bin/python() [0x581f7d]
+54  /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a) [0x5db68a]
+55  /usr/bin/python() [0x549c97]
+56  /usr/bin/python(PyObject_CallMethodObjArgs+0xe3) [0x54b523]
+57  /usr/bin/python(PyImport_ImportModuleLevelObject+0x395) [0x5fde65]
+58  /usr/bin/python(_PyEval_EvalFrameDefault+0x5ef3) [0x5dc943]
+59  /usr/bin/python(PyEval_EvalCode+0x15b) [0x5d59fb]
+60  /usr/bin/python() [0x5d358c]
+=================================
+[9d103391f035:14413] *** Process received signal ***
+[9d103391f035:14413] Signal: Segmentation fault (11)
+[9d103391f035:14413] Signal code:  (-6)
+[9d103391f035:14413] Failing at address: 0x384d
+[9d103391f035:14413] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7f94bb0d5330]
+[9d103391f035:14413] [ 1] /opt/hpcx/ucx/lib/libucp.so.0(ucp_address_unpack+0x86)[0x7f94b84b6f06]
+[9d103391f035:14413] [ 2] /opt/hpcx/ucx/lib/libucp.so.0(+0x3e18b)[0x7f94b844318b]
+[9d103391f035:14413] [ 3] /opt/hpcx/ucx/lib/libucp.so.0(ucp_ep_create+0x368)[0x7f94b8445c08]
+[9d103391f035:14413] [ 4] /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_connect_team_ep+0x1a7)[0x7f94a4013eb7]
+[9d103391f035:14413] [ 5] /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_allgather_ring_progress+0x706)[0x7f94a40167f6]
+[9d103391f035:14413] [ 6] /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_allgather_ring_start+0xba)[0x7f94a4015bea]
+[9d103391f035:14413] [ 7] /opt/hpcx/ucc/lib/ucc/libucc_tl_ucp.so(ucc_tl_ucp_service_allgather+0x22c)[0x7f94a40155ec]
+[9d103391f035:14413] [ 8] /opt/hpcx/ucc/lib/libucc.so.1(ucc_service_allgather+0xf8)[0x7f94b00d3088]
+[9d103391f035:14413] [ 9] /opt/hpcx/ucc/lib/libucc.so.1(+0x1417a)[0x7f94b00d317a]
+[9d103391f035:14413] [10] /opt/hpcx/ucc/lib/ucc/libucc_tl_shm.so(ucc_tl_shm_team_t_init+0x1220)[0x7f94a40724b0]
+[9d103391f035:14413] [11] /opt/hpcx/ucc/lib/ucc/libucc_tl_shm.so(ucc_tl_shm_team_t_new+0x69)[0x7f94a4070d89]
+[9d103391f035:14413] [12] /opt/hpcx/ucc/lib/libucc.so.1(ucc_tl_team_create_multiple+0x1c7)[0x7f94b00e6697]
+[9d103391f035:14413] [13] /opt/hpcx/ucc/lib/ucc/libucc_cl_basic.so(ucc_cl_basic_team_create_test+0x34)[0x7f94b001a5a4]
+[9d103391f035:14413] [14] /opt/hpcx/ucc/lib/libucc.so.1(ucc_team_create_test_single+0x12c)[0x7f94b00cec8c]
+[9d103391f035:14413] [15] /opt/hpcx/ompi/lib/openmpi/mca_coll_ucc.so(+0x4359)[0x7f94b8013359]
+[9d103391f035:14413] [16] /opt/hpcx/ompi/lib/libmpi.so.40(mca_coll_base_comm_select+0x22b3)[0x7f94ba804683]
+[9d103391f035:14413] [17] /opt/hpcx/ompi/lib/libmpi.so.40(ompi_mpi_init+0xee3)[0x7f94ba84f613]
+[9d103391f035:14413] [18] /opt/hpcx/ompi/lib/libmpi.so.40(PMPI_Init_thread+0x81)[0x7f94ba7f2d71]
+[9d103391f035:14413] [19] /usr/local/lib/python3.12/dist-packages/mpi4py/MPI.cpython-312-x86_64-linux-gnu.so(+0x33651)[0x7f94ba8d0651]
+[9d103391f035:14413] [20] /usr/local/lib/python3.12/dist-packages/mpi4py/MPI.cpython-312-x86_64-linux-gnu.so(+0x33cef)[0x7f94ba8d0cef]
+[9d103391f035:14413] [21] /usr/bin/python(PyModule_ExecDef+0x17f)[0x582ccf]
+[9d103391f035:14413] [22] /usr/bin/python[0x5fd9f4]
+[9d103391f035:14413] [23] /usr/bin/python[0x582012]
+[9d103391f035:14413] [24] /usr/bin/python(_PyEval_EvalFrameDefault+0x4c3a)[0x5db68a]
+[9d103391f035:14413] [25] /usr/bin/python[0x549c97]
+[9d103391f035:14413] [26] /usr/bin/python(PyObject_CallMethodObjArgs+0xe3)[0x54b523]
+[9d103391f035:14413] [27] /usr/bin/python(PyImport_ImportModuleLevelObject+0x395)[0x5fde65]
+[9d103391f035:14413] [28] /usr/bin/python[0x5d38d4]
+[9d103391f035:14413] [29] /usr/bin/python[0x581f7d]
+[9d103391f035:14413] *** End of error message ***
+--------------------------------------------------------------------------
+Child job 2 terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+A request has timed out and will therefore fail:
+
+  Operation:  LOOKUP: orted/pmix/pmix_server_pub.c:345
+
+Your job may terminate as a result of this problem. You may want to
+adjust the MCA parameter pmix_server_max_wait and try again. If this
+occurred during a connect/accept operation, you can adjust that time
+using the pmix_base_exchange_timeout parameter.
+--------------------------------------------------------------------------
+Exception in thread Thread-2 (_manager_spawn):
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/mpi4py/futures/_lib.py", line 324, in _manager_spawn
+    comm = serialized(client_spawn)(pyexe, pyargs, nprocs, info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mpi4py/futures/_lib.py", line 935, in client_spawn
+    comm = MPI.COMM_SELF.Spawn(python_exe, args, max_workers, info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "mpi4py/MPI/Comm.pyx", line 1931, in mpi4py.MPI.Intracomm.Spawn
+mpi4py.MPI.Exception: MPI_ERR_UNKNOWN: unknown error

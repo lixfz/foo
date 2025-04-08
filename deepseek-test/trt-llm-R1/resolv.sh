@@ -1,0 +1,1 @@
+sudo cp /etc/resolv.conf.me /etc/resolv.conf

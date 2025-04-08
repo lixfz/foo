@@ -1,0 +1,2 @@
+sharedgpt dataset benchmark
+python3 /userdata/vllm/benchmarks/benchmark_serving.py --backend openai-chat --model /userdata/llms/deepseek-ai/DeepSeek-R1 --endpoint /v1/chat/completions --num-prompts 5000 --max-concurrency 100 --dataset-path /userdata/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json

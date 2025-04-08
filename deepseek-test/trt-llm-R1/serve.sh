@@ -1,0 +1,11 @@
+trtllm-serve /userdata/llms/DeepSeek-R1-FP4 \
+	    --host 0.0.0.0 --port 30000 \
+            --backend pytorch \
+            --tp_size 8 \
+            --pp_size 1 \
+            --ep_size 4 \
+            --max_batch_size 300 \
+            --max_num_tokens 32768 \
+	    --max_seq_len 65536 \
+            --kv_cache_free_gpu_memory_fraction 0.8 \
+            --trust_remote_code

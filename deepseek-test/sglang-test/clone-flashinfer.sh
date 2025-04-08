@@ -1,0 +1,1 @@
+git clone https://github.com/flashinfer-ai/flashinfer.git --recursive
