@@ -11,7 +11,8 @@ def main():
     ]
     sampling_params = SamplingParams(max_tokens=32)
 
-    llm = LLM(model="/userdata/llms/DeepSeek-R1-FP4", tensor_parallel_size=8, enable_attention_dp=True)
+    #llm = LLM(model="/userdata/llms/DeepSeek-R1-FP4", tensor_parallel_size=8, enable_attention_dp=True)
+    llm = LLM(model="/userdata/llms/DeepSeek-R1-FP4", tensor_parallel_size=8)
 
     outputs = llm.generate(prompts, sampling_params)
 

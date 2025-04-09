@@ -54,6 +54,17 @@ function doit(){
    #--extra_llm_api_options ./extra-llm-api-config-graph.yml
 }
 
+DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1-o8k.txt
+OUTPUT_DIR=$(gen_odir outputs-1k8k)
+TRTLLM_DG_ENABLED=0
+
+#doit 300 300
+#doit 300 600
+doit 600 600 
+doit 600 1000
+doit 100 100
+exit
+
 
 DATASET_PATH=/userdata/foo/trtest/dataset-sharegpt.txt
 OUTPUT_DIR=$(gen_odir outputs-sharegpt)
@@ -95,17 +106,6 @@ doit 600 600
 doit 600 1000
 doit 100 100
 doit 100 300
-
-DATASET_PATH=/userdata/foo/trtest/dataset-ds-r1-o8k.txt
-OUTPUT_DIR=$(gen_odir outputs-1k8k)
-TRTLLM_DG_ENABLED=0
-
-doit 300 300
-doit 300 600
-doit 600 600 
-doit 600 1000
-doit 100 100
-exit
 
 export TRTLLM_DG_ENABLED=
 

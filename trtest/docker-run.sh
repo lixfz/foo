@@ -15,3 +15,4 @@ docker run --rm --name ta3 -it \
 
 	#datacanvas/nctest:250328 \
 	#trt:250401 \
+	#trt:v0181 \
