@@ -10,7 +10,7 @@ docker run --rm --name ta3 -it \
 	--gpus all -e NVIDIA_VISIBLE_DEVICES=all \
 	-v /userdata:/userdata \
 	-w /userdata/foo/trtest \
-	trt:250408 \
+	trt:250410 \
 	bash
 
 	#datacanvas/nctest:250328 \
