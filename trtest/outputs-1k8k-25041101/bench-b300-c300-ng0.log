@@ -267,3 +267,117 @@ Model init total -- 74.55s
 [04/11/2025-00:41:14] [TRT-LLM] [I] Starting benchmarking async task.
 [04/11/2025-00:41:14] [TRT-LLM] [I] Starting benchmark...
 [04/11/2025-00:41:14] [TRT-LLM] [I] Request submission complete. [count=3000, time=0.0302s, rate=99240.98 req/s]
+[04/11/2025-04:19:59] [TRT-LLM] [I] Benchmark complete.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Stopping LLM backend.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Cancelling all 0 tasks to complete.
+[04/11/2025-04:19:59] [TRT-LLM] [I] All tasks cancelled.
+[04/11/2025-04:19:59] [TRT-LLM] [I] LLM Backend stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Worker task cancelled.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Benchmark done. Reporting results...
+[04/11/2025-04:19:59] [TRT-LLM] [I] Writing report to '/userdata/foo/trtest/outputs-1k8k-25041101/bench-b300-c300-ng0.json'.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Validating KV Cache config against kv_cache_dtype="auto"
+[04/11/2025-04:19:59] [TRT-LLM] [I] KV cache quantization set to "auto". Using checkpoint KV quantization.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Validating KV Cache config against kv_cache_dtype="auto"
+[04/11/2025-04:19:59] [TRT-LLM] [I] KV cache quantization set to "auto". Using checkpoint KV quantization.
+[04/11/2025-04:19:59] [TRT-LLM] [I] 
+
+===========================================================
+= PYTORCH BACKEND
+===========================================================
+Model:			deepseek-ai/DeepSeek-R1
+Model Path:		/userdata/llms/DeepSeek-R1-FP4
+TensorRT-LLM Version:	0.19.0.dev2025041500
+Dtype:			bfloat16
+KV Cache Dtype:		None
+Quantization:		NVFP4
+
+===========================================================
+= REQUEST DETAILS 
+===========================================================
+Number of requests:             3000
+Number of concurrent requests:  299.9158
+Average Input Length (tokens):  1000.0000
+Average Output Length (tokens): 8000.0000
+===========================================================
+= WORLD + RUNTIME INFORMATION 
+===========================================================
+TP Size:                8
+PP Size:                1
+EP Size:                4
+Max Runtime Batch Size: 300
+Max Runtime Tokens:     1160
+Scheduling Policy:      GUARANTEED_NO_EVICT
+KV Memory Percentage:   80.00%
+Issue Rate (req/sec):   3.9374E+18
+
+===========================================================
+= PERFORMANCE OVERVIEW 
+===========================================================
+Request Throughput (req/sec):                     0.2286
+Total Output Throughput (tokens/sec):             1828.7263
+Per User Output Throughput (tokens/sec/user):     6.0975
+Per GPU Output Throughput (tokens/sec/gpu):       228.5908
+Total Token Throughput (tokens/sec):              2057.3170
+Total Latency (ms):                               13123888.7785
+Average request latency (ms):                     1312020.5514
+Per User Output Speed [1/TPOT] (tokens/sec/user): 6.1011
+Average time-to-first-token [TTFT] (ms):          939.0058
+Average time-per-output-token [TPOT] (ms):        163.9057
+
+-- Per-Request Time-per-Output-Token [TPOT] Breakdown (ms)
+
+[TPOT] MINIMUM: 163.6827
+[TPOT] MAXIMUM: 164.3005
+[TPOT] AVERAGE: 163.9057
+[TPOT] P50    : 163.8980
+[TPOT] P90    : 164.2793
+[TPOT] P95    : 164.2916
+[TPOT] P99    : 164.2988
+
+-- Per-Request Time-to-First-Token [TTFT] Breakdown (ms) 
+
+[TTFT] MINIMUM: 517.3130
+[TTFT] MAXIMUM: 7727.4334
+[TTFT] AVERAGE: 939.0058
+[TTFT] P50    : 575.1623
+[TTFT] P90    : 839.6774
+[TTFT] P95    : 4093.6690
+[TTFT] P99    : 7005.3580
+
+-- Request Latency Breakdown (ms) -----------------------
+
+[Latency] P50    : 1311731.6694
+[Latency] P90    : 1314778.1775
+[Latency] P95    : 1315223.1630
+[Latency] P99    : 1318030.4215
+[Latency] MINIMUM: 1309831.1400
+[Latency] MAXIMUM: 1318781.5243
+[Latency] AVERAGE: 1312020.5514
+
+===========================================================
+= DATASET DETAILS
+===========================================================
+Dataset Path:         /userdata/foo/trtest/dataset-ds-r1-o8k.txt
+Number of Sequences:  3000
+
+-- Percentiles statistics ---------------------------------
+
+        Input              Output           Seq. Length
+-----------------------------------------------------------
+MIN:  1000.0000          8000.0000          9000.0000
+MAX:  1000.0000          8000.0000          9000.0000
+AVG:  1000.0000          8000.0000          9000.0000
+P50:  1000.0000          8000.0000          9000.0000
+P90:  1000.0000          8000.0000          9000.0000
+P95:  1000.0000          8000.0000          9000.0000
+P99:  1000.0000          8000.0000          9000.0000
+===========================================================
+
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread proxy_dispatch_result_thread stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [E] proxy.py: _iteration_result_task: d is None
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread proxy_dispatch_kv_cache_events_thread stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [E] proxy.py: _iteration_result_task: d is None
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread proxy_dispatch_stats_thread stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread await_response_thread stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread dispatch_stats_thread stopped.
+[04/11/2025-04:19:59] [TRT-LLM] [I] Thread dispatch_kv_cache_events_thread stopped.
